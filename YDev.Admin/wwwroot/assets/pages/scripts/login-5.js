@@ -26,11 +26,12 @@
                 else {
 
                     toastr.error(data.message);
+                    $("#btn_login").text("Giriş Yap");
                 }
                
             }
         });
-        $("#btn_login").text("Giriş Yap");
+        
     });
 
 

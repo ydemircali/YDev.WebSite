@@ -62,13 +62,14 @@ namespace YDev.Admin.Controllers
             return Json(result);
         }
 
+        [Route("LogOut")]
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync();
 
             UserInformation = new User();
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Login");
         }
 
         private async Task<bool> LoginCheckAsync(string email, string password)
@@ -91,7 +92,7 @@ namespace YDev.Admin.Controllers
                     new AuthenticationProperties
                     {
                         IsPersistent = true,
-                        ExpiresUtc = DateTime.Now.AddSeconds(30)
+                        ExpiresUtc = DateTime.Now.AddHours(1)
                     });
 
                 return true;
