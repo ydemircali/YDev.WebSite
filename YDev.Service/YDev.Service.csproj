@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Folder Include="UserService\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
 
   <ItemGroup>

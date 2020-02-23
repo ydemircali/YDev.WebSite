@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YDev.Common.Models;
 
 namespace YDev.Admin.Models.Login
 {
-    public class LoginModel
+    public class LoginUser : User
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
     }
 }

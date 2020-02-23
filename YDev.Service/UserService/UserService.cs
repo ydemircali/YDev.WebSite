@@ -1,44 +1,52 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using YDev.Common.Models;
-using YDev.Data.Repo;
+using YDev.Data.DataProvider;
+using YDev.Service.Helper;
 
 namespace YDev.Service.UserService
 {
     public class UserService : IUserService
     {
-        private IAsyncRepository<User> userRepository;
-
-        public UserService(IAsyncRepository<User> userRepository)
+        private IUserDataProvider _userDataProvider;
+        public UserService(IUserDataProvider userProvider)
         {
-            this.userRepository = userRepository;
+            _userDataProvider = userProvider;
         }
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<User> FindUser(string email, string password)
         {
-            return await userRepository.GetAll();
+            string encodedPassword = Crypto.MD5Hash(password);
+
+            return await _userDataProvider.FindUser(f => f.Email == email && f.Password == encodedPassword);
         }
 
-        public async Task<User> GetUser(long id)
+        public Task DeleteUser(long id)
         {
-            return await userRepository.Get(id);
+            throw new NotImplementedException();
         }
 
-        public async Task InsertUser(User user)
+        public Task<User> GetUser(long id)
         {
-            await userRepository.Insert(user);
-        }
-        public async Task UpdateUser(User user)
-        {
-            await userRepository.Update(user);
+            throw new NotImplementedException();
         }
 
-        public async Task DeleteUser(long id)
+        public Task<IEnumerable<User>> GetUsers()
         {
-            User user = await GetUser(id);
-            await userRepository.Remove(user);
+            throw new NotImplementedException();
+        }
+
+        public Task InsertUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateUser(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

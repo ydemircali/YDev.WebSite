@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YDev.Data.Migrations
 {
-    public partial class YDevAdmin : Migration
+    public partial class mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "RoleTypes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AddedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
+                    RoleName = table.Column<string>(nullable: true),
+                    Status = table.Column<byte>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleTypes", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Titles",
                 columns: table => new
@@ -40,11 +56,18 @@ namespace YDev.Data.Migrations
                     Address = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Status = table.Column<byte>(nullable: false),
+                    RoleId = table.Column<long>(nullable: false),
                     TitleId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_RoleTypes_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "RoleTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Users_Titles_TitleId",
                         column: x => x.TitleId,
@@ -53,33 +76,10 @@ namespace YDev.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "RoleTypes",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AddedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: false),
-                    RoleName = table.Column<string>(nullable: true),
-                    Status = table.Column<byte>(nullable: false),
-                    UserId = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RoleTypes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RoleTypes_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_RoleTypes_UserId",
-                table: "RoleTypes",
-                column: "UserId");
+                name: "IX_Users_RoleId",
+                table: "Users",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_TitleId",
@@ -90,10 +90,10 @@ namespace YDev.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RoleTypes");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "RoleTypes");
 
             migrationBuilder.DropTable(
                 name: "Titles");

@@ -10,8 +10,8 @@ using YDev.Data;
 namespace YDev.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20200222165712_YDevAdmin")]
-    partial class YDevAdmin
+    [Migration("20200223101137_mig")]
+    partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,12 +40,7 @@ namespace YDev.Data.Migrations
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("RoleTypes");
                 });
@@ -105,6 +100,9 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
+
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
@@ -119,20 +117,21 @@ namespace YDev.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.HasIndex("TitleId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("YDev.Common.Models.RoleTypes", b =>
-                {
-                    b.HasOne("YDev.Common.Models.User", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("YDev.Common.Models.User", b =>
                 {
+                    b.HasOne("YDev.Common.Models.RoleTypes", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("YDev.Common.Models.Title", "Title")
                         .WithMany()
                         .HasForeignKey("TitleId")

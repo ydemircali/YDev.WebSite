@@ -4,15 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using YDev.Common.Models;
 
 namespace YDev.Admin.Controllers
 {
-    [Authorize]
-    public class AdminController : Controller
+    public abstract class AdminController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public User UserInformation = new User();
     }
 }

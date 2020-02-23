@@ -16,7 +16,10 @@ namespace YDev.Common.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public byte Status { get; set; }
-        public IEnumerable<RoleTypes> Roles { get; set; }
+
+        [ForeignKey("RoleTypes")]
+        public long RoleId { get; set; }
+        public RoleTypes Role { get; set; }
 
         [ForeignKey("Title")]
         public long TitleId { get; set; }

@@ -4,5 +4,11 @@
     "inputFiles": [
       "wwwroot/assets/pages/css/login-5.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/pages/scripts/login-5.min.js",
+    "inputFiles": [
+      "wwwroot/assets/pages/scripts/login-5.js"
+    ]
   }
 ]

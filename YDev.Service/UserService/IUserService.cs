@@ -13,5 +13,6 @@ namespace YDev.Service.UserService
         Task InsertUser(User user);
         Task UpdateUser(User user);
         Task DeleteUser(long id);
+        Task<User> FindUser(string email, string password);
     }
 }

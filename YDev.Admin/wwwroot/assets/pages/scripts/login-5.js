@@ -1,8 +1,43 @@
-var Login = function() {
+﻿var Login = function () {
 
-    var handleLogin = function() {
+    $(document).on("click", "#btn_login", function () {
 
-        $('.login-form').validate({
+        var model = {
+            Email: $("#email").val(),
+            Password: $("#password").val()
+        };
+
+        $("#btn_login").text("Giriş Yapılıyor");
+
+        $.ajax({
+            url: "/Login",
+            type: "POST",
+            data: JSON.stringify(model),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.isSuccess === true) {
+                    toastr.success(data.message);
+                    setTimeout(function ()
+                    {
+                        document.location.href = "/";
+
+                    }, 1000);
+                }
+                else {
+
+                    toastr.error(data.message);
+                }
+               
+            }
+        });
+        $("#btn_login").text("Giriş Yap");
+    });
+
+
+
+    var handleLogin = function () {
+
+        $('#girisForm').validate({
             errorElement: 'span', //default input error message container
             errorClass: 'help-block', // default input error message class
             focusInvalid: false, // do not focus the last invalid input
@@ -23,12 +58,12 @@ var Login = function() {
                     required: "E-posta zorunludur."
                 },
                 password: {
-                    required: "�ifre zorunludur."
+                    required: "Şifre zorunludur."
                 }
             },
 
             invalidHandler: function(event, validator) { //display error alert on form submit   
-                $('.alert-danger', $('.login-form')).show();
+                $('.alert-danger', $('#girisForm')).show();
             },
 
             highlight: function(element) { // hightlight error inputs
@@ -46,14 +81,14 @@ var Login = function() {
             },
 
             submitHandler: function(form) {
-                form.submit(); // form validation success, call ajax form submit
+                
             }
         });
 
-        $('.login-form input').keypress(function(e) {
+        $('#girisForm input').keypress(function(e) {
             if (e.which == 13) {
-                if ($('.login-form').validate().form()) {
-                    $('.login-form').submit(); //form validation success, call ajax form submit
+                if ($('#girisForm').validate().form()) {
+                    $('#girisForm').submit(); //form validation success, call ajax form submit
                 }
                 return false;
             }
@@ -68,15 +103,6 @@ var Login = function() {
             }
         });
 
-        $('#forget-password').click(function(){
-            $('.login-form').hide();
-            $('.forget-form').show();
-        });
-
-        $('#back-btn').click(function(){
-            $('.login-form').show();
-            $('.forget-form').hide();
-        });
     }
 
  
@@ -86,7 +112,7 @@ var Login = function() {
         //main function to initiate the module
         init: function() {
 
-            handleLogin();
+            //handleLogin();
 
             // init background slide images
             $('.login-bg').backstretch([

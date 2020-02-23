@@ -10,7 +10,6 @@ using YDev.Admin.Models;
 
 namespace YDev.Admin.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
