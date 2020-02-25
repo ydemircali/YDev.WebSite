@@ -21,6 +21,8 @@ namespace YDev.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Nav"] = "home";
+            
             return View();
         }
 

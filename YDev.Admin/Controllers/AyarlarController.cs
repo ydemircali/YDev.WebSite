@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using YDev.Common.Models;
 
 namespace YDev.Admin.Controllers
 {
-    public abstract class AdminController : Controller
+    public class AyarlarController : Controller
     {
-        public User UserInformation = new User();
+        public IActionResult Index()
+        {
+            ViewData["Nav"] = "ayarlar";
+
+            return View();
+        }
     }
 }

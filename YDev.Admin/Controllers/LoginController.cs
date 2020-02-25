@@ -14,7 +14,7 @@ using YDev.Service.UserService;
 namespace YDev.Admin.Controllers
 {
     [AllowAnonymous]
-    public class LoginController : AdminController
+    public class LoginController : Controller
     {
         private readonly IUserService _userService;
 
@@ -26,7 +26,7 @@ namespace YDev.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && UserInformation.Id != 0)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -67,20 +67,22 @@ namespace YDev.Admin.Controllers
         {
             await HttpContext.SignOutAsync();
 
-            UserInformation = new User();
-
+            UserInformation.Id = 0;    
+            
             return RedirectToAction("Index","Login");
         }
 
         private async Task<bool> LoginCheckAsync(string email, string password)
         {
-            UserInformation =  await _userService.FindUser(email, password);
+            User userInfo =  await _userService.FindUser(email, password);
 
-            if (UserInformation != null && UserInformation.Id != 0)
+            if (userInfo != null && userInfo.Id != 0)
             {
                 var claims = new List<Claim> 
                 {
-                    new Claim(ClaimTypes.Name, UserInformation.Email, UserInformation.Role.RoleName) 
+                    new Claim(ClaimTypes.Name,
+                              userInfo.Email,
+                              userInfo.Role.RoleName) 
                 };
 
                 var userIdentity = new ClaimsIdentity(claims,
@@ -94,6 +96,18 @@ namespace YDev.Admin.Controllers
                         IsPersistent = true,
                         ExpiresUtc = DateTime.Now.AddHours(1)
                     });
+
+                UserInformation.Id = userInfo.Id;
+                UserInformation.Address = userInfo.Address;
+                UserInformation.Email = userInfo.Email;
+                UserInformation.ImagePath = userInfo.ImagePath;
+                UserInformation.Name = userInfo.Name;
+                UserInformation.SurName = userInfo.SurName;
+                UserInformation.Role = userInfo.Role;
+                UserInformation.Phone = userInfo.Phone;
+                UserInformation.Status = userInfo.Status;
+                UserInformation.Title = userInfo.Title;
+                UserInformation.UserName = userInfo.UserName;
 
                 return true;
             }

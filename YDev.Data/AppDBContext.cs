@@ -19,6 +19,12 @@ namespace YDev.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<RoleTypes> RoleTypes { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<Media> Medias { get; set; }
+        public virtual DbSet<Gallery> Galleries { get; set; }
+        public virtual DbSet<MediaGallery> MediaGalleries { get; set; }
+        public virtual DbSet<Slider> Sliders { get; set; }
+        public virtual DbSet<StaticPages> StaticPages { get; set; }
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDBContext>
