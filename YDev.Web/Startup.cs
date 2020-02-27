@@ -6,12 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using YDev.Data;
-using YDev.Data.Repo;
-using YDev.Service.UserService;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
 
 namespace YDev.Web
 {
@@ -35,8 +29,6 @@ namespace YDev.Web
             });
 
             services.AddControllersWithViews();
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(AsyncRepository<>));
-            services.AddTransient<IUserService, UserService>();
 
         }
 
