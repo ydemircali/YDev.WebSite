@@ -1,5 +1,5 @@
 ﻿/***** Main Colors *******/
-a, .top-search a, .main-color, .hr-style4:after, .hr-style4:before, .block-head, .widget-head, footer a:hover, .title-2 .breadcrumbs a, .title-3 .breadcrumbs a, .title-4 .breadcrumbs a, .nav-3 .top-nav > ul > li.current > a,.nav-3 .top-nav > ul > li.current > a i,.nav-3 .top-nav > ul > li.selected > a i,.nav-3 .top-nav > ul > li > a:hover i, .nav-3 .top-nav > ul > li > a:hover, .nav-3 .top-nav > ul > li.selected > a, .nav-3 .top-nav > ul > li.selected > a i, .footer-top a:hover:before, .list.prim li:before, #filters li a, .team-box-2 .t-position, .team-box-2 .team-socials a, .head-style3 .top-bar li a, .author-name, .add-items i.fa, .copyrights b, .dark-bg .btn-large:before, .box-top .more-btn, .service-box-1:hover a, .box-top i.fa, .item-box:hover .item-tools i, .item-cart a:hover, .main-border, .fun-title, .staff-1 .fun-icon, .top-bar ul.social-list li a:hover span, .nav-2 .top-nav > ul > li > a:hover i, .nav-2 .top-nav > ul > li.current > a i, .nav-2 .top-nav > ul > li.selected > a i, .nav-2 .top-nav > ul > li.selected > a i, .project-name, .slick-dots li.slick-active button:before, .title-1 h1,
+a, .top-search a, .main-color, .hr-style4:after, .hr-style4:before, .block-head, .widget-head, footer a:hover, .title-2 .breadcrumbs a, .title-3 .breadcrumbs a, .title-4 .breadcrumbs a, .nav-3 .top-nav > ul > li.current > a,.nav-3 .top-nav > ul > li.current > a i,.nav-3 .top-nav > ul > li.selected > a i,.nav-3 .top-nav > ul > li > a:hover i, .nav-3 .top-nav > ul > li > a:hover, .nav-3 .top-nav > ul > li.selected > a, .nav-3 .top-nav > ul > li.selected > a i, .footer-top a:hover:before, .list.prim li:before, #filters li a, .team-box-2 .t-position, .team-box-2 .team-socials a, .head-style3 .top-bar li a, .author-name, .add-items i.fa, .dark-bg .btn-large:before, .box-top .more-btn, .service-box-1:hover a, .box-top i.fa, .item-box:hover .item-tools i, .item-cart a:hover, .main-border, .fun-title, .staff-1 .fun-icon, .top-bar ul.social-list li a:hover span, .nav-2 .top-nav > ul > li > a:hover i, .nav-2 .top-nav > ul > li.current > a i, .nav-2 .top-nav > ul > li.selected > a i, .nav-2 .top-nav > ul > li.selected > a i, .project-name, .slick-dots li.slick-active button:before, .title-1 h1,
 .list.alt li:before,.product-price, .title-2 h1,.main-title, .accordion li.active a, .accordion li > h3 i.fa, .post-info h2 a:hover, .siteMap-nav ul ul li a:hover, .head2-lft-links li i, .head-style3 .top-bar li i, .item-tools i, .product-specs a.btn.selected,.widget-content a:hover,
 .service-box-4 h3 span,.service-box-5 h3 span,.service-box-5 h3,.block-head-News a span,.block-head-News:hover  {
 	color: #66000b;
@@ -83,8 +83,11 @@ blockquote {
 .product-specs a.btn.selected {
 	border: 1px #777 solid !important;
 }
-header.top-head .logo a, .foot-logo {
+header.top-head .logo a {
 	background: transparent url('../../images/logo.png') no-repeat 50% 50%;
+}
+.foot-logo {
+	background: transparent url('../../images/footer_logo.png') no-repeat 50% 50%;
 }
 .footer-top-2 .foot-logo {
     background: transparent url('../../images/logo.png') no-repeat;
