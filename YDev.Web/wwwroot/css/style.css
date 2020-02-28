@@ -2201,7 +2201,7 @@ blockquote span {
 }
 .footer-top .block-head {
 	border-bottom-color: #3a3a3a;
-	color:#b8905c;
+	color:#fff;
 	text-transform:uppercase
 }
 .block-head:before{
@@ -5866,7 +5866,7 @@ a.wit-btn {
 	overflow: hidden;
 	padding: 60px 0 50px;
 	border-bottom: 1px #0f0f0f solid;
-	background: #fff;
+	background: #66000b;
 	color: #b8905c;
 }
 .footer-top a {
@@ -5913,7 +5913,7 @@ a.wit-btn {
 	color: #B5B5B5
 }
 .footer-top-2 .social-list li:hover span {
-	color: #fff
+	color: #b8905c
 }
 .footer-menu-inline {
     float: right;
@@ -6109,14 +6109,14 @@ footer .NL .input-box {
 	margin-left: 10px;
 	padding-left: 25px;
 	width: 67%;
-	border: 1px #3F3F3F solid;
+	border: 1px #b8905c solid;
 	border-right: 0px;
 	background: transparent none;
 	color: #fff;
 	font-size: 11px;
 }
 footer .NL .txt-box {
-	color: #969696;
+	color: #b8905c;
 	font-size:11px
 }
 footer .NL:before {
@@ -6124,12 +6124,12 @@ footer .NL:before {
 	top: 16px;
 	left: 24px;
 	display: inline-block;
-	color: #5C5C5C;
+	color: #b8905c;
 	content: "\f0e0";
 	font-family: FontAwesome;
 }
 footer .NL .NL-btn {
-	background: #3F3F3F;
+	background: #b8905c;
 	color: #fff;
 }
 footer .NL .Notfication {
@@ -6219,10 +6219,11 @@ footer .no-margin{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	white-space: nowrap;
-	font-size: 11px;
+	font-size: 15px;
+	color: #b8905c;
 }
 .copyrights a {
-	color: #7C7C7C;
+	color: #b8905c;
 	text-decoration: underline;
 }
 .copyrights a:hover {
@@ -6232,7 +6233,7 @@ footer .no-margin{
 	overflow: auto;
 	padding: 15px 0;
 	border-top: 1px #363636 solid;
-	background: #1D1D1D;
+	background: #66000b;
 }
 /******* footer social list *******/
 .social-list li {
@@ -6243,7 +6244,7 @@ footer .no-margin{
 .social-list li a {
 	display: block;
 	padding: 0;
-	color: #737373;
+	color: #b8905c;
 }
 .social-list li span {
 	display: block;
