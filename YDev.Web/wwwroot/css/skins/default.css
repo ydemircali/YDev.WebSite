@@ -20,7 +20,7 @@ a, .top-search a, .main-color, .hr-style4:after, .hr-style4:before, .block-head,
     color: #66000b;
     border-bottom:2px solid #66000b
 }
-.item-box:hover:after, .item-box:hover .item-price, .team-box:hover:after, .team-box-2:hover:after, .responsive-nav, .search-box:before, .block-head:before, .block-head:after, .widget-head:before, .widget-head:after, .details-img:after, .post-image:after,
+.item-box:hover:after, .item-box:hover .item-price, .team-box:hover:after, .team-box-2:hover:after, .responsive-nav, .search-box:before, .widget-head:before, .widget-head:after, .details-img:after, .post-image:after,
 .team-box:after, .team-box-2:after, .item-box:after, .team-box .team-socials li a:hover, .service-box-1:after, .portfolio-item:after {
 	background-color: #66000b;
 }
@@ -93,7 +93,7 @@ header.top-head .logo a {
     background: transparent url('../../images/logo.png') no-repeat;
 }
 .head-style2 .top-head .logo a, .head-style3 .logo a {
-	background: transparent url('../../images/logo-white.png') no-repeat 50% 0 !important;
+	background: transparent url('../../images/footer_logo.png') no-repeat 50% 0 !important;
 }
 .head-style2 .logo a, .head-style3 .logo a {
 	background-position: 50% 50% !important;
@@ -173,7 +173,7 @@ header.top-head .logo a {
    (min-resolution: 1.5dppx) {
 
 	header.top-head .logo a, .foot-logo {
-		background: transparent url('../../images/logo@2x.png') no-repeat;
+		background: transparent url('../../images/footer_logo.png') no-repeat;
 		background-size: 200px 38px;
 	}
 	.footer-top-2 .foot-logo {

@@ -1,5 +1,8 @@
+@using  YDev.Common.Models
 @{
     ViewData["Title"] = "Menü Yönetimi";
+    List<Menu> menus = ViewData["Menus"] as List<Menu>;
+    List<MenuObject> menuObject = ViewData["MenuObject"] as List<MenuObject>;
 }
 
 <!-- BEGIN CONTENT -->
@@ -20,8 +23,88 @@
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BASE CONTENT -->
 
+        <div class="note note-success">
+            <span class="label label-danger">NOT!</span>
+            Yapılan Sıra değişklikleri Kaydet butonu ile kaydelince sitenizin ana sayfasında yansıyacaktır.
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="margin-bottom-10 margin-top-10" id="nestable_list_menu">
+                        <button type="button" class="btn green btn-outline sbold" data-action="menu_ekle">Menü Ekle</button>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="dd" id="nestable_list_3">
+                                    <ol class="dd-list">
+                                        @foreach (var item in menuObject)
+                                        {
+                                            <li class="dd-item dd3-item" data-id="@item.Id">
+                                                <div class="dd-handle dd3-handle"> </div>
+                                                <div class="dd3-content">@menus.FirstOrDefault(f => f.Id == item.Id).Name</div>
 
 
+                                                @if (item.Children != null)
+                                                {
+                                                    <ol class="dd-list">
+
+                                                        @foreach (var subItem in item.Children)
+                                                        {
+                                                            <li class="dd-item dd3-item" data-id="@subItem.Id">
+                                                                <div class="dd-handle dd3-handle"> </div>
+                                                                <div class="dd3-content">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</div>
+                                                                @if (subItem.Children != null)
+                                                                {
+                                                                    <ol class="dd-list">
+                                                                        @foreach (var subItem2 in subItem.Children)
+                                                                        {
+                                                                            <li class="dd-item dd3-item" data-id="@subItem2.Id">
+                                                                                <div class="dd-handle dd3-handle"> </div>
+                                                                                <div class="dd3-content">@menus.FirstOrDefault(f => f.Id == subItem2.Id).Name</div>
+                                                                            </li>
+                                                                        }
+
+
+                                                                    </ol>
+                                                                }
+
+                                                            </li>
+                                                        }
+                                                    </ol>
+                                                }
+
+                                            </li>
+                                        }
+
+
+                                    </ol>
+                                </div>
+
+                                <div class="margin-bottom-10 margin-top-10">
+                                    <button style="float:right" type="button" class="btn green btn-outline sbold" id="menu_kaydet">Tasarımı Kaydet</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="portlet light bordered hidden">
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Serializ edilen menü</h3>
+                        <textarea id="nestable_list_3_output" class="form-control col-md-12 margin-bottom-10" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- END PAGE BASE CONTENT -->
     </div>
     <!-- END CONTENT BODY -->

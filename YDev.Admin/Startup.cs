@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using YDev.Service.Helper;
-using YDev.Data.DataProvider;
+using YDev.Service.MenuService;
 
 namespace YDev.Admin
 {
@@ -35,8 +35,9 @@ namespace YDev.Admin
             });
 
             services.AddControllersWithViews();
-            services.AddScoped<IUserDataProvider, UserDataProvider>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IMenuService, MenuService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

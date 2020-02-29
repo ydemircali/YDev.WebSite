@@ -2200,9 +2200,9 @@ blockquote span {
 	font-size:20px;
 }
 .footer-top .block-head {
-	border-bottom-color: #3a3a3a;
-	color:#fff;
-	text-transform:uppercase
+	border-bottom-color: #b8905c;
+	color: #fff;
+	text-transform: uppercase
 }
 .block-head:before{
 	position: absolute;
@@ -5864,17 +5864,24 @@ a.wit-btn {
 }
 .footer-top {
 	overflow: hidden;
-	padding: 60px 0 50px;
-	border-bottom: 1px #0f0f0f solid;
+	padding: 25px 0 10px;
 	background: #66000b;
-	color: #b8905c;
+	color: #fff
 }
 .footer-top a {
+	color: #fff;
+	
+}
+.footer-top a:hover {
 	color: #b8905c;
 }
 .footer-top a.btn {
+	color: #fff;
+}
+.footer-top a.btn:hover {
 	color: #b8905c;
 }
+
 .footer-top hr {
 	clear: both;
 	margin: 50px 15px;
@@ -6088,7 +6095,7 @@ a.wit-btn {
 .footer-top .footer-menu a:before {
 	display: inline-block;
 	margin-right: 7px;
-	color: #5b5b5b;
+	color: #b8905c;
 	content: "\f105";
 	font-family: FontAwesome;
 }
@@ -6103,35 +6110,39 @@ footer .NL {
 	position: relative;
 	overflow: hidden;
 	padding: 10px 0;
-	margin:auto 15px
+	margin:auto -12px
 }
-footer .NL .input-box {
-	margin-left: 10px;
-	padding-left: 25px;
-	width: 67%;
-	border: 1px #b8905c solid;
-	border-right: 0px;
-	background: transparent none;
-	color: #fff;
-	font-size: 11px;
-}
-footer .NL .txt-box {
-	color: #b8905c;
-	font-size:11px
-}
-footer .NL:before {
-	position: absolute;
-	top: 16px;
-	left: 24px;
-	display: inline-block;
-	color: #b8905c;
-	content: "\f0e0";
-	font-family: FontAwesome;
-}
-footer .NL .NL-btn {
-	background: #b8905c;
-	color: #fff;
-}
+	footer .NL .input-box {
+		margin-left: 10px;
+		padding-left: 25px;
+		width: 67%;
+		border: 1px #b8905c solid;
+		border-right: 0px;
+		background: transparent none;
+		color: #fff;
+		font-size: 11px;
+	}
+	footer .NL .txt-box {
+		color: #fff;
+		font-size: 12px
+	}
+	footer .NL:before {
+		position: absolute;
+		top: 16px;
+		left: 24px;
+		display: inline-block;
+		color: #b8905c;
+		content: "\f0e0";
+		font-family: FontAwesome;
+	}
+	footer .NL .NL-btn {
+		background: #b8905c;
+		color: #fff;
+	}
+		footer .NL .NL-btn:hover {
+			background: #fff !important;
+			color: #b8905c !important;
+		}
 footer .NL .Notfication {
 	display: none
 }
@@ -6189,7 +6200,7 @@ footer .no-margin{
 .footer-contact i {
 	display: table-cell;
 	padding: 0 12px 0 0;
-	color: #b8905c;
+	color: #fff;
 	vertical-align: middle;
 	font-size: 18px;
 }
@@ -6231,8 +6242,6 @@ footer .no-margin{
 }
 .footer-bottom {
 	overflow: auto;
-	padding: 15px 0;
-	border-top: 1px #363636 solid;
 	background: #66000b;
 }
 /******* footer social list *******/
@@ -6249,7 +6258,7 @@ footer .no-margin{
 .social-list li span {
 	display: block;
 	text-align: center;
-	line-height: 33px;
+	line-height: 22px;
 	padding:0 12px
 }
 .social-list li a:hover {

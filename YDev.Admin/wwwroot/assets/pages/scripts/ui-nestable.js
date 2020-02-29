@@ -16,37 +16,51 @@ var UINestable = function () {
         init: function () {
 
             // activate Nestable for list 1
-            $('#nestable_list_1').nestable({
-                group: 1
-            })
-                .on('change', updateOutput);
+            //$('#nestable_list_1').nestable({
+            //    group: 1
+            //})
+            //    .on('change', updateOutput);
 
-            // activate Nestable for list 2
-            $('#nestable_list_2').nestable({
+            //// activate Nestable for list 2
+            //$('#nestable_list_2').nestable({
+            //    group: 1
+            //})
+            //    .on('change', updateOutput);
+
+            // activate Nestable for list 3
+            $('#nestable_list_3').nestable({
                 group: 1
             })
                 .on('change', updateOutput);
 
             // output initial serialised data
-            updateOutput($('#nestable_list_1').data('output', $('#nestable_list_1_output')));
-            updateOutput($('#nestable_list_2').data('output', $('#nestable_list_2_output')));
+            //updateOutput($('#nestable_list_1').data('output', $('#nestable_list_1_output')));
+            //updateOutput($('#nestable_list_2').data('output', $('#nestable_list_2_output')));
+            updateOutput($('#nestable_list_3').data('output', $('#nestable_list_3_output')));
 
-            $('#nestable_list_menu').on('click', function (e) {
-                var target = $(e.target),
-                    action = target.data('action');
-                if (action === 'expand-all') {
-                    $('.dd').nestable('expandAll');
-                }
-                if (action === 'collapse-all') {
-                    $('.dd').nestable('collapseAll');
-                }
+            $('#menu_kaydet').on('click', function (e) {
+                var menuJson = $('#nestable_list_3_output').val();
+
+                $.ajax({
+                    url: "/MenuKaydet",
+                    type: "POST",
+                    data: menuJson,
+                    contentType: "application/json",
+                    success: function (data) {
+                        if (data.isSuccess === true) {
+                            toastr.success(data.message);
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+
+                    }
+                });
+
             });
-
-            $('#nestable_list_3').nestable();
-
         }
 
-    };
+    }
 
 }();
 

@@ -16,5 +16,11 @@
     "inputFiles": [
       "wwwroot/assets/layouts/layout4/css/layout.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/pages/scripts/ui-nestable.min.js",
+    "inputFiles": [
+      "wwwroot/assets/pages/scripts/ui-nestable.js"
+    ]
   }
 ]
