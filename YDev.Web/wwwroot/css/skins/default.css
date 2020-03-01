@@ -172,7 +172,11 @@ header.top-head .logo a {
    (min-resolution: 144dpi),
    (min-resolution: 1.5dppx) {
 
-	header.top-head .logo a, .foot-logo {
+	header.top-head .logo a {
+		background: transparent url('../../images/logo@2x.png') no-repeat;
+		background-size: 200px 38px;
+	}
+	.foot-logo {
 		background: transparent url('../../images/footer_logo.png') no-repeat;
 		background-size: 200px 38px;
 	}
