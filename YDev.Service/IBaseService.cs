@@ -8,7 +8,7 @@ namespace YDev.Service
 {
     public interface IBaseService<T> where T : BaseEntity
     {
-        Task<IEnumerable<T>> GetItems();
+        Task<List<T>> GetItems();
         Task<T> GetItemById(long id);
         Task Create(T dto);
         Task Update(T dto);

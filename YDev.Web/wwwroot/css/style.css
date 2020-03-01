@@ -529,14 +529,14 @@ header.top-head .logo.center a{
 }
 .top-nav > ul li a span {
 	display: block;
-	margin-top:5px
+	margin-top:13px
 }
 .top-nav > ul li a i{
 	color:#b8b8b8;
 	font-size:16px
 }
-.top-nav > ul li a:hover i,.top-nav > ul li.selected a i,.top-nav > ul li.current a i{
-	color:#fff;
+.top-nav > ul li a:hover i, .top-nav > ul li.selected a i, .top-nav > ul li.current a i {
+	color: #66000b;
 }
 .top-nav > ul > li:after {
 	position: absolute;

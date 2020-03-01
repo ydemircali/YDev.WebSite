@@ -26,6 +26,7 @@ namespace YDev.Data
         public virtual DbSet<Slider> Sliders { get; set; }
         public virtual DbSet<StaticPages> StaticPages { get; set; }
         public virtual DbSet<MenuGroup> MenuGroups { get; set; }
+        public virtual DbSet<Content> Contents { get; set; }
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDBContext>

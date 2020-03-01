@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YDev.Data;
 
 namespace YDev.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200301075836_ContentAdd")]
+    partial class ContentAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,9 +37,6 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Html")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("MenuId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("RecordDate")
                         .HasColumnType("datetime2");
 
@@ -54,8 +53,6 @@ namespace YDev.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MenuId");
 
                     b.ToTable("Contents");
                 });
@@ -353,15 +350,6 @@ namespace YDev.Data.Migrations
                     b.HasIndex("TitleId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("YDev.Common.Models.Content", b =>
-                {
-                    b.HasOne("YDev.Common.Models.Menu", "Menu")
-                        .WithMany()
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("YDev.Common.Models.MediaGallery", b =>

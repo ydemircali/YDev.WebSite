@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using YDev.Common.Models;
 using YDev.Data;
 
-namespace YDev.Service.MenuService
+namespace YDev.Service
 {
     public interface IMenuService : IBaseService<Menu>
     {
@@ -48,7 +48,7 @@ namespace YDev.Service.MenuService
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Menu>> GetItems()
+        public async Task<List<Menu>> GetItems()
         {
             return await _menuRepo.FindAll().ToListAsync();
         }

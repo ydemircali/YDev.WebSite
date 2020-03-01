@@ -7,7 +7,7 @@ using YDev.Common.Models;
 using YDev.Data;
 using YDev.Service.Helper;
 
-namespace YDev.Service.UserService
+namespace YDev.Service
 {
     public interface IUserService : IBaseService<User>
     {
@@ -49,7 +49,7 @@ namespace YDev.Service.UserService
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<User>> GetItems()
+        public Task<List<User>> GetItems()
         {
             throw new NotImplementedException();
         }

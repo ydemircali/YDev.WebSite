@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using YDev.Admin.Models;
 using YDev.Common.Models;
-using YDev.Service.MenuService;
+using YDev.Service;
 
 namespace YDev.Admin.Controllers
 {

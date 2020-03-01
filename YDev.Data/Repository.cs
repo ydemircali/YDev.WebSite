@@ -33,7 +33,7 @@ namespace YDev.Data
 
         public Task<T> GetById(long id)
         {
-            throw new NotImplementedException();
+            return entities.SingleOrDefaultAsync(s => s.Id == id);
         }
 
         public void Create(T entity)

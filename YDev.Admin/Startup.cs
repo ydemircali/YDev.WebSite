@@ -6,13 +6,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using YDev.Data;
-using YDev.Service.UserService;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using YDev.Service.Helper;
-using YDev.Service.MenuService;
+using YDev.Service;
 
 namespace YDev.Admin
 {
@@ -38,6 +37,7 @@ namespace YDev.Admin
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IMenuService, MenuService>();
+            services.AddTransient<IContentService, ContentService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

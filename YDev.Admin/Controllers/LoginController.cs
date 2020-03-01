@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using YDev.Admin.Models;
 using YDev.Admin.Models.Login;
 using YDev.Common.Models;
-using YDev.Service.UserService;
+using YDev.Service;
 
 namespace YDev.Admin.Controllers
 {

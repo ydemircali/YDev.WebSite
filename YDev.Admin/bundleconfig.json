@@ -22,5 +22,11 @@
     "inputFiles": [
       "wwwroot/assets/pages/scripts/ui-nestable.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/custom/icerikekle.min.js",
+    "inputFiles": [
+      "wwwroot/assets/custom/icerikekle.js"
+    ]
   }
 ]
