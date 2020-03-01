@@ -38,8 +38,7 @@ namespace YDev.Service
 
         public async Task Delete(long id)
         {
-            Menu menu = await _menuRepo.GetById(id);
-            _menuRepo.Delete(menu);
+            await _menuRepo.Delete(id);
             await _menuRepo.SaveChangesAsync();
         }
 

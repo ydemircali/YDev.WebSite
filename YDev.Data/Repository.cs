@@ -46,9 +46,9 @@ namespace YDev.Data
             entities.Update(entity);
         }
 
-        public void Delete(T entity)
+        public async Task Delete(long id)
         {
-            entities.Remove(entity);
+            entities.Remove(await GetById(id));
         }
 
         public void SaveChanges()

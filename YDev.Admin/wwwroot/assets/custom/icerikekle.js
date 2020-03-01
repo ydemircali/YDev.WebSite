@@ -53,6 +53,44 @@
 
     });
 
+    $('.removeContent').confirmation({
+
+        onConfirm: function () {
+
+            var contentId = parseInt($(this).data("content-id"));
+
+            $.ajax({
+                url: "/icerikSil?contentId=" + contentId,
+                type: "POST",
+                success: function (data) {
+                    if (data.isSuccess === true) {
+                        toastr.success(data.message);
+                        setTimeout(function () {
+                            document.location.href = "/icerikler";
+
+                        }, 1000);
+                    }
+                    else {
+
+                        toastr.error(data.message);
+                        if ($(this).data("content-id") === 0) {
+                            $("#icerik_kaydet").text("Kaydet");
+                        }
+                        else {
+                            $("#icerik_kaydet").text("Güncelle");
+                        }
+                    }
+
+                }
+            });
+
+        },
+
+        onCancel: function () {
+
+        }
+    });
+
     return {
         //main function to initiate the module
         init: function () {

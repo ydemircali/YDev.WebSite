@@ -15,7 +15,7 @@ namespace YDev.Data
         IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
         void Create(T entity);
         void Update(T entity);
-        void Delete(T entity);
+        Task Delete(long id);
         void SaveChanges();
         Task SaveChangesAsync();
     }

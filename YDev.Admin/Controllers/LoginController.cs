@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YDev.Admin.Models;
 using YDev.Admin.Models.Login;
@@ -26,7 +27,7 @@ namespace YDev.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated && UserInformation.Id != 0)
+            if (User.Identity.IsAuthenticated && HttpContext.Session.GetInt32("UserId") != 0)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -48,7 +49,6 @@ namespace YDev.Admin.Controllers
             {
                 if (await LoginCheckAsync(loginModel.Email, loginModel.Password))
                 {
-                    loginModel = new LoginUser();
                     result.IsSuccess = true;
                     result.Message = "Giriş başarılı";
                 }
@@ -67,7 +67,7 @@ namespace YDev.Admin.Controllers
         {
             await HttpContext.SignOutAsync();
 
-            UserInformation.Id = 0;    
+            HttpContext.Session.Clear();
             
             return RedirectToAction("Index","Login");
         }
@@ -97,17 +97,11 @@ namespace YDev.Admin.Controllers
                         ExpiresUtc = DateTime.Now.AddHours(1)
                     });
 
-                UserInformation.Id = userInfo.Id;
-                UserInformation.Address = userInfo.Address;
-                UserInformation.Email = userInfo.Email;
-                UserInformation.ImagePath = userInfo.ImagePath;
-                UserInformation.Name = userInfo.Name;
-                UserInformation.SurName = userInfo.SurName;
-                UserInformation.Role = userInfo.Role;
-                UserInformation.Phone = userInfo.Phone;
-                UserInformation.Status = userInfo.Status;
-                UserInformation.Title = userInfo.Title;
-                UserInformation.UserName = userInfo.UserName;
+                HttpContext.Session.SetString("UserName",userInfo.Name + " "+ userInfo.SurName);
+                HttpContext.Session.SetInt32("UserId", Convert.ToInt32(userInfo.Id));
+                HttpContext.Session.SetString("ImagePath", string.IsNullOrEmpty(userInfo.ImagePath) 
+                    ? "../assets/layouts/layout4/img/avatar.png" 
+                    : userInfo.ImagePath);
 
                 return true;
             }

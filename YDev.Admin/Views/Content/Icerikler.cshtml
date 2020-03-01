@@ -90,28 +90,31 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td> @item.Menu.Name </td>
-                                    <td> @item.Title </td>
-                                    <td> @item.Spot</td>
-                                    <td> @item.RecordDate</td>
-                                    <td>
-                                        <div>
-                                            <a href="/icerikEkle?contentId=@item.Id" class="btn btn-xs green" type="button" aria-expanded="false">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <button class="btn btn-xs red" type="button" aria-expanded="false">
-                                                <i class="fa fa-remove"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                <input type="checkbox" class="checkboxes" value="1" />
+                                                <span></span>
+                                            </label>
+                                        </td>
+                                        <td> @item.Menu.Name </td>
+                                        <td> @item.Title </td>
+                                        <td> @item.Spot</td>
+                                        <td> @item.RecordDate</td>
+                                        <td>
+                                            <div>
+                                                <a href="/icerikEkle?contentId=@item.Id" class="btn btn-xs green" type="button" aria-expanded="false">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-xs red removeContent" data-btn-ok-label="Evet" data-btn-ok-icon="icon-like" 
+                                                        data-btn-ok-class="btn-success" data-btn-cancel-label="Hayır"
+                                                        data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger" data-content-id="@item.Id" 
+                                                        data-toggle="confirmation" data-original-title="Emin Misiniz ?" type="button" aria-expanded="false">
+                                                    <i class="fa fa-remove"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 }
 
                             </tbody>
@@ -127,3 +130,4 @@
     <!-- END CONTENT BODY -->
 </div>
 <!-- END CONTENT -->
+

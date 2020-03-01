@@ -83,6 +83,28 @@ namespace YDev.Admin.Controllers
 
             return Json(result);
         }
+        [HttpPost]
+        [Route("icerikSil")]
+        public async Task<JsonResult> IcerikSil(int contentId)
+        {
+            AjaxResult result = new AjaxResult();
+
+            if (contentId == 0)
+            {
+                result.IsSuccess = false;
+                result.Message = "İçerik Silinemedi !";
+            }
+            else
+            {
+              
+                await _contentService.Delete(contentId);
+                result.IsSuccess = true;
+                result.Message = "İçerik silindi";
+                
+            }
+
+            return Json(result);
+        }
 
     }
 }

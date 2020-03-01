@@ -26,9 +26,10 @@ namespace YDev.Service
             await _contentData.SaveChangesAsync();
         }
 
-        public Task Delete(long id)
+        public async Task Delete(long id)
         {
-            throw new NotImplementedException();
+            await _contentData.Delete(id);
+            await _contentData.SaveChangesAsync();
         }
 
         public async Task<Content> GetItemById(long id)
