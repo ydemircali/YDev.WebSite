@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using YDev.Data;
+using YDev.Service;
 
 namespace YDev.Web
 {
@@ -21,12 +22,19 @@ namespace YDev.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddDbContext<AppDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection"),
                     assembly => assembly.MigrationsAssembly(typeof(AppDBContext).Assembly.FullName));
             });
+
+            services.AddControllersWithViews();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IMenuService, MenuService>();
+            services.AddTransient<IContentService, ContentService>();
+
 
             services.AddControllersWithViews();
 

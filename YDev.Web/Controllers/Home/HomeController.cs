@@ -1,25 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using YDev.Common.Helper;
+using YDev.Common.Models;
+using YDev.Service;
 using YDev.Web.Models;
 
 namespace YDev.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IMenuService _menuService;
+        public HomeController(IMenuService menuService)
         {
-            _logger = logger;
+            _menuService = menuService;
         }
 
         public IActionResult Index()
         {
+            ViewData["Menus"] = _menuService.GetMenus();
+            MenuGroup menuGroup = _menuService.GetMenuGroup(1);
+
+            ViewData["MenuObject"] = JsonConvert.DeserializeObject<List<MenuObject>>(menuGroup.DesignMenu);
+
             return View();
         }
 

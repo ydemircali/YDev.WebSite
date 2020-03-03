@@ -424,20 +424,19 @@ th, td, caption {
 ============================================================================= */
 /* ---- 3.1 Top bar ------------------ */
 .top-bar {
-	border-bottom: 1px #eee solid;
-	background: #f4f4f4;
-	text-transform: uppercase;
+	background: #dcae73;
 	font-size: 11px;
 }
 .top-bar.main-bg{
     border-bottom:0
 }
-.top-bar a, .top-bar span {
-	display: block;
-	padding: 0 10px 0 0;
-	color: #A2A2A2;
-	line-height: 39px;
-}
+	.top-bar a, .top-bar span {
+		display: block;
+		padding: 0 10px 0 0;
+		color: #66000b;
+		line-height: 39px;
+		font-size : 16px;
+	}
 .top-bar.main-bg a,.top-bar.main-bg span{
     color:#fff
 }
@@ -449,7 +448,6 @@ th, td, caption {
 }
 .top-bar li {
 	float: left;
-	border-left: 1px #E9E9E9 solid;
 }
 .top-bar li:first-child {
 	border-left: 0;
@@ -471,8 +469,7 @@ th, td, caption {
 header.top-head {
 	position: relative;
 	z-index: 5555;
-	min-height: 92px;
-	border-bottom: 9px #f4f4f4 solid;
+	min-height: 70px;
 }
 .fixedHead {
 	position: fixed !important;
@@ -486,7 +483,7 @@ header.top-head .logo{
 }
 header.top-head .logo a {
 	display: table;
-	width: 250px;
+	width: 300px;
 	height: 50px;
 	margin: auto;
 }
@@ -538,7 +535,7 @@ header.top-head .logo.center a{
 .top-nav > ul li a:hover i, .top-nav > ul li.selected a i, .top-nav > ul li.current a i {
 	color: #66000b;
 }
-.top-nav > ul > li:after {
+/*.top-nav > ul > li:after {
 	position: absolute;
 	bottom: -9px;
 	left: -3px;
@@ -553,7 +550,7 @@ header.top-head .logo.center a{
 	-o-transform: skew(-35deg, 0);
 	-webkit-transform: skew(-35deg, 0);
 	transform: skew(-35deg, 0);
-}
+}*/
 .top-nav > ul li ul {
 	position: absolute;
 	top: 92px;

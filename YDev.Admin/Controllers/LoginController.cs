@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using YDev.Admin.Models;
 using YDev.Admin.Models.Login;
 using YDev.Common.Models;
+using YDev.Common.Helper;
 using YDev.Service;
 
 namespace YDev.Admin.Controllers
