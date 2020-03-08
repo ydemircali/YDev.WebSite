@@ -424,7 +424,7 @@ th, td, caption {
 ============================================================================= */
 /* ---- 3.1 Top bar ------------------ */
 .top-bar {
-	background: #dcae73;
+	background: #ffd80e;
 	font-size: 11px;
 }
 .top-bar.main-bg{
@@ -2197,7 +2197,7 @@ blockquote span {
 	font-size:20px;
 }
 .footer-top .block-head {
-	border-bottom-color: #b8905c;
+	border-bottom-color: #ffd80e;
 	color: #fff;
 	text-transform: uppercase
 }
@@ -5870,13 +5870,13 @@ a.wit-btn {
 	
 }
 .footer-top a:hover {
-	color: #b8905c;
+	color: #ffd80e;
 }
 .footer-top a.btn {
 	color: #fff;
 }
 .footer-top a.btn:hover {
-	color: #b8905c;
+	color: #ffd80e;
 }
 
 .footer-top hr {
@@ -5917,7 +5917,7 @@ a.wit-btn {
 	color: #B5B5B5
 }
 .footer-top-2 .social-list li:hover span {
-	color: #b8905c
+	color: #ffd80e
 }
 .footer-menu-inline {
     float: right;
@@ -6092,7 +6092,7 @@ a.wit-btn {
 .footer-top .footer-menu a:before {
 	display: inline-block;
 	margin-right: 7px;
-	color: #b8905c;
+	color: #ffd80e;
 	content: "\f105";
 	font-family: FontAwesome;
 }
@@ -6113,7 +6113,7 @@ footer .NL {
 		margin-left: 10px;
 		padding-left: 25px;
 		width: 67%;
-		border: 1px #b8905c solid;
+		border: 1px #ffd80e solid;
 		border-right: 0px;
 		background: transparent none;
 		color: #fff;
@@ -6128,17 +6128,17 @@ footer .NL {
 		top: 16px;
 		left: 24px;
 		display: inline-block;
-		color: #b8905c;
+		color: #ffd80e;
 		content: "\f0e0";
 		font-family: FontAwesome;
 	}
 	footer .NL .NL-btn {
-		background: #b8905c;
+		background: #ffd80e;
 		color: #fff;
 	}
 		footer .NL .NL-btn:hover {
 			background: #fff !important;
-			color: #b8905c !important;
+			color: #ffd80e !important;
 		}
 footer .NL .Notfication {
 	display: none
@@ -6186,7 +6186,7 @@ footer .no-margin{
 	float: left;
 	margin: 3px;
 	padding: 8px 6px;
-	background: #b8905c;
+	background: #ffd80e;
 	color: #66000b;
 	font-size: 11px;
 }
@@ -6228,10 +6228,10 @@ footer .no-margin{
 	padding-bottom: 10px;
 	white-space: nowrap;
 	font-size: 15px;
-	color: #b8905c;
+	color: #ffd80e;
 }
 .copyrights a {
-	color: #b8905c;
+	color: #ffd80e;
 	text-decoration: underline;
 }
 .copyrights a:hover {
@@ -6250,7 +6250,7 @@ footer .no-margin{
 .social-list li a {
 	display: block;
 	padding: 0;
-	color: #b8905c;
+	color: #ffd80e;
 }
 .social-list li span {
 	display: block;

@@ -1,6 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @{
-    string nav = ViewData["Nav"] as string;
+    string nav = string.Empty;
+    if (ViewData["Nav"] != null)
+    {
+        nav = ViewData["Nav"] as string;
+    }
 }
 
 <!DOCTYPE html>
@@ -51,6 +55,9 @@
     <link href="~/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
+
+    @RenderSection("Styles", required: false)
+
 </head>
 <!-- END HEAD -->
 
@@ -281,21 +288,21 @@
                             </li>
                         </ul>
                     </li>
-                    <li class='nav-item  @(nav.Contains("galeriler") ? "start open" :"")'>
+                    <li class='nav-item  @(nav.Contains("medya") ? "start open" :"")'>
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-layers"></i>
                             <span class="title">Medya Yönetimi</span>
-                            <span class='arrow @(nav.Contains("galeriler") ? "open" :"")'></span>
+                            <span class='arrow @(nav.Contains("medya") ? "open" :"")'></span>
                         </a>
-                        <ul class="sub-menu" style='display: @(nav.Contains("galeriler") ? "block" :"none")'>
-                            <li class='nav-item  @(nav.Contains("galeriler/resim") ? "active" :"")'>
-                                <a href="/resimgaleri" class="nav-link ">
-                                    <span class="title">Resim Galeri</span>
+                        <ul class="sub-menu" style='display: @(nav.Contains("medya") ? "block" :"none")'>
+                            <li class='nav-item  @(nav.Contains("medya/resimvideo") ? "active" :"")'>
+                                <a href="/resimvideo" class="nav-link ">
+                                    <span class="title">Resim/Video</span>
                                 </a>
                             </li>
-                            <li class='nav-item  @(nav.Contains("galeriler/video") ? "active" :"")'>
-                                <a href="/videogaleri" class="nav-link ">
-                                    <span class="title">Video Galeri</span>
+                            <li class='nav-item  @(nav.Contains("medya/galeriler") ? "active" :"")'>
+                                <a href="/galeriler" class="nav-link ">
+                                    <span class="title">Galeriler</span>
                                 </a>
                             </li>
                         </ul>
@@ -444,6 +451,9 @@
             });
         })
     </script>
+
+    @RenderSection("Scripts", required: false)
+
 </body>
 
 </html>

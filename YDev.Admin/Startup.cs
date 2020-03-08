@@ -6,12 +6,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using YDev.Data;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using YDev.Service.Helper;
 using YDev.Service;
+using YDev.Admin.Models;
+using MediatR;
 
 namespace YDev.Admin
 {
@@ -38,6 +39,13 @@ namespace YDev.Admin
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IMenuService, MenuService>();
             services.AddTransient<IContentService, ContentService>();
+
+            // Configure MediatR.
+            services.AddMediatR(typeof(Startup));
+            
+            // Application services
+            services.AddScoped<FilesHelper, FilesHelper>();
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
