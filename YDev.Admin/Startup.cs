@@ -39,6 +39,7 @@ namespace YDev.Admin
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IMenuService, MenuService>();
             services.AddTransient<IContentService, ContentService>();
+            services.AddTransient<ISliderService, SliderService>();
 
             // Configure MediatR.
             services.AddMediatR(typeof(Startup));

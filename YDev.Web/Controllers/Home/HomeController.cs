@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using YDev.Common.Helper;
@@ -13,17 +14,22 @@ namespace YDev.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IMenuService _menuService;
-        public HomeController(IMenuService menuService)
+        private readonly ISliderService _sliderService;
+
+        public HomeController(IMenuService menuService, ISliderService sliderService)
         {
             _menuService = menuService;
+            _sliderService = sliderService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["Menus"] = _menuService.GetMenus();
             MenuGroup menuGroup = _menuService.GetMenuGroup(1);
 
             ViewData["MenuObject"] = JsonConvert.DeserializeObject<List<MenuObject>>(menuGroup.DesignMenu);
+
+            ViewData["Sliders"] = await _sliderService.GetItems();
 
             return View();
         }

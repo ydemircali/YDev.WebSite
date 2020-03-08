@@ -1,0 +1,83 @@
+﻿@using YDev.Common.Models
+@using YDev.Admin.Models
+@model Slider
+
+@{
+    ViewData["Title"] = Model.Id == 0 ? "Slider Ekle" : "Slider Düzenle";
+    List<ViewDataUploadFilesResult> files = ViewData["Files"] as List<ViewDataUploadFilesResult>;
+}
+
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>
+                    @ViewData["Title"]
+                    <small>Slider ekle, düzenle</small>
+                </h1>
+            </div>
+            <!-- END PAGE TITLE -->
+        </div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div class="row">
+
+                            <div class="form-group col-md-6">
+                                <label>Resim Seçiniz</label>
+                                <select id="mediaUrl" class="form-control">
+                                    @foreach (var item in files)
+                                    {
+                                        if (Model.MediaUrl == item.url)
+                                        {
+                                            <option selected value="@item.url">@item.name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.url">@item.name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Link</label>
+                                <input type="text" value="@Model.Link" class="form-control" id="link" placeholder="tıklayınca açılacak sayfa">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Açıklama</label>
+                                <textarea class="form-control" id="content" rows="3">@Model.Content</textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Sıra</label>
+                                <input value="@Model.Order" class="form-control spinner" type="number" id="order" placeholder="kaçıncı sırada gösterilecek" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Süre</label>
+                                <input value="@Model.Time" class="form-control spinner" type="number" id="time" placeholder="kaç saniye gösterilecek" />
+                            </div>
+
+                            <div class="form-group col-md-12 right">
+                                <a href="javascript:;" id="slider_kaydet" data-slider-id="@Model.Id" class="btn green">@(Model.Id == 0 ? "Kaydet" : "Güncelle")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM PORTLET-->
+            </div>
+        </div>
+
+        <!-- END PAGE BASE CONTENT -->
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
