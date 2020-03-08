@@ -9,7 +9,7 @@
 <div id="contentWrapper">
 
 	<!-- Revolution slider start -->
-	@await Html.PartialAsync("../Shared/Partial/Home/_Slider.cshtml", sliders)
+	@await Html.PartialAsync("../Shared/Partial/Home/_Slider.cshtml", sliders?.OrderBy(o => o.Order).ToList())
 	<!-- Revolution slider end -->
 	<!-- Welcome Box start -->
 	<div class="welcome">
