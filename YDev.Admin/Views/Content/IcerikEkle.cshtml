@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = Model.Id == 0 ? "İçerik Ekle" : "İçerik Düzenle";
     List<Menu> menus = ViewData["Menus"] as List<Menu>;
+    List<ViewDataUploadFilesResult> files = ViewData["Files"] as List<ViewDataUploadFilesResult>;
 }
 
 <!-- BEGIN CONTENT -->
@@ -53,19 +54,20 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>Kapak Resmi</label>
-                                <div class="input-group input-large fileinput fileinput-new" data-provides="fileinput">
-                                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
-                                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
-                                        <span class="fileinput-filename"> @Model.CoverImage</span>
-                                    </div>
-                                    <span class="input-group-addon btn default btn-file">
-                                        <span class="fileinput-new"> Gözat </span>
-                                        <span class="fileinput-exists"> Değiştir </span>
-                                        <input id="coverImage" type="file" name="...">
-                                    </span>
-                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Kaldır</a>
-                                </div>
+                                <label>Resim Seçiniz</label>
+                                <select id="coverImage" class="form-control">
+                                    @foreach (var item in files)
+                                    {
+                                        if (Model.CoverImage == item.url)
+                                        {
+                                            <option selected value="@item.url">@item.name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.url">@item.name</option>
+                                        }
+                                    }
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Url</label>

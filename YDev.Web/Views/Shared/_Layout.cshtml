@@ -2,294 +2,250 @@
 @using YDev.Common.Helper
 @{
 
-	List<Menu> menus = ViewData["Menus"] as List<Menu>;
-	List<MenuObject> menuObject = ViewData["MenuObject"] as List<MenuObject>;
+    List<Menu> menus = ViewData["Menus"] as List<Menu>;
+    List<MenuObject> menuObject = ViewData["MenuObject"] as List<MenuObject>;
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>@ViewData["Title"]</title>
-	<meta name="description" content='@ViewData["Title"]'>
-	<meta name="author" content="İhtyiaç Evim">
-	<meta name="title" content="İhtiyaç Evim">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content='@ViewData["Title"]'>
+    <meta name="author" content="İhtyiaç Evim">
+    <meta name="title" content="İhtiyaç Evim">
 
-	<!-- Mobile Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!-- Put favicon.ico and apple-touch-icon(s).png in the images folder -->
-	<link rel="shortcut icon" href="images/favicon.ico">
+    <!-- Put favicon.ico and apple-touch-icon(s).png in the images folder -->
+    <link rel="shortcut icon" href="images/favicon.ico">
 
-	<!-- CSS StyleSheets -->
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&amp;amp;subset=latin,latin-ext">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/prettyPhoto.css">
-	<link rel="stylesheet" href="css/slick.css">
-	<link rel="stylesheet" href="rs-plugin/css/settings.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/responsive.css">
-	<link rel="stylesheet" href="css/default.css">
+    <!-- CSS StyleSheets -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&amp;amp;subset=latin,latin-ext">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/prettyPhoto.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/default.css">
 
 </head>
 <body>
 
-	<!-- site preloader start -->
-	<div class="page-loader">
-		<div class="loader-in"></div>
-	</div>
-	<!-- site preloader end -->
+    <!-- site preloader start -->
+    <div class="page-loader">
+        <div class="loader-in"></div>
+    </div>
+    <!-- site preloader end -->
 
-	<div class="pageWrapper">
+    <div class="pageWrapper">
 
-		<!-- Header Start -->
-		<div id="headWrapper" class="clearfix">
+        <!-- Header Start -->
+        <div id="headWrapper" class="clearfix">
 
-			<!-- top bar start -->
-			<div class="top-bar">
-				<div class="container">
-					<div class="row">
-						<div class="cell-5">
-							<ul>
-								<li><span>Hayal nereye İhtiyaç Oraya...</span></li>
-							</ul>
-						</div>
-						<div class="cell-7 right-bar">
-							<ul class="right">
+            <!-- top bar start -->
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="cell-5">
+                            <ul>
+                                <li><span>Hayal nereye İhtiyaç Oraya...</span></li>
+                            </ul>
+                        </div>
+                        <div class="cell-7 right-bar">
+                            <ul class="right">
 
-								<li><a href="#"><i class="fa fa-envelope"></i>bilgi@ihtiyacevim.com.tr</a></li>
-								<li><span><i class="fa fa-phone"></i>Bizi Arayın: +90 0542 524 20 90 </span></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- top bar end -->
-			<!-- Logo, global navigation menu and search start -->
-			<header class="top-head" data-sticky="true">
-				<div class="container">
-					<div class="row">
-						<div class="logo cell-3">
-							<a href="/"></a>
-						</div>
-						<div class="cell-9 top-menu">
+                                <li><a href="#"><i class="fa fa-envelope"></i>bilgi@ihtiyacevim.com.tr</a></li>
+                                <li><span><i class="fa fa-phone"></i>Bizi Arayın: +90 0542 524 20 90 </span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- top bar end -->
+            <!-- Logo, global navigation menu and search start -->
+            <header class="top-head" data-sticky="true">
+                <div class="container">
+                    <div class="row">
+                        <div class="logo cell-3">
+                            <a href="/"></a>
+                        </div>
+                        <div class="cell-9 top-menu">
 
-							<!-- top navigation menu start -->
-							<nav class="top-nav">
-								<ul>
-									@foreach (var item in menuObject)
+                            <!-- top navigation menu start -->
+                            <nav class="top-nav">
+                                <ul>
+                                    @foreach (var item in menuObject)
                                     {
-										<li>
+                                        <li>
 
-										@if (item.Children != null)
-										{
-											<a href="#"><span>@menus.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
-											<ul>
-												@foreach (var subItem in item.Children)
-                                                {
-												    <li>
+                                            @if (item.Children != null)
+                                            {
+                                                <a href="#"><span>@menus.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
+                                                <ul>
+                                                    @foreach (var subItem in item.Children)
+                                                    {
+                                                        <li>
 
-													@if (subItem.Children != null)
-													{
-														<a href="#">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
-														<ul>
-															@foreach (var subItem1 in subItem.Children)
-															{
-																<li>
-																	<a href="@menus.FirstOrDefault(f => f.Id == subItem1.Id).Link">@menus.FirstOrDefault(f => f.Id == subItem1.Id).Name</a>	
-																</li>
-															}
-														</ul>
-													}
-													else
-													{
-														<a href="@menus.FirstOrDefault(f => f.Id == subItem.Id).Link">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
-													}
+                                                            @if (subItem.Children != null)
+                                                            {
+                                                                <a href="#">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
+                                                                <ul>
+                                                                    @foreach (var subItem1 in subItem.Children)
+                                                                    {
+                                                                        <li>
+                                                                            <a href="@menus.FirstOrDefault(f => f.Id == subItem1.Id).Link">@menus.FirstOrDefault(f => f.Id == subItem1.Id).Name</a>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+                                                            else
+                                                            {
+                                                                <a href="@menus.FirstOrDefault(f => f.Id == subItem.Id).Link">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
+                                                            }
 
-												    </li>
-                                                }
-											</ul>
-										}
-										else
-										{
-											<a href="@menus.FirstOrDefault(f => f.Id == item.Id).Link"><span>@menus.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
-										}
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                            else
+                                            {
+                                                <a href="@menus.FirstOrDefault(f => f.Id == item.Id).Link"><span>@menus.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
+                                            }
 
-										</li>
+                                        </li>
 
                                     }
 
-								</ul>
-							</nav>
-							<!-- top navigation menu end -->
-							<!-- top search start -->
-							<div class="top-search">
-								<a href="#"><span class="fa fa-search"></span></a>
-								<div class="search-box">
-									<div class="input-box left">
-										<input type="text" name="t" id="t-search" class="txt-box" placeHolder="Enter search keyword here..." />
-									</div>
-									<div class="left">
-										<input type="submit" id="b-search" class="btn main-bg" value="GO" />
-									</div>
-								</div>
-							</div>
-							<!-- top search end -->
-						</div>
-					</div>
-				</div>
-			</header>
-			<!-- Logo, Global navigation menu and search end -->
+                                </ul>
+                            </nav>
+                            <!-- top navigation menu end -->
+                            <!-- top search start -->
+                            <div class="top-search">
+                                <a href="#"><span class="fa fa-search"></span></a>
+                                <div class="search-box">
+                                    <div class="input-box left">
+                                        <input type="text" name="t" id="t-search" class="txt-box" placeHolder="Enter search keyword here..." />
+                                    </div>
+                                    <div class="left">
+                                        <input type="submit" id="b-search" class="btn main-bg" value="GO" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- top search end -->
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Logo, Global navigation menu and search end -->
 
-		</div>
-		<!-- Header End -->
-		<!-- Content Start -->
-		@RenderBody()
-		<!-- Content End -->
-		<!-- Footer start -->
-		<footer id="footWrapper">
-			<div class="footer-top">
-				<div class="container">
-					<div class="row">
-						<!-- main menu footer cell start -->
-						<div class="cell-3">
-							<h3 class="block-head">Main Menu</h3>
-							<ul class="footer-menu">
-								<li><a href="home.html">Home Page</a></li>
-								<li><a href="about-us.html">About Us</a></li>
-								<li><a href="blog.html">Our Blog</a></li>
-								<li><a href="portfolio-4-cols.html">Our Portfolio</a></li>
-								<li><a href="FAQ.html">FAQ</a></li>
-							</ul>
-						</div>
-						<!-- main menu footer cell start -->
-						<!-- Useful Links footer cell start -->
-						<div class="cell-3">
-							<h3 class="block-head">Useful Links</h3>
-							<ul class="footer-menu">
-								<li><a href="privacy.html">Privacy policy</a></li>
-								<li><a href="terms.html">Terms of use</a></li>
-								<li><a href="#">purus molestie</a></li>
-								<li><a href="#">adipiscing elit Integer</a></li>
-								<li><a href="#">magna euismod</a></li>
-							</ul>
-						</div>
+        </div>
+        <!-- Header End -->
+        <!-- Content Start -->
+        @RenderBody()
+        <!-- Content End -->
+        <!-- Footer start -->
+        <footer id="footWrapper">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <!-- Useful Links footer cell start -->
+                        <div class="cell-3" style="width:50% !important">
+                            <h3 class="block-head" style="text-transform:capitalize !important;font-weight:normal !important">Faydalı Linkler</h3>
+                            <div class="cell-6">
+                                <ul class="footer-menu">
+                                    @foreach (var menu in menus.Take(menus.Count/2))
+                                    {
+                                        <li><a href="@menu.Link">@menu.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="cell-6">
+                                <ul class="footer-menu">
+                                    @foreach (var menu in menus.TakeLast(menus.Count/2))
+                                    {
+                                        <li><a href="@menu.Link">@menu.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
 
-						<!--
+                        <div class="cell-3">
+                            <h3 class="block-head" style="text-transform:capitalize !important;font-weight:normal !important">İletişim Adresleri</h3>
+                            <ul>
+                                <li class="footer-contact"><i class="fa fa-home"></i><span>123, Second Street name, Address.</span></li>
+                                <li class="footer-contact"><i class="fa fa-globe"></i><span><a href="#">info@it-rays.com</a></span></li>
+                                <li class="footer-contact"><i class="fa fa-phone"></i><span>+1 (000) 000-0000</span></li>
+                                <li class="footer-contact"><i class="fa fa-map-marker"></i><span><a href="contact.html#map_canvas">View our map</a></span></li>
+                            </ul>
+                        </div>
+                        <!-- contact us footer cell end -->
+                        <!-- Newsletters footer cell start -->
+                        <div class="cell-3">
+                            <div class="foot-logo"></div>
+                            <br />
+                            <div class="clearfix"></div>
+                            <!-- footer copyrights left cell -->
+                            <div class="copyrights">
+                                <ul class="social-list center">
+                                    <li class="skew-25"><a href="#" data-title="facebook" data-tooltip="true"><span class="fa fa-facebook skew25"></span></a></li>
+                                    <li class="skew-25"><a href="#" data-title="instagram" data-tooltip="true"><span class="fa fa-instagram skew25"></span></a></li>
+                                    <li class="skew-25"><a href="#" data-title="twitter" data-tooltip="true"><span class="fa fa-twitter skew25"></span></a></li>
+                                    <li class="skew-25"><a href="#" data-title="YouTube" data-tooltip="true"><span class="fa fa-youtube skew25"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-						<div class="clearfix"></div>
-						<hr class="hr-style5">
-						<div class="clearfix"></div>
-						çizgi -->
-						<!-- contact us footer cell start -->
-						<div class="cell-3">
-							<h3 class="block-head">İletişim Adresleri</h3>
-							<ul>
-								<li class="footer-contact"><i class="fa fa-home"></i><span>123, Second Street name, Address.</span></li>
-								<li class="footer-contact"><i class="fa fa-globe"></i><span><a href="#">info@it-rays.com</a></span></li>
-								<li class="footer-contact"><i class="fa fa-phone"></i><span>+1 (000) 000-0000</span></li>
-								<li class="footer-contact"><i class="fa fa-map-marker"></i><span><a href="contact.html#map_canvas">View our map</a></span></li>
-							</ul>
-						</div>
-						<!-- contact us footer cell end -->
-						<!-- Newsletters footer cell start -->
-						<div class="cell-3">
-							<div class="foot-logo"></div>
-							<p class="no-margin">Kampanya ve duyurulardan anında haberdak olmak için e-posta ile abone olabilirsiniz.</p>
+        </footer>
 
-							<form action="link-to-your-site" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate class="NL">
-								<div class="skew-25 input-box left">
-									<input type="email" value="" name="EMAIL" class="txt-box skew25" id="mce-EMAIL" placeholder="Email adresi girin" required>
-								</div>
-								<div class="left skew-25 NL-btn">
-									<input type="submit" value="Kaydet" name="subscribe" id="mc-embedded-subscribe" class="btn skew25">
-								</div>
-								<div class="hidden"><input type="text" name="name-of-the-hidden-field" value=""></div>
+        <div id="to-top" class="main-bg"><span class="fa fa-chevron-up"></span></div>
 
-								<div class="Notfication fx animated fadeInRight">
-									<a class="close-box" href="#"><i class="fa fa-times"></i></a>
-									<p></p>
-								</div>
-							</form>
+    </div>
 
+    <!-- Load JS siles -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
 
+    <!-- Waypoints script -->
+    <script type="text/javascript" src="js/waypoints.min.js"></script>
 
-						</div>
-						<!-- Newsletters footer cell start -->
+    <!-- SLIDER REVOLUTION SCRIPTS  -->
+    <script type="text/javascript" src="rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
-					</div>
-				</div>
-			</div>
+    <!-- Animate numbers increment -->
+    <script type="text/javascript" src="js/jquery.animateNumber.min.js"></script>
 
-			<!-- footer bottom bar start -->
-			<div class="footer-bottom">
-				<div class="container">
-					<div class="row">
-						<!-- footer copyrights left cell -->
-						<div class="copyrights">
-							<span>&copy; İhtyiaç Evim 2020.</span>
-							<div class="cell-9">
-								<ul class="social-list right">
-									<li class="skew-25"><a href="#" data-title="facebook" data-tooltip="true"><span class="fa fa-facebook skew25"></span></a></li>
-									<li class="skew-25"><a href="#" data-title="instagram" data-tooltip="true"><span class="fa fa-instagram skew25"></span></a></li>
-									<li class="skew-25"><a href="#" data-title="twitter" data-tooltip="true"><span class="fa fa-twitter skew25"></span></a></li>
-									<li class="skew-25"><a href="#" data-title="YouTube" data-tooltip="true"><span class="fa fa-youtube skew25"></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- footer social links right cell end -->
-					</div>
-				</div>
-			</div>
-			<!-- footer bottom bar end -->
+    <!-- slick slider carousel -->
+    <script type="text/javascript" src="js/slick.min.js"></script>
 
-		</footer>
-		<!-- Footer end -->
-		<!-- Back to top Link -->
-		<div id="to-top" class="main-bg"><span class="fa fa-chevron-up"></span></div>
+    <!-- Animate numbers increment -->
+    <script type="text/javascript" src="js/jquery.easypiechart.min.js"></script>
 
-	</div>
+    <!-- PrettyPhoto script -->
+    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
 
+    <!-- Share post plugin script -->
+    <script type="text/javascript" src="js/jquery.sharrre.min.js"></script>
 
-	<!-- Load JS siles -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Product images zoom plugin -->
+    <script type="text/javascript" src="js/jquery.elevateZoom-3.0.8.min.js"></script>
 
-	<!-- Waypoints script -->
-	<script type="text/javascript" src="js/waypoints.min.js"></script>
+    <!-- Input placeholder plugin -->
+    <script type="text/javascript" src="js/jquery.placeholder.js"></script>
 
-	<!-- SLIDER REVOLUTION SCRIPTS  -->
-	<script type="text/javascript" src="rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-	<script type="text/javascript" src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- MailChimp plugin -->
+    <script type="text/javascript" src="js/mailChimp.js"></script>
 
-	<!-- Animate numbers increment -->
-	<script type="text/javascript" src="js/jquery.animateNumber.min.js"></script>
+    <!-- NiceScroll plugin -->
+    <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
 
-	<!-- slick slider carousel -->
-	<script type="text/javascript" src="js/slick.min.js"></script>
-
-	<!-- Animate numbers increment -->
-	<script type="text/javascript" src="js/jquery.easypiechart.min.js"></script>
-
-	<!-- PrettyPhoto script -->
-	<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-
-	<!-- Share post plugin script -->
-	<script type="text/javascript" src="js/jquery.sharrre.min.js"></script>
-
-	<!-- Product images zoom plugin -->
-	<script type="text/javascript" src="js/jquery.elevateZoom-3.0.8.min.js"></script>
-
-	<!-- Input placeholder plugin -->
-	<script type="text/javascript" src="js/jquery.placeholder.js"></script>
-
-	<!-- MailChimp plugin -->
-	<script type="text/javascript" src="js/mailChimp.js"></script>
-
-	<!-- NiceScroll plugin -->
-	<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
-
-	<!-- general script file -->
-	<script type="text/javascript" src="js/script.js"></script>
+    <!-- general script file -->
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
