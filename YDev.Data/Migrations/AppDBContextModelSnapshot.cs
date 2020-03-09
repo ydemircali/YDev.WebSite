@@ -84,42 +84,6 @@ namespace YDev.Data.Migrations
                     b.ToTable("Galleries");
                 });
 
-            modelBuilder.Entity("YDev.Common.Models.Media", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MediaType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("RecordDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("RecordUser")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ThumbnailPath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Medias");
-                });
-
             modelBuilder.Entity("YDev.Common.Models.MediaGallery", b =>
                 {
                     b.Property<long>("Id")
@@ -130,8 +94,11 @@ namespace YDev.Data.Migrations
                     b.Property<long>("GalleryId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("MediaId")
-                        .HasColumnType("bigint");
+                    b.Property<bool>("IsCoverImage")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MediaUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RecordDate")
                         .HasColumnType("datetime2");
@@ -142,8 +109,6 @@ namespace YDev.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GalleryId");
-
-                    b.HasIndex("MediaId");
 
                     b.ToTable("MediaGalleries");
                 });
@@ -227,8 +192,14 @@ namespace YDev.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("MediaId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MediaUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
@@ -243,8 +214,6 @@ namespace YDev.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MediaId");
 
                     b.ToTable("Sliders");
                 });
@@ -369,21 +338,6 @@ namespace YDev.Data.Migrations
                     b.HasOne("YDev.Common.Models.Gallery", "Gallery")
                         .WithMany()
                         .HasForeignKey("GalleryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("YDev.Common.Models.Media", "Media")
-                        .WithMany()
-                        .HasForeignKey("MediaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("YDev.Common.Models.Slider", b =>
-                {
-                    b.HasOne("YDev.Common.Models.Media", "Media")
-                        .WithMany()
-                        .HasForeignKey("MediaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

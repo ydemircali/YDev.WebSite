@@ -7,17 +7,26 @@ namespace YDev.Common.Models
 {
     public class Slider : BaseEntity
     {
-        [ForeignKey("Media")]
-        public long MediaId { get; set; }
-        public Media Media { get; set; }
         /// <summary>
         /// sırası
         /// </summary>
-        public int Order { get; set; }
+        public int Order { get; set; } = 1;
         /// <summary>
         /// ms cinsinden
         /// </summary>
-        public long Time { get; set; }
+        public long Time { get; set; } = 500;
+        /// <summary>
+        /// açıkla
+        /// </summary>
+        public string Content { get; set; }
+        /// <summary>
+        /// image url
+        /// </summary>
+        public string MediaUrl { get; set; }
+        /// <summary>
+        /// slider click event
+        /// </summary>
+        public string Link { get; set; }
 
     }
 }

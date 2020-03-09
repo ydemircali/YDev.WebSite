@@ -1,4 +1,7 @@
-﻿@{
+﻿@using YDev.Common.Models
+@model List<Slider>
+
+@{
     ViewData["Title"] = "Slider Yönetimi";
 }
 
@@ -12,13 +15,118 @@
             <div class="page-title">
                 <h1>
                     @ViewData["Title"]
-                    <small>slider ekle, düzenle, tasarla</small>
+                    <small>Slider ekle, düzenle</small>
                 </h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BASE CONTENT -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-dark">
+                            <i class="icon-settings font-dark"></i>
+                            <span class="caption-subject bold"> Tüm İçerikler</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="btn-group">
+                                        <a href="/sliderEkle" class="btn sbold green">
+                                            Yeni Ekle
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" hidden>
+                                    <div class="btn-group pull-right">
+                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">
+                                            Araçlar
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-print"></i> Yazdır
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-file-pdf-o"></i> PDF olarak kaydet
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-file-excel-o"></i> Excel çıktısı
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                            <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                            <span></span>
+                                        </label>
+                                    </th>
+                                    <th> Açıklama </th>
+                                    <th> Resim Url </th>
+                                    <th> Sıra </th>
+                                    <th> Link </th>
+                                    <th> Süre </th>
+                                    <th> İşlem </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                <input type="checkbox" class="checkboxes" value="1" />
+                                                <span></span>
+                                            </label>
+                                        </td>
+                                        <td> @item.Content </td>
+                                        <td> @item.MediaUrl </td>
+                                        <td> @item.Order</td>
+                                        <td> @item.Link</td>
+                                        <td> @(Convert.ToDecimal(item.Time) / 1000) sn</td>
+                                        <td>
+                                            <div>
+                                                <a href="/sliderEkle?Id=@item.Id" class="btn btn-xs green" type="button" aria-expanded="false">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-xs red removeSlider" data-btn-ok-label="Evet" data-btn-ok-icon="icon-like"
+                                                        data-btn-ok-class="btn-success" data-btn-cancel-label="Hayır"
+                                                        data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger" data-slider-id="@item.Id"
+                                                        data-toggle="confirmation" data-original-title="Emin Misiniz ?" type="button" aria-expanded="false">
+                                                    <i class="fa fa-remove"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+
         <!-- END PAGE BASE CONTENT -->
     </div>
     <!-- END CONTENT BODY -->

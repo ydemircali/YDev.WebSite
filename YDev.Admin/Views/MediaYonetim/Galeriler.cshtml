@@ -1,0 +1,124 @@
+﻿@using YDev.Admin.Constant
+@model FilesViewModel
+@{
+    ViewData["Title"] = "Show";
+}
+
+@section styles
+{
+    <environment names="@EnvironmentName.DEVELOPMENT">
+        <!-- blueimp Gallery styles -->
+        <link href="~/assets/global/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet" asp-append-version="true" />
+        @*<link href="~/lib/blueimp-gallery/css/blueimp-gallery-indicator.css" rel="stylesheet" asp-append-version="true" />*@
+
+        <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+        <link href="~/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/assets/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" asp-append-version="true" />
+
+
+    </environment>
+}
+
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>
+                    @ViewData["Title"]
+                    <small>media ekle, düzenle, tasarla</small>
+                </h1>
+            </div>
+            <!-- END PAGE TITLE -->
+        </div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div class="row">
+
+                            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+                                <div class="slides"></div>
+                                <h3 class="title"></h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause"></a>
+                                <ol class="indicator"></ol>
+                            </div>
+                            <div id="links">
+
+                                @if (@Model.Files != null && @Model.Files.Length != 0)
+                                {
+                                    foreach (ViewDataUploadFilesResult file in @Model.Files)
+                                    {
+
+                                        if (file.type.Equals("video/mp4"))
+                                        {
+                                            <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
+                                                <a href="@file.url" title="@file.name" type="video/mp4">
+                                                    <img src="@file.thumbnailUrl" alt="@file.name">
+                                                </a>
+                                                <div class="col-xs-12 text-center">@file.name</div>
+                                                <div class="col-xs-12 text-center"><input type="checkbox" data-id="@file.name" class="toggle file-delete"></div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
+                                                <a href="@file.url" title="@file.name">
+                                                    <img src="@file.thumbnailUrl" alt="@file.name">
+                                                </a>
+                                                <div class="col-xs-12 text-center">@file.name</div>
+                                                <div class="col-xs-12 text-center"><input type="checkbox" data-id="@file.name" class="toggle file-delete"></div>
+                                            </div>
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-md-3">
+                                        <p>Dosya Yok </p>
+                                    </div>
+
+                                }
+                                <!--Your files goes here-->
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- END PAGE BASE CONTENT -->
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+
+@section scripts
+{
+<script>
+    document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = { index: link, event: event },
+        links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+
+};
+</script>
+<script src="~/assets/global/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js" asp-append-version="true"></script>
+
+}

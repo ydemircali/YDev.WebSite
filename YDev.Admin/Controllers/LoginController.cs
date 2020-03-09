@@ -59,6 +59,7 @@ namespace YDev.Admin.Controllers
                 }
             }
 
+            var asas = Json(result);
             return Json(result);
         }
 
