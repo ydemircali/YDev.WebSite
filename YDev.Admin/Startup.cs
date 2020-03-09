@@ -64,13 +64,7 @@ namespace YDev.Admin
             services.AddMvc(options => options.Filters.Add(new AuthorizeFilter()));
 
             services.AddDistributedMemoryCache();
-            services.AddSession(options => {
-
-                options.IdleTimeout = TimeSpan.FromHours(1);
-                options.Cookie.HttpOnly = true;
-                // Make the session cookie essential
-                options.Cookie.IsEssential = true;
-            });
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
