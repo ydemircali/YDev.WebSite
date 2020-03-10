@@ -74,6 +74,9 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Spot")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Tags")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -138,30 +141,6 @@ namespace YDev.Data.Migrations
                     b.HasIndex("GalleryId");
 
                     b.ToTable("MediaGalleries");
-                });
-
-            modelBuilder.Entity("YDev.Common.Models.Menu", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("RecordDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("RecordUser")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("YDev.Common.Models.MenuGroup", b =>

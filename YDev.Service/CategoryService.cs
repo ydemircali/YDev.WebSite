@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YDev.Common.Models;
@@ -9,22 +10,30 @@ using YDev.Data;
 namespace YDev.Service
 {
     public interface ICategoryService : IBaseService<Category>
-    { 
+    {
+        public MenuGroup GetMenuGroup(long id);
 
+        public Task<IEnumerable<MenuGroup>> GetMenuGroups();
+
+        public Task UpdateMenuGroup(MenuGroup menuGroup);
+        public Task CreateMenuGroup(MenuGroup menuGroup);
     }
 
     public class CategoryService : ICategoryService
     {
         private IRepository<Category> _repo;
+        private IRepository<MenuGroup> _menuGroupRepo;
 
-        public CategoryService(IRepository<Category> repository)
+        public CategoryService(IRepository<Category> repository, IRepository<MenuGroup> menuGroupRepo)
         {
             _repo = repository;
+            _menuGroupRepo = menuGroupRepo;
         }
 
-        public Task Create(Category dto)
+        public async Task Create(Category dto)
         {
-            throw new NotImplementedException();
+            _repo.Create(dto);
+            await _repo.SaveChangesAsync();
         }
 
         public Task Delete(long id)
@@ -32,9 +41,9 @@ namespace YDev.Service
             throw new NotImplementedException();
         }
 
-        public Task<Category> GetItemById(long id)
+        public async Task<Category> GetItemById(long id)
         {
-            throw new NotImplementedException();
+            return await _repo.GetById(id);
         }
 
         public async Task<List<Category>> GetItems()
@@ -42,9 +51,32 @@ namespace YDev.Service
             return await _repo.FindAll().ToListAsync();
         }
 
-        public Task Update(Category dto)
+        public async Task Update(Category dto)
         {
-            throw new NotImplementedException();
+            _repo.Update(dto);
+            await _repo.SaveChangesAsync();
+        }
+
+        public MenuGroup GetMenuGroup(long id)
+        {
+            return _menuGroupRepo.FindByCondition(f => f.Id == id).FirstOrDefault();
+        }
+
+        public async Task<IEnumerable<MenuGroup>> GetMenuGroups()
+        {
+            return await _menuGroupRepo.FindAll().ToListAsync();
+        }
+
+        public async Task UpdateMenuGroup(MenuGroup menuGroup)
+        {
+            _menuGroupRepo.Update(menuGroup);
+            await _menuGroupRepo.SaveChangesAsync();
+        }
+
+        public async Task CreateMenuGroup(MenuGroup menuGroup)
+        {
+            _menuGroupRepo.Create(menuGroup);
+            await _menuGroupRepo.SaveChangesAsync();
         }
     }
 }

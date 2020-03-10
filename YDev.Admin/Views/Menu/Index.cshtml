@@ -2,7 +2,7 @@
 @using YDev.Common.Helper
 @{
     ViewData["Title"] = "Menü Yönetimi";
-    List<Menu> menus = ViewData["Menus"] as List<Menu>;
+    List<Category> categories = ViewData["Categories"] as List<Category>;
     List<MenuObject> menuObject = ViewData["MenuObject"] as List<MenuObject>;
 }
 
@@ -32,6 +32,28 @@
             <div class="col-md-12">
                 <div class="portlet light bordered">
                     <div class="portlet-body">
+
+                        <div class="row">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Menüye Kategori Ekleyin</label>
+                                <div class="col-md-6">
+                                    <select id="categoryId" class="form-control">
+                                        @foreach (var item in categories)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="javascript:;" id="kategori_ekle" class="btn green"><i class="fa fa-arrow-down"></i> Ekle</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="dd" id="nestable_list_3">
@@ -40,7 +62,7 @@
                                         {
                                             <li class="dd-item dd3-item" data-id="@item.Id">
                                                 <div class="dd-handle dd3-handle"> </div>
-                                                <div class="dd3-content">@menus.FirstOrDefault(f => f.Id == item.Id).Name</div>
+                                                <div class="dd3-content removeMenu" data-id="@item.Id">@categories.FirstOrDefault(f => f.Id == item.Id).Name  <i class="glyphicon glyphicon-trash right"></i></div>
 
 
                                                 @if (item.Children != null)
@@ -51,7 +73,7 @@
                                                         {
                                                             <li class="dd-item dd3-item" data-id="@subItem.Id">
                                                                 <div class="dd-handle dd3-handle"> </div>
-                                                                <div class="dd3-content">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</div>
+                                                                <div class="dd3-content removeMenu" data-id="@subItem.Id">@categories.FirstOrDefault(f => f.Id == subItem.Id).Name  <i class="glyphicon glyphicon-trash right"></i></div>
                                                                 @if (subItem.Children != null)
                                                                 {
                                                                     <ol class="dd-list">
@@ -59,7 +81,7 @@
                                                                         {
                                                                             <li class="dd-item dd3-item" data-id="@subItem2.Id">
                                                                                 <div class="dd-handle dd3-handle"> </div>
-                                                                                <div class="dd3-content">@menus.FirstOrDefault(f => f.Id == subItem2.Id).Name</div>
+                                                                                <div class="dd3-content removeMenu" data-id="@subItem2.Id">@categories.FirstOrDefault(f => f.Id == subItem2.Id).Name  <i class="glyphicon glyphicon-trash right"></i></div>
                                                                             </li>
                                                                         }
 

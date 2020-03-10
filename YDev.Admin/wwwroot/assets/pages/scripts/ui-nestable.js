@@ -58,6 +58,54 @@ var UINestable = function () {
                 });
 
             });
+
+            $('#kategori_ekle').on('click', function (e) {
+                var menuJson = $('#nestable_list_3_output').val();
+                var categoryId = $("#categoryId").val();
+
+                $.ajax({
+                    url: "/MenuKategoriEkle?categoryId=" + categoryId,
+                    type: "POST",
+                    data: menuJson,
+                    contentType: "application/json",
+                    success: function (data) {
+                        if (data.isSuccess === true) {
+                            toastr.success(data.message);
+                            document.location.href = "/menu"
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+
+                    }
+                });
+
+            });
+
+
+            $('.removeMenu').on('click', function (e) {
+                var menuJson = $('#nestable_list_3_output').val();
+                var menuId = $(this).data("id");
+
+                $.ajax({
+                    url: "/MenuSil?menuId=" + menuId,
+                    type: "POST",
+                    data: menuJson,
+                    contentType: "application/json",
+                    success: function (data) {
+                        if (data.isSuccess === true) {
+                            toastr.success(data.message);
+                            document.location.href = "/menu"
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+
+                    }
+                });
+
+            });
+
         }
 
     }

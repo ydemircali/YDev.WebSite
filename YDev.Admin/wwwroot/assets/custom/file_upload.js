@@ -63,7 +63,7 @@ $(document).on("click", "#delete-files", function () {
                 success: function (data) {
                     toastr.success("Silme işlemi başarılı");
                     setTimeout(function () {
-                        document.location.href = "/MediaYonetim";
+                        document.location.href = "/resimvideo";
                     }, 500);
                 }
             }

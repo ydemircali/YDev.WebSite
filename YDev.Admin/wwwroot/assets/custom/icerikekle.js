@@ -4,7 +4,7 @@
 
         var model = {
             Title: $("#title").val(),
-            MenuId: parseInt($("#menuId").val()),
+            CategoryId: parseInt($("#categoryId").val()),
             CoverImage: $("#coverImage").val(),
             Spot: $("#spot").val(),
             Url: $("#url").val(),

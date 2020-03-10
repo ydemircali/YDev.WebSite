@@ -23,11 +23,13 @@ namespace YDev.Admin.Controllers
         }
 
         [Route("kategoriler")]
-        public IActionResult Kategoriler()
+        public async Task<IActionResult> Kategoriler()
         {
             ViewData["Nav"] = "content/kategoriler";
 
-            return View();
+            List<Category> categories = await _categoryService.GetItems();
+
+            return View(categories);
         }
 
         [Route("icerikler")]
@@ -43,7 +45,7 @@ namespace YDev.Admin.Controllers
         public async Task<IActionResult> IcerikEkleAsync(int contentId=0)
         {
             ViewData["Nav"] = "content/icerikler";
-            ViewData["Categories"] = _categoryService.GetItems();
+            ViewData["Categories"] = await _categoryService.GetItems();
 
             JsonFiles ListOfFiles = _filesHelper.GetFileList();
 
@@ -71,6 +73,10 @@ namespace YDev.Admin.Controllers
             }
             else
             {
+                Category category = await _categoryService.GetItemById(content.CategoryId);
+
+                content.Url = category.Link + "/" + content.Title.ToLink();
+
                 if (content.Id == 0)
                 {
                     await _contentService.Create(content);
@@ -107,6 +113,38 @@ namespace YDev.Admin.Controllers
                 result.IsSuccess = true;
                 result.Message = "İçerik silindi";
                 
+            }
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        [Route("kategoriKaydet")]
+        public async Task<JsonResult> KategoriKaydet([FromBody] Category category)
+        {
+            AjaxResult result = new AjaxResult();
+
+            if (category == null || string.IsNullOrEmpty(category.Name))
+            {
+                result.IsSuccess = false;
+                result.Message = "Eksik alanları doldurun !";
+            }
+            else
+            {
+                if (category.Id == 0)
+                {
+                    await _categoryService.Create(category);
+
+                    result.IsSuccess = true;
+                    result.Message = "Kategori kaydedildi";
+                }
+                else
+                {
+                    await _categoryService.Update(category);
+                    result.IsSuccess = true;
+                    result.Message = "Kategori güncellendi";
+                }
+
             }
 
             return Json(result);

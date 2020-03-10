@@ -13,9 +13,11 @@ namespace YDev.Common.Models
         public string Url { get; set; }
         public string Html { get; set; }
         public string Author { get; set; }
+        public string Tags { get; set; }
 
         [ForeignKey("Category")]
         public long CategoryId { get; set; }
         public Category Category { get; set; }
+
     }
 }

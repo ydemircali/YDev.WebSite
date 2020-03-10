@@ -12,20 +12,24 @@ namespace YDev.Admin.Controllers
 {
     public class MenuController : Controller
     {
-        private readonly IMenuService _menuService;
-        public MenuController(IMenuService menuService)
+        private readonly ICategoryService _categoryService;
+        public MenuController(ICategoryService categoryService)
         {
-            _menuService = menuService;
+            _categoryService = categoryService;
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["Nav"] = "menu";
-            ViewData["Menus"] = _menuService.GetMenus();
-            MenuGroup menuGroup = _menuService.GetMenuGroup(1);
+            ViewData["Categories"] = await _categoryService.GetItems();
+            MenuGroup menuGroup = _categoryService.GetMenuGroup(1);
 
-            ViewData["MenuObject"] = JsonConvert.DeserializeObject<List<MenuObject>>(menuGroup.DesignMenu);
+            ViewData["MenuObject"] = new List<MenuObject>();
+            if (menuGroup != null && menuGroup.DesignMenu!= null)
+            {
+                ViewData["MenuObject"] = JsonConvert.DeserializeObject<List<MenuObject>>(menuGroup.DesignMenu);
+            }
             
             return View();
         }
@@ -49,11 +53,181 @@ namespace YDev.Admin.Controllers
                     DesignMenu = JsonConvert.SerializeObject(menuObjects)
                 };
 
-                await _menuService.UpdateMenuGroup(menuGroup);
+                await _categoryService.UpdateMenuGroup(menuGroup);
 
                 result.IsSuccess = true;
                 result.Message = "Menü kaydedildi";
             }
+            return Json(result);
+        }
+
+        [HttpPost]
+        [Route("MenuSil")]
+        public async Task<JsonResult> MenuSil([FromBody] List<MenuObject> menuObjects, string menuId)
+        {
+            AjaxResult result = new AjaxResult();
+
+            if (menuObjects == null)
+            {
+                result.IsSuccess = false;
+                result.Message = "Menü kaydedilemedi !";
+            }
+            else
+            {
+                foreach (var item in menuObjects)
+                {
+                    if (item.Id == Convert.ToInt32(menuId))
+                    {
+                        menuObjects.Remove(item);
+                        break;
+                    }
+                    else
+                    {
+                        if (item.Children != null)
+                        {
+                            foreach (var subItem in item.Children)
+                            {
+                                if (subItem.Id == Convert.ToInt32(menuId))
+                                {
+                                    item.Children.Remove(subItem);
+                                    break;
+                                }
+                                else
+                                {
+                                    if (subItem.Children != null)
+                                    {
+                                        foreach (var subItem2 in subItem.Children)
+                                        {
+                                            if (subItem2.Id == Convert.ToInt32(menuId))
+                                            {
+                                                subItem.Children.Remove(subItem2);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                   
+                                }
+                            }
+                        }
+                      
+                    }
+                }
+
+                MenuGroup menuGroup = new MenuGroup
+                {
+                    Id = 1,
+                    DesignMenu = JsonConvert.SerializeObject(menuObjects)
+                };
+
+                await _categoryService.UpdateMenuGroup(menuGroup);
+
+                result.IsSuccess = true;
+                result.Message = "Menü kaydedildi";
+            }
+            return Json(result);
+        }
+
+        [HttpPost]
+        [Route("MenuKategoriEkle")]
+        public async Task<JsonResult> MenuKategoriEkle([FromBody] List<MenuObject> menuObjects, string categoryId)
+        {
+            AjaxResult result = new AjaxResult();
+
+            if (!string.IsNullOrEmpty(categoryId))
+            {
+                bool ekli = false;
+                if (menuObjects.Count >0)
+                {
+                    foreach (var item in menuObjects)
+                    {
+                        if (item.Id == Convert.ToInt32(categoryId))
+                        {
+                            ekli = true;
+                            break;
+                        }
+                        else
+                        {
+                            if (item.Children != null)
+                            {
+                                foreach (var subItem in item.Children)
+                                {
+                                    if (subItem.Id == Convert.ToInt32(categoryId))
+                                    {
+                                        ekli = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (subItem.Children != null)
+                                        {
+                                            foreach (var subItem2 in subItem.Children)
+                                            {
+                                                if (subItem2.Id == Convert.ToInt32(categoryId))
+                                                {
+                                                    ekli = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                    if (ekli)
+                    {
+                        result.IsSuccess = false;
+                        result.Message = "Kategori zaten eklenmiş";
+                    }
+                    else
+                    {
+                        menuObjects.Add(new MenuObject
+                        {
+                            Id = Convert.ToInt32(categoryId)
+                        });
+
+                        if (menuObjects.Count == 1)
+                        {
+                            MenuGroup menuGroup = new MenuGroup
+                            {
+                                GroupName = "Yeni",
+                                DesignMenu = JsonConvert.SerializeObject(menuObjects)
+                            };
+
+                            await _categoryService.CreateMenuGroup(menuGroup);
+
+                            result.IsSuccess = true;
+                            result.Message = "Kategori eklendi";
+
+                        }
+                        else
+                        {
+
+                            MenuGroup menuGroup = new MenuGroup
+                            {
+                                Id = 1,
+                                DesignMenu = JsonConvert.SerializeObject(menuObjects)
+                            };
+
+                            await _categoryService.UpdateMenuGroup(menuGroup);
+
+                            result.IsSuccess = true;
+                            result.Message = "Kategori eklendi";
+                        }
+
+                    }
+                }
+               
+            }
+            else
+            {
+                result.IsSuccess = false;
+                result.Message = "Bir Kategori seçiniz !";
+            }
+
             return Json(result);
         }
     }

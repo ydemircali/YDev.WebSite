@@ -37,7 +37,6 @@ namespace YDev.Admin
             services.AddControllersWithViews();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IMenuService, MenuService>();
             services.AddTransient<IContentService, ContentService>();
             services.AddTransient<ISliderService, SliderService>();
             services.AddTransient<ICategoryService, CategoryService>();
