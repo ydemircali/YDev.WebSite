@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = Model.Id == 0 ? "İçerik Ekle" : "İçerik Düzenle";
-    List<Menu> menus = ViewData["Menus"] as List<Menu>;
+    List<Category> categories = ViewData["Categories"] as List<Category>;
     List<ViewDataUploadFilesResult> files = ViewData["Files"] as List<ViewDataUploadFilesResult>;
 }
 
@@ -40,9 +40,9 @@
                             <div class="form-group col-md-6">
                                 <label>Kategori</label>
                                 <select id="menuId" class="form-control">
-                                    @foreach (var item in menus)
+                                    @foreach (var item in categories)
                                     {
-                                        if (Model.MenuId == item.Id)
+                                        if (Model.CategoryId == item.Id)
                                         {
                                             <option selected value="@item.Id">@item.Name</option>
                                         }

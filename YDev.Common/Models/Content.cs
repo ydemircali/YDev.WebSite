@@ -14,8 +14,8 @@ namespace YDev.Common.Models
         public string Html { get; set; }
         public string Author { get; set; }
 
-        [ForeignKey("Menu")]
-        public long MenuId { get; set; }
-        public Menu Menu { get; set; }
+        [ForeignKey("Category")]
+        public long CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

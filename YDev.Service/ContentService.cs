@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using YDev.Common.Enum;
 using YDev.Common.Models;
 using YDev.Data;
 
@@ -10,7 +11,7 @@ namespace YDev.Service
 {
     public interface IContentService : IBaseService<Content>
     {
-
+        public Task<List<Content>> GetContentsByCategory(Categories menuItems);
     }
     public class ContentService : IContentService
     {
@@ -32,6 +33,11 @@ namespace YDev.Service
             await _contentData.SaveChangesAsync();
         }
 
+        public async Task<List<Content>> GetContentsByCategory(Categories catItems)
+        {
+            return await _contentData.FindByCondition(f => f.CategoryId == Convert.ToInt32(catItems)).ToListAsync();
+        }
+
         public async Task<Content> GetItemById(long id)
         {
             return await _contentData.GetById(id);
@@ -39,7 +45,7 @@ namespace YDev.Service
 
         public async Task<List<Content>> GetItems()
         {
-            return await _contentData.FindAll().Include(content => content.Menu).ToListAsync();
+            return await _contentData.FindAll().Include(content => content.Category).ToListAsync();
         }
 
         public async Task Update(Content dto)

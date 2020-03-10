@@ -3,6 +3,7 @@
 @{
 	ViewData["Title"] = "İhtiyaç Evim - Tüm İhtiyaçlarınız için Faizsiz Çözümler";
 	List<Slider> sliders = ViewData["Sliders"] as List<Slider>;
+	List<Content> cozumler = ViewData["Cozumler"] as List<Content>;
 }
 
 
@@ -27,7 +28,7 @@
 					<i class="icon main-bg fa fa-home"></i>
 					<h3><span>İhtiyaç</span><br>Evim</h3>
 					<p>
-						Hayal nereye İhtiyaç oraya sloganı ile hayalinizdeki eve sizi kavuşturuyoruz. Hem de peşinatsız ,faizsizi, kefilsiz.
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Evim")).Spot
 					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>
@@ -36,7 +37,9 @@
 				<div class="box-top">
 					<i class="icon main-bg fa fa-car"></i>
 					<h3><span>İhtiyaç</span><br>Arabam</h3>
-					<p>İhtiyacınız olan O arabaya sizi kavuşturmak istiyoruz. Hem de 222 TL ile başlayan taksitlerle.</p>
+					<p>
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Arabam")).Spot
+					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>
 			</div>
@@ -44,7 +47,9 @@
 				<div class="box-top">
 					<i class="icon main-bg fa fa-leaf"></i>
 					<h3><span>İhtiyaç</span><br>Finans</h3>
-					<p>İhtiyaç ailesi olarak tüm finans çözümlerinizde yanınızda olmaktan keyif alıyoruz.</p>
+					<p>
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Finans")).Spot
+					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>
 			</div>
@@ -52,7 +57,9 @@
 				<div class="box-top">
 					<i class="icon main-bg fa fa-tree"></i>
 					<h3><span>İhtiyaç</span><br>Tasarruf</h3>
-					<p>Sağladığımız faizsiz, peinatsız, kefilsiz çözümlerle tüm ihtiyaçlarınızda tasarruf etmenizi istiyoruz.</p>
+					<p>
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Tasarruf")).Spot
+					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>
 			</div>

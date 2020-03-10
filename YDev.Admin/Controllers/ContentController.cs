@@ -13,12 +13,12 @@ namespace YDev.Admin.Controllers
     public class ContentController : Controller
     {
         private readonly IContentService _contentService;
-        private readonly IMenuService _menuService;
+        private readonly ICategoryService _categoryService;
         private readonly FilesHelper _filesHelper;
-        public ContentController(FilesHelper filesHelper,IContentService contentService, IMenuService menuService)
+        public ContentController(FilesHelper filesHelper,IContentService contentService, ICategoryService categoryService)
         {
             _contentService = contentService;
-            _menuService = menuService;
+            _categoryService = categoryService;
             _filesHelper = filesHelper;
         }
 
@@ -43,7 +43,7 @@ namespace YDev.Admin.Controllers
         public async Task<IActionResult> IcerikEkleAsync(int contentId=0)
         {
             ViewData["Nav"] = "content/icerikler";
-            ViewData["Menus"] = _menuService.GetMenus();
+            ViewData["Categories"] = _categoryService.GetItems();
 
             JsonFiles ListOfFiles = _filesHelper.GetFileList();
 
@@ -64,8 +64,7 @@ namespace YDev.Admin.Controllers
         {
             AjaxResult result = new AjaxResult();
 
-            if (content == null || string.IsNullOrEmpty(content.Title) 
-                || content.MenuId == 0 || string.IsNullOrEmpty(content.Spot))
+            if (content == null || string.IsNullOrEmpty(content.Title) || string.IsNullOrEmpty(content.Spot))
             {
                 result.IsSuccess = false;
                 result.Message = "Eksik alanları doldurun !";
