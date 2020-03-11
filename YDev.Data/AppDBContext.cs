@@ -26,6 +26,7 @@ namespace YDev.Data
         public virtual DbSet<MenuGroup> MenuGroups { get; set; }
         public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDBContext>

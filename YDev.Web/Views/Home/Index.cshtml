@@ -22,48 +22,7 @@
 		<!-- Welcome Box end -->
 		<!-- Services boxes style 1 start -->
 
-		<div class="container">
-			<div class="cell-3 service-box-2 fx" data-animate="fadeInUp" data-animation-delay="200">
-				<div class="box-top">
-					<i class="icon main-bg fa fa-home"></i>
-					<h3><span>İhtiyaç</span><br>Evim</h3>
-					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Evim"))?.Spot
-					</p>
-					<a class="r-more main-color" href="services.html">Devamı</a>
-				</div>
-			</div>
-			<div class="cell-3 service-box-2 fx" data-animate="fadeInUp" data-animation-delay="400">
-				<div class="box-top">
-					<i class="icon main-bg fa fa-car"></i>
-					<h3><span>İhtiyaç</span><br>Arabam</h3>
-					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Arabam"))?.Spot
-					</p>
-					<a class="r-more main-color" href="services.html">Devamı</a>
-				</div>
-			</div>
-			<div class="cell-3 service-box-2 fx" data-animate="fadeInUp" data-animation-delay="600">
-				<div class="box-top">
-					<i class="icon main-bg fa fa-leaf"></i>
-					<h3><span>İhtiyaç</span><br>Finans</h3>
-					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Finans"))?.Spot
-					</p>
-					<a class="r-more main-color" href="services.html">Devamı</a>
-				</div>
-			</div>
-			<div class="cell-3 service-box-2 fx" data-animate="fadeInUp" data-animation-delay="800">
-				<div class="box-top">
-					<i class="icon main-bg fa fa-tree"></i>
-					<h3><span>İhtiyaç</span><br>Tasarruf</h3>
-					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Tasarruf"))?.Spot
-					</p>
-					<a class="r-more main-color" href="services.html">Devamı</a>
-				</div>
-			</div>
-		</div>
+		@await Html.PartialAsync("../Shared/Partial/Home/_Services.cshtml", cozumler)
 
 		<!-- Services boxes style 1 start -->
 		<!-- About us and Features container start -->
