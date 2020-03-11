@@ -14,21 +14,21 @@ namespace YDev.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMenuService _menuService;
+        private readonly ICategoryService _categoryService;
         private readonly ISliderService _sliderService;
         private readonly IContentService _contentService;
 
-        public HomeController(IMenuService menuService, ISliderService sliderService, IContentService contentService)
+        public HomeController(ICategoryService categoryService, ISliderService sliderService, IContentService contentService)
         {
-            _menuService = menuService;
+            _categoryService = categoryService;
             _sliderService = sliderService;
             _contentService = contentService;
         }
 
         public async Task<IActionResult> Index()
         {
-            ViewData["Menus"] = _menuService.GetMenus();
-            MenuGroup menuGroup = _menuService.GetMenuGroup(1);
+            ViewData["Categories"] = await _categoryService.GetItems();
+            MenuGroup menuGroup = _categoryService.GetMenuGroup(1);
 
             ViewData["MenuObject"] = JsonConvert.DeserializeObject<List<MenuObject>>(menuGroup.DesignMenu);
 

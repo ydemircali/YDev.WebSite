@@ -28,7 +28,7 @@
 					<i class="icon main-bg fa fa-home"></i>
 					<h3><span>İhtiyaç</span><br>Evim</h3>
 					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Evim")).Spot
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Evim"))?.Spot
 					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>
@@ -38,7 +38,7 @@
 					<i class="icon main-bg fa fa-car"></i>
 					<h3><span>İhtiyaç</span><br>Arabam</h3>
 					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Arabam")).Spot
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Arabam"))?.Spot
 					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>
@@ -48,7 +48,7 @@
 					<i class="icon main-bg fa fa-leaf"></i>
 					<h3><span>İhtiyaç</span><br>Finans</h3>
 					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Finans")).Spot
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Finans"))?.Spot
 					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>
@@ -58,7 +58,7 @@
 					<i class="icon main-bg fa fa-tree"></i>
 					<h3><span>İhtiyaç</span><br>Tasarruf</h3>
 					<p>
-						@cozumler.FirstOrDefault(f => f.Title.Contains("Tasarruf")).Spot
+						@cozumler.FirstOrDefault(f => f.Title.Contains("Tasarruf"))?.Spot
 					</p>
 					<a class="r-more main-color" href="services.html">Devamı</a>
 				</div>

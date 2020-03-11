@@ -2,7 +2,7 @@
 @using YDev.Common.Helper
 @{
 
-    List<Menu> menus = ViewData["Menus"] as List<Menu>;
+    List<Category> categories = ViewData["Categories"] as List<Category>;
     List<MenuObject> menuObject = ViewData["MenuObject"] as List<MenuObject>;
 }
 
@@ -14,6 +14,7 @@
     <meta name="description" content='@ViewData["Title"]'>
     <meta name="author" content="İhtyiaç Evim">
     <meta name="title" content="İhtiyaç Evim">
+    <meta name="url" content="www.ihtiyacevim.com.tr" />
 
     <!-- Mobile Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -84,7 +85,7 @@
 
                                             @if (item.Children != null)
                                             {
-                                                <a href="#"><span>@menus.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
+                                                <a href="#"><span>@categories.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
                                                 <ul>
                                                     @foreach (var subItem in item.Children)
                                                     {
@@ -92,19 +93,19 @@
 
                                                             @if (subItem.Children != null)
                                                             {
-                                                                <a href="#">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
+                                                                <a href="#">@categories.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
                                                                 <ul>
                                                                     @foreach (var subItem1 in subItem.Children)
                                                                     {
                                                                         <li>
-                                                                            <a href="@menus.FirstOrDefault(f => f.Id == subItem1.Id).Link">@menus.FirstOrDefault(f => f.Id == subItem1.Id).Name</a>
+                                                                            <a href="@categories.FirstOrDefault(f => f.Id == subItem1.Id).Link">@categories.FirstOrDefault(f => f.Id == subItem1.Id).Name</a>
                                                                         </li>
                                                                     }
                                                                 </ul>
                                                             }
                                                             else
                                                             {
-                                                                <a href="@menus.FirstOrDefault(f => f.Id == subItem.Id).Link">@menus.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
+                                                                <a href="@categories.FirstOrDefault(f => f.Id == subItem.Id).Link">@categories.FirstOrDefault(f => f.Id == subItem.Id).Name</a>
                                                             }
 
                                                         </li>
@@ -113,7 +114,7 @@
                                             }
                                             else
                                             {
-                                                <a href="@menus.FirstOrDefault(f => f.Id == item.Id).Link"><span>@menus.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
+                                                <a href="@categories.FirstOrDefault(f => f.Id == item.Id).Link"><span>@categories.FirstOrDefault(f => f.Id == item.Id).Name</span></a>
                                             }
 
                                         </li>
@@ -157,7 +158,7 @@
                             <h3 class="block-head" style="text-transform:capitalize !important;font-weight:normal !important">Faydalı Linkler</h3>
                             <div class="cell-6">
                                 <ul class="footer-menu">
-                                    @foreach (var menu in menus.Take(menus.Count/2))
+                                    @foreach (var menu in categories.Take(categories.Count/2))
                                     {
                                         <li><a href="@menu.Link">@menu.Name</a></li>
                                     }
@@ -165,7 +166,7 @@
                             </div>
                             <div class="cell-6">
                                 <ul class="footer-menu">
-                                    @foreach (var menu in menus.TakeLast(menus.Count/2))
+                                    @foreach (var menu in categories.TakeLast(categories.Count/2))
                                     {
                                         <li><a href="@menu.Link">@menu.Name</a></li>
                                     }
