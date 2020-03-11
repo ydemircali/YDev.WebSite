@@ -18,11 +18,13 @@ namespace YDev.Admin.Controllers
             _contactService = contactService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["Nav"] = "iletisim";
 
-            return View();
+            List<Contact> contacts = await _contactService.GetItems();
+
+            return View(contacts);
         }
 
         [HttpPost]
