@@ -14,25 +14,17 @@ namespace YDev.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ICategoryService _categoryService;
         private readonly ISliderService _sliderService;
         private readonly IContentService _contentService;
 
-        public HomeController(ICategoryService categoryService, ISliderService sliderService, 
-            IContentService contentService, IContactService contactService)
+        public HomeController(ISliderService sliderService, IContentService contentService)
         {
-            _categoryService = categoryService;
             _sliderService = sliderService;
             _contentService = contentService;
         }
 
         public async Task<IActionResult> Index()
         {
-            ViewData["Categories"] = await _categoryService.GetItems();
-            MenuGroup menuGroup = _categoryService.GetMenuGroup(1);
-
-            ViewData["MenuObject"] = JsonConvert.DeserializeObject<List<MenuObject>>(menuGroup.DesignMenu);
-
             ViewData["Sliders"] = await _sliderService.GetItems();
 
             ViewData["Cozumler"] = await _contentService.GetContentsByCategory(Categories.Cozumlerimiz);

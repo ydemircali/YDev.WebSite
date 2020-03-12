@@ -12,17 +12,21 @@ namespace YDev.Web.Components
     {
         private readonly ICategoryService _categoryService;
         private readonly IContactService _contactService;
+        private readonly ISocialService _socialService;
 
-        public FooterComponent(ICategoryService categoryService, IContactService contactService)
+        public FooterComponent(ICategoryService categoryService, 
+            IContactService contactService, ISocialService socialService)
         {
             _categoryService = categoryService;
             _contactService = contactService;
+            _socialService = socialService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var categories = await _categoryService.GetItems();
             ViewData["Contact"] = await _contactService.GetContactByContactType(ContactTypes.Merkez);
+            ViewData["Socials"] = await _socialService.GetItems(); 
 
             return View(categories);
         }

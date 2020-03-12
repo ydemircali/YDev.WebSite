@@ -8,13 +8,14 @@ namespace YDev.Common.Enum
     {
         AnaSayfa = 1,
         Hakkimizda = 2,
-        Iletisim = 3,
-        Kurumsal = 4,
+        Kampanyalar = 3,
+        Iletisim = 4,
         Cozumlerimiz = 5,
-        Kampanyalar = 6,
-        MerakEttikleriniz = 7,
-        Blog = 8,
-        Galeri = 9,
-        IletisimFormu = 10
+        Blog = 6,
+        Galeri = 7,
+        MerakEttikleriniz = 8,
+        IletisimFormu = 10,
+        Kurumsal = 11
+
     }
 }

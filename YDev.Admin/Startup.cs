@@ -41,6 +41,7 @@ namespace YDev.Admin
             services.AddTransient<ISliderService, SliderService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<ISocialService, SocialService>();
 
             // Configure MediatR.
             services.AddMediatR(typeof(Startup));

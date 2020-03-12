@@ -3,6 +3,7 @@
 @model List<Category>
 @{
     Contact contact = ViewData["Contact"] as Contact;
+    List<Social> socials = ViewData["Socials"] as List<Social>;
 }
 
 <footer id="footWrapper">
@@ -48,10 +49,14 @@
                     <!-- footer copyrights left cell -->
                     <div class="copyrights">
                         <ul class="social-list center">
-                            <li class="skew-25"><a href="#" data-title="facebook" data-tooltip="true"><span class="fa fa-facebook skew25"></span></a></li>
-                            <li class="skew-25"><a href="#" data-title="instagram" data-tooltip="true"><span class="fa fa-instagram skew25"></span></a></li>
-                            <li class="skew-25"><a href="#" data-title="twitter" data-tooltip="true"><span class="fa fa-twitter skew25"></span></a></li>
-                            <li class="skew-25"><a href="#" data-title="YouTube" data-tooltip="true"><span class="fa fa-youtube skew25"></span></a></li>
+                            @foreach (var item in socials)
+                            {
+                                <li class="skew-25">
+                                    <a href="https://@(item.Url+"/"+@item.Account)" target="_blank" data-title="@item.SocialName.ToLink()" data-tooltip="true">
+                                        <span class="fa fa-@item.SocialName.ToLink() skew25"></span>
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>

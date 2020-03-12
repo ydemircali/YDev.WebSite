@@ -35,8 +35,9 @@ namespace YDev.Web
             services.AddTransient<IContentService, ContentService>();
             services.AddTransient<ISliderService, SliderService>();
 
-            services.AddSingleton<ICategoryService, CategoryService>();
-            services.AddSingleton<IContactService, ContactService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<ISocialService, SocialService>();
 
             services.AddControllersWithViews();
 

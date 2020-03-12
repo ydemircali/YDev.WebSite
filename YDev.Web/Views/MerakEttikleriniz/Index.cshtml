@@ -1,0 +1,42 @@
+﻿@using YDev.Common.Models
+@model List<Content>
+@{
+    ViewData["Title"] = "Merak Ettikleriniz";
+}
+
+<!-- Content Start -->
+<div id="contentWrapper">
+    <div class="page-title title-1">
+        <div class="container">
+            <div class="row" style="float:right">
+                <div class="cell-12">
+                    <h1 class="fx" data-animate="fadeInLeft">Merak <span>Ettikleriniz</span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sectionWrapper">
+        <div class="container">
+            <div class="row">
+                <div class="cell-9">
+                    <p>
+                       Sizler için, cevaplarını merak ettiğiniz ve ihtiyaç duyduğunuz tüm bilgileri bu sayfamızda derledik ve tek tek açıkladık.
+                    </p>
+                    <ul id="accordion" class="accordion">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <h3 class="skew-25"><a href="#"><span class="skew25">@item.Title</span></a></h3>
+                                <div class="accordion-panel active">
+                                    @item.Html
+                                </div>
+                            </li>
+                        }
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content End -->

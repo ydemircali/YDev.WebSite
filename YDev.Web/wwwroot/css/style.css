@@ -5192,13 +5192,13 @@ img.loader{
 	font-size: 35px;
 }
 .page-title h1 span {
-	color: #777;
+	color: #dcae73;
 }
 .page-title .cell-4 img {
 	margin-top: 10px;
 }
 .title-1 {
-	background: #fff url('../images/page-titles/Page-title-1.jpg') no-repeat 50% 50%;
+	background: #ddd;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-webkit-background-size: cover;
@@ -5213,7 +5213,7 @@ img.loader{
 }
 /* ---- 9.2. Page title 2 -------------- */
 .title-2 {
-	background: #fff url('../images/page-titles/Page-title-1.jpg') no-repeat 50% 50%;
+	background: #ddd;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-webkit-background-size: cover;
@@ -6229,6 +6229,7 @@ footer .no-margin{
 	white-space: nowrap;
 	font-size: 15px;
 	color: #dcae73;
+	padding-left:20px;
 }
 .copyrights a {
 	color: #dcae73;

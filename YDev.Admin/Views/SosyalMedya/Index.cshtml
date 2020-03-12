@@ -1,4 +1,7 @@
-﻿@{
+﻿@using YDev.Common.Models
+@using YDev.Common.Helper
+@model List<Social>
+@{
     ViewData["Title"] = "Sosyal Medya Bilgileri";
 }
 
@@ -22,40 +25,29 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="portlet light bordered">
-                    <div class="portlet-body">
+                <div class="portlet box purple ">
+                    <div class="portlet-body form">
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                @foreach (var social in Model)
+                                {
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><i class="fa fa-@social.SocialName.ToLink()"></i> @social.Url/ </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control socialAccount" data-url="@social.Url" data-name="@social.SocialName" 
+                                                   data-id="@social.Id" value="@social.Account">
+                                        </div>
+                                    </div>
+                                }
 
-                        <div class="row">
-
-                            <div class="form-group">
-                                <label class="col-sm-4"><i class="fa fa-instagram"></i> www.instagram.com/</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="instagram">
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-4"><i class="fa fa-facebook"></i> www.facebook.com/</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="facebook">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4"><i class="fa fa-twitter"></i> www.twitter.com/</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="twitter">
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-12">
-                                <a href="javascript:;" id="sosyalmedya_ekle" class="btn green right"><i class="fa fa-save"></i> Kaydet</a>
+                            <div class="form-actions">
+                                <button class="btn green" id="btn_saveSocial" style="float:right">Kaydet</button>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
 
         <!-- END PAGE BASE CONTENT -->
@@ -63,3 +55,8 @@
     <!-- END CONTENT BODY -->
 </div>
 <!-- END CONTENT -->
+
+@section scripts
+{
+    <script type="text/javascript" src="~/assets/custom/social.js"></script>
+}

@@ -18,5 +18,6 @@ namespace YDev.Common.Helper
 
             return newValue;
         }
+
     }
 }

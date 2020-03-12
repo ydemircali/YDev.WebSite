@@ -272,6 +272,33 @@ namespace YDev.Data.Migrations
                     b.ToTable("Sliders");
                 });
 
+            modelBuilder.Entity("YDev.Common.Models.Social", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Account")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RecordDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("RecordUser")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SocialName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Socials");
+                });
+
             modelBuilder.Entity("YDev.Common.Models.StaticPages", b =>
                 {
                     b.Property<long>("Id")
