@@ -18,7 +18,8 @@ namespace YDev.Web.Controllers
         private readonly ISliderService _sliderService;
         private readonly IContentService _contentService;
 
-        public HomeController(ICategoryService categoryService, ISliderService sliderService, IContentService contentService)
+        public HomeController(ICategoryService categoryService, ISliderService sliderService, 
+            IContentService contentService, IContactService contactService)
         {
             _categoryService = categoryService;
             _sliderService = sliderService;
@@ -35,6 +36,7 @@ namespace YDev.Web.Controllers
             ViewData["Sliders"] = await _sliderService.GetItems();
 
             ViewData["Cozumler"] = await _contentService.GetContentsByCategory(Categories.Cozumlerimiz);
+
 
             return View();
         }

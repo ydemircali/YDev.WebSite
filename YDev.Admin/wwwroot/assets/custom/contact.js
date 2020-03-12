@@ -54,7 +54,7 @@
     $(document).on("click", ".editContact", function () {
 
         var contactId = $(this).data("contact-id");
-        var contact = JSON.parse($(this).data("contact"));
+        var contact = $(this).data("contact");
 
         $("#name").val(contact.Name);
         $("#contactType").val(contact.ContactType);
@@ -74,15 +74,15 @@
 
     $(document).on("click", "#vazgec", function () {
    
-        $("#name").val();
-        $("#contactType").val();
-        $("#address").val();
-        $("#country").val();
-        $("#city").val();
-        $("#town").val();
-        $("#phone").val();
-        $("#fax").val();
-        $("#email").val();
+        $("#name").val("");
+        $("#contactType").val("");
+        $("#address").val("");
+        $("#country").val("");
+        $("#city").val("");
+        $("#town").val("");
+        $("#phone").val("");
+        $("#fax").val("");
+        $("#email").val("");
 
         $("#contact_save").attr("category-id", "0");
         $("#contact_save").text("Kaydet");

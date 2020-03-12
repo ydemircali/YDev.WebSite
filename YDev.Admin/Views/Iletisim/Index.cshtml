@@ -39,8 +39,9 @@
                             <div class="form-group col-md-6">
                                 <label>Adres Tipi</label>
                                 <select id="contactType" class="form-control">
+                                    <option value="" selected disabled>Seçiniz</option>
                                     <option value="1">Merkez</option>
-                                    <option selected value="1">Şube</option>
+                                    <option value="2">Şube</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-12">
@@ -109,7 +110,7 @@
                                     <td> @item.EMail </td>
                                     <td>
                                         <div>
-                                            <a href="javascript:;" data-contact="@JsonConvert.SerializeObject(Model)" data-contact-id="@item.Id" class="btn btn-xs green editContact" type="button" aria-expanded="false">
+                                            <a href="javascript:;" data-contact="@JsonConvert.SerializeObject(item)" data-contact-id="@item.Id" class="btn btn-xs green editContact" type="button" aria-expanded="false">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a href="javascript:;" data-contact-id="@item.Id" class="btn btn-xs red removeContact" type="button" aria-expanded="false">

@@ -1,0 +1,62 @@
+﻿@using YDev.Common.Models
+@using YDev.Common.Helper
+@model List<Category>
+@{
+    Contact contact = ViewData["Contact"] as Contact;
+}
+
+<footer id="footWrapper">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <!-- Useful Links footer cell start -->
+                <div class="cell-3" style="width:50% !important">
+                    <h3 class="block-head" style="text-transform:capitalize !important;font-weight:normal !important">Faydalı Linkler</h3>
+                    <div class="cell-6">
+                        <ul class="footer-menu">
+                            @foreach (var menu in Model.Take(Model.Count / 2))
+                            {
+                                <li><a href="@menu.Link">@menu.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="cell-6">
+                        <ul class="footer-menu">
+                            @foreach (var menu in Model.TakeLast(Model.Count / 2))
+                            {
+                                <li><a href="@menu.Link">@menu.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cell-3">
+                    <h3 class="block-head" style="text-transform:capitalize !important;font-weight:normal !important">İletişim Adresleri</h3>
+                    <ul>
+                        <li class="footer-contact"><i class="fa fa-home"></i><span>@contact.Address</span></li>
+                        <li class="footer-contact"><i class="fa fa-globe"></i><span><a href="#">@contact.EMail</a></span></li>
+                        <li class="footer-contact"><i class="fa fa-phone"></i><span>@contact.Phone</span></li>
+                        <li class="footer-contact"><i class="fa fa-map-marker"></i><span><a href="@contact.MapUrl">Harita</a></span></li>
+                    </ul>
+                </div>
+                <!-- contact us footer cell end -->
+                <!-- Newsletters footer cell start -->
+                <div class="cell-3">
+                    <div class="foot-logo"></div>
+                    <br />
+                    <div class="clearfix"></div>
+                    <!-- footer copyrights left cell -->
+                    <div class="copyrights">
+                        <ul class="social-list center">
+                            <li class="skew-25"><a href="#" data-title="facebook" data-tooltip="true"><span class="fa fa-facebook skew25"></span></a></li>
+                            <li class="skew-25"><a href="#" data-title="instagram" data-tooltip="true"><span class="fa fa-instagram skew25"></span></a></li>
+                            <li class="skew-25"><a href="#" data-title="twitter" data-tooltip="true"><span class="fa fa-twitter skew25"></span></a></li>
+                            <li class="skew-25"><a href="#" data-title="YouTube" data-tooltip="true"><span class="fa fa-youtube skew25"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>

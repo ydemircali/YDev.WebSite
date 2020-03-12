@@ -32,9 +32,11 @@ namespace YDev.Web
             services.AddControllersWithViews();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IContentService, ContentService>();
             services.AddTransient<ISliderService, SliderService>();
+
+            services.AddSingleton<ICategoryService, CategoryService>();
+            services.AddSingleton<IContactService, ContactService>();
 
             services.AddControllersWithViews();
 
