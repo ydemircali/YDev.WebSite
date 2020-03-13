@@ -12,6 +12,7 @@ namespace YDev.Service
     public interface IContentService : IBaseService<Content>
     {
         public Task<List<Content>> GetContentsByCategory(Categories menuItems);
+        public Task<Content> GetContentByCategory(Categories menuItems);
     }
     public class ContentService : IContentService
     {
@@ -36,6 +37,11 @@ namespace YDev.Service
         public async Task<List<Content>> GetContentsByCategory(Categories catItems)
         {
             return await _contentData.FindByCondition(f => f.CategoryId == Convert.ToInt32(catItems)).ToListAsync();
+        }
+
+        public async Task<Content> GetContentByCategory(Categories catItems)
+        {
+            return await _contentData.FindByCondition(f => f.CategoryId == Convert.ToInt32(catItems)).FirstOrDefaultAsync();
         }
 
         public async Task<Content> GetItemById(long id)
