@@ -38,6 +38,7 @@ namespace YDev.Web
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<ISocialService, SocialService>();
+            services.AddScoped<IContactService, ContactService>();
 
             services.AddControllersWithViews();
 
