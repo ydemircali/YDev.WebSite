@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SkiaSharp;
+using System.Drawing;
 
 namespace YDev.Admin.Models.FileUpload
 {
@@ -100,7 +101,6 @@ namespace YDev.Admin.Models.FileUpload
             {
                 const int THUMB_WIDTH = 80;
                 const int THUMB_HEIGHT = 80;
-                const int NORMAL_IMAGE_MAX_WIDTH = 540;
                 const string THUMBS_FOLDER_NAME = "thumbs";
 
                 var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file.FileName);
@@ -234,7 +234,7 @@ namespace YDev.Admin.Models.FileUpload
                     url = _filesHelper.UrlBase + fileName,
                     deleteUrl = _filesHelper.DeleteUrl + fileName,
                     thumbnailUrl = _filesHelper.CheckThumb(getType, fileName),
-                    deleteType = _filesHelper.DeleteType,
+                    deleteType = _filesHelper.DeleteType
                 };
 
                 return result;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using YDev.Admin.Utilities;
@@ -91,8 +92,7 @@ namespace YDev.Admin.Models
                 DirectoryInfo dir = new DirectoryInfo(fullPath);
                 foreach (FileInfo file in dir.GetFiles())
                 {
-                    int SizeInt = unchecked((int)file.Length);
-                    r.Add(UploadResult(file.Name, SizeInt, file.FullName));
+                    r.Add(UploadResult(file));
                 }
 
             }
@@ -204,20 +204,25 @@ namespace YDev.Admin.Models
         }
         */
 
-        public ViewDataUploadFilesResult UploadResult(string FileName, int fileSize, string FileFullPath)
+        public ViewDataUploadFilesResult UploadResult(FileInfo file)
         {
+            int SizeInt = unchecked((int)file.Length);
             //string getType = System.Web.MimeMapping.GetMimeMapping(FileFullPath);
-            string getType = MimeMapping.GetMimeMapping(FileFullPath);
+            string getType = MimeMapping.GetMimeMapping(file.FullName);
+            Bitmap img = new Bitmap(file.FullName);
+
             var result = new ViewDataUploadFilesResult()
             {
-                name = FileName,
-                size = fileSize,
+                name = file.Name,
+                size = SizeInt,
                 type = getType,
-                url = URL_BASE + FileName,
-                deleteUrl = DELETE_URL + FileName,
-                thumbnailUrl = CheckThumb(getType, FileName),
+                url = URL_BASE + file.Name,
+                deleteUrl = DELETE_URL + file.Name,
+                thumbnailUrl = CheckThumb(getType, file.Name),
                 deleteType = DELETE_TYPE,
+                widthHeight = img.Width + "x" + img.Height
             };
+            
             return result;
         }
 

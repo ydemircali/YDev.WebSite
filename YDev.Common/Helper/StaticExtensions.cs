@@ -19,5 +19,11 @@ namespace YDev.Common.Helper
             return newValue;
         }
 
+        public static string ToImageLink(this string inValue)
+        {
+            string newValue = "https://admin.ihtiyacevim.com.tr/" + inValue;
+            return newValue;
+        }
+
     }
 }

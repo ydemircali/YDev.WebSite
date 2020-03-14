@@ -24,7 +24,7 @@
         </div>
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BASE CONTENT -->
-
+        <div id="summernoteHtml" data-value="@Model.Content" hidden></div>
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN SAMPLE FORM PORTLET-->
@@ -33,17 +33,35 @@
                         <div class="row">
 
                             <div class="form-group col-md-6">
-                                <label>Resim Seçiniz</label>
+                                <label>Resim Seçiniz (1920x520)</label>
                                 <select id="mediaUrl" class="form-control">
+                                    <option value="" selected disabled>Seçiniz</option>
                                     @foreach (var item in files)
                                     {
                                         if (Model.MediaUrl == item.url)
                                         {
-                                            <option selected value="@item.url">@item.name</option>
+                                            <option selected value="@item.url">@item.name (@item.widthHeight)</option>
                                         }
                                         else
                                         {
-                                            <option value="@item.url">@item.name</option>
+                                            <option value="@item.url">@item.name (@item.widthHeight)</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Küçük Resim Seçiniz (375x350)</label>
+                                <select id="tinyMediaUrl" class="form-control">
+                                    <option value="" selected disabled>Seçiniz</option>
+                                    @foreach (var item in files)
+                                    {
+                                        if (Model.TinyMediaUrl == item.url)
+                                        {
+                                            <option selected value="@item.url">@item.name (@item.widthHeight)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.url">@item.name (@item.widthHeight)</option>
                                         }
                                     }
                                 </select>
@@ -55,7 +73,7 @@
 
                             <div class="form-group col-md-12">
                                 <label>Açıklama</label>
-                                <textarea class="form-control" id="content" rows="3">@Model.Content</textarea>
+                                <div data-html="@Model.Content" name="summernote" id="content"></div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Sıra</label>

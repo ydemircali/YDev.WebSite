@@ -40,6 +40,7 @@
                             <div class="form-group col-md-6">
                                 <label>Kategori</label>
                                 <select id="categoryId" class="form-control">
+                                    <option value="" selected disabled>Seçiniz</option>
                                     @foreach (var item in categories)
                                     {
                                         if (Model.CategoryId == item.Id)
@@ -56,15 +57,16 @@
                             <div class="form-group col-md-6">
                                 <label>Resim Seçiniz</label>
                                 <select id="coverImage" class="form-control">
+                                    <option value="" selected disabled>Seçiniz</option>
                                     @foreach (var item in files)
                                     {
                                         if (Model.CoverImage == item.url)
                                         {
-                                            <option selected value="@item.url">@item.name</option>
+                                            <option selected value="@item.url">@item.name (@item.widthHeight)</option>
                                         }
                                         else
                                         {
-                                            <option value="@item.url">@item.name</option>
+                                            <option value="@item.url">@item.name (@item.widthHeight)</option>
                                         }
                                     }
                                 </select>

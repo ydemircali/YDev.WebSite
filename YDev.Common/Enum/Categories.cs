@@ -15,7 +15,8 @@ namespace YDev.Common.Enum
         Galeri = 7,
         MerakEttikleriniz = 8,
         IletisimFormu = 10,
-        Kurumsal = 11
+        Kurumsal = 11,
+        Sayfa = 12
 
     }
 }

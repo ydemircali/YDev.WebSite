@@ -27,7 +27,8 @@ namespace YDev.Web.Controllers
         {
             ViewData["Sliders"] = await _sliderService.GetItems();
 
-            ViewData["Cozumler"] = await _contentService.GetContentsByCategory(Categories.Cozumlerimiz);
+            ViewData["Cozumler"] = await _contentService.GetContentsByCategory(Categories.Cozumlerimiz, 4);
+            ViewData["Bloglar"] = await _contentService.GetContentsByCategory(Categories.Blog, 8);
 
 
             return View();

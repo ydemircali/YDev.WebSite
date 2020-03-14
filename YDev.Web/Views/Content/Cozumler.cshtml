@@ -1,0 +1,39 @@
+@using YDev.Common.Models
+@model List<Content>
+@{
+    ViewData["Title"] = "Çözümler & Modeller";
+}
+
+<!-- Content Start -->
+    <div id="contentWrapper">
+        <div class="page-title title-1">
+            <div class="container">
+                <div class="row" style="float:right">
+                    <div class="cell-12">
+                        <h1 class="fx" data-animate="fadeInLeft">Çözümler <span>Modeller</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sectionWrapper">
+            <div class="container">
+                <h3 class="block-head">Çözümler & Modeller </h3>
+                <div class="row padd-top-25">
+                    @foreach (var item in Model)
+                    {
+                        <div class="cell-3 service-box-2 fx" data-animate="fadeInDown">
+                            <div class="box-2-cont">
+                                <i class="fa fa-check-square-o"></i>
+                                <h4>@item.Title</h4>
+                                @*<div class="center sub-title main-color">sub title</div>*@
+                                <p class="mediumFont">@item.Spot</p>
+                                <a class="r-more main-color" href="@item.Url-@item.Id">Devamı</a>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Content End -->

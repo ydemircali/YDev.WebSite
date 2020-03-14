@@ -1,0 +1,42 @@
+﻿@using YDev.Common.Models
+@using YDev.Common.Helper
+@model Content
+@{
+    ViewData["Title"] = Model.Title;
+    List<string> titles = Model.Title.Split(" ").ToList();
+}
+
+
+
+
+<!-- Content Start -->
+    <div id="contentWrapper">
+        <div class="page-title title-1">
+            <div class="container">
+                <div class="row" style="float:right">
+                    <div class="cell-12">
+                        <h1 class="fx" data-animate="fadeInLeft">@titles.FirstOrDefault() <span>@(titles.Count > 1 ? Model.Title.Replace(titles.FirstOrDefault(), "") : "")</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sectionWrapper">
+            <div class="container">
+                @if (!string.IsNullOrEmpty(Model.CoverImage))
+                {
+                    <div class="post-image details-img">
+                        <a href="@Model.CoverImage.ToImageLink()" class="zoom">
+                            <div class="mask"></div>
+                            <img src="@Model.CoverImage.ToImageLink()" alt="@Model.Title">
+                        </a>
+                    </div>
+                }
+                
+                @Html.Raw(Model.Html)
+
+            </div>
+        </div>
+
+    </div>
+<!-- Content End -->

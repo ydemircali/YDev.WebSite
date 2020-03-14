@@ -1,0 +1,101 @@
+﻿@using YDev.Common.Models
+@using YDev.Common.Helper
+@using System.Globalization
+@model Content
+@{
+    ViewData["Title"] = "Blog-" + Model.Title;
+    List<Content> bloglar = ViewData["Bloglar"] as List<Content>;
+}
+
+
+<!-- Content Start -->
+<div id="contentWrapper">
+    <div class="page-title title-1">
+        <div class="container">
+            <div class="row" style="float:right">
+                <div class="cell-12">
+                    <h1 class="fx" data-animate="fadeInLeft">Haberler <span>Bloglar</span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sectionWrapper">
+        <div class="container">
+            <div class="row">
+                <div class="cell-9">
+                    <div class="blog-posts">
+                        <div class="post-item fx" data-animate="fadeInLeft">
+                            <div class="details-img">
+                                @if (Model.RecordDate != null || Model.RecordDate != DateTime.MinValue)
+                                {
+                                    <div class="post-lft-info">
+                                        <div class="main-bg">@Model.RecordDate.Day<br>@Model.RecordDate.ToString("MMMM", CultureInfo.GetCultureInfo("tr-TR"))<br>@Model.RecordDate.Year</div>
+                                    </div>
+                                }
+                                <img src="@(string.IsNullOrEmpty(Model.CoverImage) ? "../images/ihtiyac_640x426.jpg" : Model.CoverImage.ToImageLink())" alt="@Model.Title">
+                            </div>
+                            <article class="post-content">
+                                <div class="post-info-container">
+                                    <h1 class="main-color">@Model.Title</h1>
+
+                                    @*<div class="post-info">
+                                <ul class="post-meta">
+                                    <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">John Martin</a></li>
+                                    <li><i class="fa fa-folder-open"></i>Category: <a href="#">Corporate News</a></li>
+                                    <li class="meta-comments"><i class="fa fa-comments"></i>Comments: <a href="blog-single.html">5</a></li>
+                                </ul>
+                            </div>*@
+                                </div>
+
+                                @Html.Raw(Model.Html)
+                                <br />
+
+                                @*<div class="post-tags">
+                            <i class="fa fa-tags"></i><span>Tags: </span><a href="#">Responsive</a>,<a> Business</a>,<a href="#"> HTML</a>,<a> Design</a>,<a> WordPress</a>
+                        </div>*@
+                                <div class="share-post">
+                                    <span class="sh">Paylaş :</span>
+                                    <div id="shareme" data-text="@Model.Title"></div>
+                                </div>
+                            </article>
+                        </div><!-- .post-item end -->
+                    </div>
+                </div>
+
+                <aside class="cell-3 right-sidebar">
+                    <ul class="sidebar_widgets">
+                        <li class="widget r-posts-w fx" data-animate="fadeInRight">
+                            <h3 class="widget-head">Son Yazılar</h3>
+                            <div class="widget-content">
+                                <ul>
+                                    @foreach (var item in bloglar)
+                                    {
+                                        <li>
+                                            <div class="post-img">
+                                                <img src="@(string.IsNullOrEmpty(item.CoverImage) ? "../images/ihtiyac_640x426.jpg" : item.CoverImage.ToImageLink())" alt="">
+                                            </div>
+                                            <div class="widget-post-info">
+                                                <h4>
+                                                    <a href="@item.Url-@item.Id">
+                                                        @item.Title
+                                                    </a>
+                                                </h4>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-clock-o"></i>@item.RecordDate.ToString("dd.MM.yyyy")</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Content End -->

@@ -1,0 +1,36 @@
+﻿@using YDev.Common.Models
+@model Content
+@{
+    ViewData["Title"] = Model.Title;
+    List<string> titles = Model.Title.Split(" ").ToList();
+}
+
+
+<!-- Content Start -->
+    <div id="contentWrapper">
+        <div class="page-title title-1">
+            <div class="container">
+                <div class="row" style="float:right">
+                    <div class="cell-12">
+                        <h1 class="fx" data-animate="fadeInLeft">@titles.FirstOrDefault() <span>@(titles.Count > 1 ? Model.Title.Replace(titles.FirstOrDefault(), "") : "")</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Vertical and Horizontal Tabs -->
+        <div class="sectionWrapper">
+            <div class="container">
+                <h3 class="block-head">@Model.Title</h3>
+                <p style="font-size:14px !important;">@Model.Spot</p>
+                <div class="padd-vertical-25">
+                    <div class="cell-12 fx" data-animate="fadeInLeft">
+                        @Html.Raw(Model.Html)
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+<!-- Content End -->

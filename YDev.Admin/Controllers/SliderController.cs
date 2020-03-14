@@ -63,6 +63,7 @@ namespace YDev.Admin.Controllers
             }
             else
             {
+                slider.Content = slider.Content.Replace("</p><p>", "<br />").Replace("<p>", "").Replace("</p>", "").Replace("<br>","<br />");
                 if (slider.Id == 0)
                 {
                     await _sliderService.Create(slider);

@@ -3,10 +3,11 @@
     $(document).on("click", "#slider_kaydet", function () {
 
         var model = {
-            Content: $("#content").val(),
+            Content: $("#content").summernote('code'),
             Order: parseInt($("#order").val()),
             Time: parseInt($("#time").val()),
             MediaUrl: $("#mediaUrl").val(),
+            TinyMediaUrl: $("#tinyMediaUrl").val(),
             Link: $("#link").val(),
             Id: parseInt($(this).data("slider-id"))
         };
@@ -81,6 +82,21 @@
     return {
         //main function to initiate the module
         init: function () {
+
+            $('#content').summernote({
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
+
+            $('#content').summernote("code", $("#summernoteHtml").data("value")); 
 
         }
 

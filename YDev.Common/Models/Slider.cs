@@ -23,6 +23,8 @@ namespace YDev.Common.Models
         /// image url
         /// </summary>
         public string MediaUrl { get; set; }
+
+        public string TinyMediaUrl { get; set; }
         /// <summary>
         /// slider click event
         /// </summary>

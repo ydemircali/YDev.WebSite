@@ -18,13 +18,10 @@
     <div class="sectionWrapper">
         <div class="container">
             <div class="fx" data-animate="fadeInUp">
-                <h3 class="block-head">Introduction</h3>
+                <h3 class="block-head">İhtiyaç Evim</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget lacus sit amet neque posuere aliquet. In interdum nisl sapien, vel dignissim nulla porta at. Sed accumsan nunc vitae mollis consequat. Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                    Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi. Aenean porttitor.
-                    Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi. Aenean porttitor, lectus at dapibus egestas.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget lacus sit amet neque posuere aliquet. In interdum nisl sapien, vel dignissim nulla porta at. Sed accumsan nunc vitae mollis consequat. Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                    Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi. Aenean
+                    Bu sayfada bize yer verdik, Biz Kimiz, Misyonumuz-Vizyonumuz nelerdir, Ne gibi stratejiler belirliyoruz vb.
+                    soruların cevaplarını bulacaksınız.
                 </p>
             </div>
 
@@ -33,26 +30,17 @@
             <div class="padd-top-50">
                 <div class="cell-12 fx" data-animate="fadeInRight">
                     <div class="row">
-                        <h3 class="block-head">Who we Are?</h3>
                         <ul id="accordion2" class="accordion">
-                            <li>
-                                <h3 class="skew-25"><a href="#"><span class="skew25">Our Mission</span></a></h3>
-                                <div class="accordion-panel active">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis. Vestibulum quam elit, dapibus ac augue ut, porttitor viverra dui. Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis.
-                                </div>
-                            </li>
-                            <li>
-                                <h3 class="skew-25"><a href="#"><span class="skew25">Our Vission</span></a></h3>
-                                <div class="accordion-panel">
-                                    Dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis. Vestibulum quam elit, dapibus ac augue ut, porttitor viverra dui. Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis. Vestibulum quam elit, apibus ac augue ut, porttitor viverra dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </div>
-                            </li>
-                            <li>
-                                <h3 class="skew-25"><a href="#"><span class="skew25">Our Strategy</span></a></h3>
-                                <div class="accordion-panel">
-                                    Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis. Vestibulum quam elit, apibus ac augue ut, porttitor viverra dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis. Vestibulum quam elit, apibus ac augue ut, porttitor viverra dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </div>
-                            </li>
+                            @for (int i = 0; i < Model?.Count; i++)
+                            {
+                                <li>
+                                    <h3><a href="#"><span>@Model[i].Title</span></a></h3>
+                                    <div class="accordion-panel @(i == 0 ? "active" : "") ">
+                                        @Html.Raw(Model[i].Html)
+                                    </div>
+                                </li>
+                            }
+
                         </ul>
                     </div>
                 </div>
@@ -60,7 +48,7 @@
         </div>
     </div>
 
-    <div class="block-bg-4 our-plan">
+    @*<div class="block-bg-4 our-plan">
         <div class="container">
             <div class="cell-5 plan-block lft-plan">
                 <div class="block fx" data-animate="fadeInRight">
@@ -121,7 +109,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     @*<div class="sectionWrapper">
         <div class="container">
