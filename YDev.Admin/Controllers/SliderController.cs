@@ -14,12 +14,12 @@ namespace YDev.Admin.Controllers
     public class SliderController : Controller
     {
         private readonly ISliderService _sliderService;
-        private readonly FilesHelper _filesHelper;
+        private readonly IMediaService _mediaService;
 
-        public SliderController(FilesHelper filesHelper,ISliderService sliderService)
+        public SliderController(IMediaService mediaService,ISliderService sliderService)
         {
             _sliderService = sliderService;
-            _filesHelper = filesHelper;
+            _mediaService = mediaService;
         }
 
         [Route("sliderlar")]
@@ -35,11 +35,8 @@ namespace YDev.Admin.Controllers
         [Route("sliderEkle")]
         public async Task<IActionResult> SliderEkle(int Id = 0)
         {
-            ViewData["Nav"] = "slider";
-
-            JsonFiles ListOfFiles = _filesHelper.GetFileList();
-            
-            ViewData["Files"] = ListOfFiles.files.ToList();
+            ViewData["Nav"] = "slider";            
+            ViewData["Files"] = await _mediaService.GetItems();
 
             Slider slider = new Slider();
             if (Id != 0)

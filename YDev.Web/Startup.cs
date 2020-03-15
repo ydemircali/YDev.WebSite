@@ -34,11 +34,15 @@ namespace YDev.Web
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IContentService, ContentService>();
             services.AddTransient<ISliderService, SliderService>();
+            services.AddTransient<IMediaService, MediaService>();
+            services.AddTransient<IGalleryService, GalleryService>();
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<ISocialService, SocialService>();
             services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IHomeService, HomeService>();
+           
 
             services.AddControllersWithViews();
 

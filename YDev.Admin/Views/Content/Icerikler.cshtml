@@ -106,9 +106,9 @@
                                                 <a href="/icerikEkle?contentId=@item.Id" class="btn btn-xs green" type="button" aria-expanded="false">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <button class="btn btn-xs red removeContent" data-btn-ok-label="Evet" data-btn-ok-icon="icon-like" 
+                                                <button class="btn btn-xs red removeContent" data-btn-ok-label="Evet" data-btn-ok-icon="icon-like"
                                                         data-btn-ok-class="btn-success" data-btn-cancel-label="Hayır"
-                                                        data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger" data-content-id="@item.Id" 
+                                                        data-btn-cancel-icon="icon-close" data-btn-cancel-class="btn-danger" data-content-id="@item.Id"
                                                         data-toggle="confirmation" data-original-title="Emin Misiniz ?" type="button" aria-expanded="false">
                                                     <i class="fa fa-remove"></i>
                                                 </button>
@@ -131,3 +131,7 @@
 </div>
 <!-- END CONTENT -->
 
+@section scripts
+{
+    <script src="~/assets/custom/icerikekle.min.js" type="text/javascript"></script>
+}

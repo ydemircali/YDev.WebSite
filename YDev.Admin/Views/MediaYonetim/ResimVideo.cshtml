@@ -1,7 +1,8 @@
 ﻿@using YDev.Admin.Constant
-@model FilesViewModel
+@model List<ViewDataUploadFilesResult>
 @{
     ViewData["Title"] = "Medya Yönetimi";
+    string dataYoutube = string.Empty;
 }
 
 @section styles
@@ -26,111 +27,145 @@
         </div>
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BASE CONTENT -->
+
         <div class="row">
             <div class="col-md-12">
+                <!-- BEGIN PORTLET-->
+                <div class="portlet light bordered">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- BEGIN PORTLET-->
-                        <div class="portlet light bordered">
-                            <div class="portlet-body">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Yeni Medya Ekleyin</label>
-                                        <div class="col-md-6">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <div class="input-group input-large">
-                                                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
-                                                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
-                                                        <span class="fileinput-filename"> </span>
-                                                    </div>
-                                                    <span class="input-group-addon btn default btn-file">
-                                                        <span class="fileinput-new"> Gözat</span>
-                                                        <span class="fileinput-exists"> Değiştir </span>
-                                                        <input type="file" accept="image/*" id="select_file" name="...">
-                                                    </span>
-                                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Kaldır </a>
-                                                </div>
+                    <div class="portlet-body form">
+                        <div class="row form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Açıklama Girin : </label>
+                                <div class="col-md-6">
+                                    <input type="text" value="" class="form-control" id="content" placeholder="yakup demirçalı teslimat  gibi...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Yeni Medya Ekleyin</label>
+                                <div class="col-md-10">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="input-group input-large">
+                                            <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                <span class="fileinput-filename"> </span>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <a href="javascript:;" class="btn green" id="btn_file_upload">
-                                                <i class="fa fa-check"></i> Gönder
-                                            </a>
+                                            <span class="input-group-addon btn default btn-file">
+                                                <span class="fileinput-new"> Gözat</span>
+                                                <span class="fileinput-exists"> Değiştir </span>
+                                                <input type="file" accept="image/*" id="select_file" name="...">
+                                            </span>
+                                            <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Kaldır </a>
                                         </div>
                                     </div>
                                 </div>
-                                <hr />
-                                <div class="clearfix"></div>
-                                <h4> Yüklenen Medyalar</h4>
-                                <div class="row">
-                                    <div class="col-md-3 left">
-                                        <button type="button" class="btn btn-danger delete" id="delete-files">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                            <span>Seçilenleri Sil</span>
-                                        </button>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">veya Resim Url veya Youtube Url</label>
+                                <div class="col-md-6">
+                                    <input type="text" value="" class="form-control" id="url">
                                 </div>
-                                <div class="row">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8 right" style="float:right;">
+                                    <a href="javascript:;" class="btn green" id="btn_file_upload">
+                                        <i class="fa fa-check"></i> Kaydet
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="clearfix"></div>
+                        <h4> Yüklenen Medyalar</h4>
+                        @*<div class="row">
+                                <div class="col-md-3 left">
+                                    <button type="button" class="btn btn-danger delete" id="delete-files">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                        <span>Seçilenleri Sil</span>
+                                    </button>
+                                </div>
+                            </div>*@
 
-                                    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
-                                        <div class="slides"></div>
-                                        <h3 class="title"></h3>
-                                        <a class="prev">‹</a>
-                                        <a class="next">›</a>
-                                        <a class="close">×</a>
-                                        <a class="play-pause"></a>
-                                        <ol class="indicator"></ol>
-                                    </div>
-                                    <div id="links">
+                        <div class="row">
 
-                                        @if (Model.Files != null && Model.Files.Length != 0)
+                            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+                                <div class="slides"></div>
+                                <h3 class="title"></h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause"></a>
+                                <ol class="indicator"></ol>
+                            </div>
+                            <div id="links">
+
+                                @if (Model != null && Model.Count != 0)
+                                {
+                                    foreach (ViewDataUploadFilesResult file in Model)
+                                    {
+
+                                        if ((file.type != null && file.type.Equals("video/mp4")) || (file.url != null && file.url.Contains("youtube")))
                                         {
-                                            foreach (ViewDataUploadFilesResult file in Model.Files)
+                                            if (file.url != null && file.url.Contains("youtube"))
                                             {
-
-                                                if (file.type.Equals("video/mp4"))
-                                                {
+                                                dataYoutube = file.url.Split("v=")[1];
+                                                <div>
+                                                    <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
+                                                        <a href="@file.url"
+                                                           title="@file.name"
+                                                           type="text/html"
+                                                           data-youtube="@dataYoutube"
+                                                           poster="http://img.youtube.com/vi/@dataYoutube/0.jpg">
+                                                            <img style="height: 80px !important;" width="150" src="http://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@file.name">
+                                                        </a>
+                                                        <div class="col-xs-12 text-center">@file.name (video)</div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div>
                                                     <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
                                                         <a href="@file.url" title="@file.name" type="video/mp4">
-                                                            <img src="@file.thumbnailUrl" alt="@file.name">
+                                                            <img style="height: 80px !important;" width="150" src="~/assets/global/plugins/jquery-file-upload/img/video-play.png" alt="@file.name">
                                                         </a>
-                                                        <div class="col-xs-12 text-center">@file.name (@file.widthHeight)</div>
-                                                        <div class="col-xs-12 text-center"><input type="checkbox" data-id="@file.name" class="toggle file-delete"></div>
+                                                        <div class="col-xs-12 text-center">@file.name (video)</div>
                                                     </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
-                                                        <a href="@file.url" title="@file.name">
-                                                            <img src="@file.thumbnailUrl" alt="@file.name">
-                                                        </a>
-                                                        <div class="col-xs-12 text-center">@file.name (@file.widthHeight)</div>
-                                                        <div class="col-xs-12 text-center"><input type="checkbox" data-id="@file.name" class="toggle file-delete"></div>
-                                                    </div>
-                                                }
-
+                                                </div>
                                             }
+
+
                                         }
                                         else
                                         {
-                                            <div class="col-md-3">
-                                                <p>Dosya Yok </p>
+                                            <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
+                                                <a href="@file.url" title="@file.name">
+                                                    <img style="height: 80px !important;" width="150" height="100" src="@file.thumbnailUrl" alt="@file.name">
+                                                </a>
+                                                <div class="col-xs-12 text-center">@file.name</div>
+                                                <div class="col-xs-12 text-center">Boyut: @((Convert.ToDecimal(file.Size) / (1024 * 1024)).ToString("0.###")) MB (@file.widthHeight)</div>
+                                                @*<div class="col-xs-12 text-center"><input type="checkbox" data-id="@file.name" class="toggle file-delete"></div>*@
                                             </div>
-
                                         }
-                                        <!--Your files goes here-->
+
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-md-3">
+                                        <p>Dosya Yok </p>
                                     </div>
 
-
-                                </div>
+                                }
+                                <!--Your files goes here-->
                             </div>
 
-                        </div>
-                        <!-- END PORTLET-->
-                    </div>
-                </div>
 
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END PORTLET-->
             </div>
         </div>
 

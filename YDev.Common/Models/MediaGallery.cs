@@ -10,7 +10,9 @@ namespace YDev.Common.Models
         [ForeignKey("Gallery")]
         public long GalleryId { get; set; }
         public Gallery Gallery { get; set; }
-        public string MediaUrl { get; set; }
-        public bool IsCoverImage { get; set; } = false;
+
+        [ForeignKey("Media")]
+        public long MediaId { get; set; }
+        public Media Media { get; set; }
     }
 }

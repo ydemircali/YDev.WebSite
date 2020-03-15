@@ -1,10 +1,9 @@
 ﻿@using YDev.Common.Models
-@using YDev.Admin.Models
 @model Slider
 
 @{
     ViewData["Title"] = Model.Id == 0 ? "Slider Ekle" : "Slider Düzenle";
-    List<ViewDataUploadFilesResult> files = ViewData["Files"] as List<ViewDataUploadFilesResult>;
+    List<Media> files = ViewData["Files"] as List<Media>;
 }
 
 <!-- BEGIN CONTENT -->
@@ -38,13 +37,13 @@
                                     <option value="" selected disabled>Seçiniz</option>
                                     @foreach (var item in files)
                                     {
-                                        if (Model.MediaUrl == item.url)
+                                        if (Model.MediaUrl == item.Url)
                                         {
-                                            <option selected value="@item.url">@item.name (@item.widthHeight)</option>
+                                            <option selected value="@item.Url">@item.Content (@item.Url)</option>
                                         }
                                         else
                                         {
-                                            <option value="@item.url">@item.name (@item.widthHeight)</option>
+                                            <option value="@item.Url">@item.Content (@item.Url)</option>
                                         }
                                     }
                                 </select>
@@ -55,13 +54,13 @@
                                     <option value="" selected disabled>Seçiniz</option>
                                     @foreach (var item in files)
                                     {
-                                        if (Model.TinyMediaUrl == item.url)
+                                        if (Model.TinyMediaUrl == item.Url)
                                         {
-                                            <option selected value="@item.url">@item.name (@item.widthHeight)</option>
+                                            <option selected value="@item.Url">@item.Content (@item.Url)</option>
                                         }
                                         else
                                         {
-                                            <option value="@item.url">@item.name (@item.widthHeight)</option>
+                                            <option value="@item.Url">@item.Content (@item.Url)</option>
                                         }
                                     }
                                 </select>
@@ -99,3 +98,8 @@
     <!-- END CONTENT BODY -->
 </div>
 <!-- END CONTENT -->
+
+@section scripts
+{
+    <script src="~/assets/custom/slider.js" type="text/javascript"></script>
+}

@@ -1,5 +1,9 @@
-﻿@{
+﻿@using YDev.Common.Models
+@using YDev.Admin.Constant
+@model HomeSetting
+@{
     ViewData["Title"] = "İhtiyaç Evim";
+    List<Gallery> galleries = ViewData["Galleries"] as List<Gallery>;
 }
 
 <!-- BEGIN CONTENT -->
@@ -16,15 +20,52 @@
                 </h1>
             </div>
             <!-- END PAGE TITLE -->
-           
+
         </div>
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="portlet light bordered">
+            <div class="portlet-body">
 
+                <h3> Ana Sayfa Ayarları</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Ana Sayfa için daha önce oluşturduğunuz Galerilerden birini seçin</label>
+                                <select id="galleryId" class="form-control">
+                                    <option selected disabled value="0">Seçiniz</option>
+                                    @foreach (var item in galleries)
+                                    {
+                                        if (Model.HomeGalleryId == item.Id)
+                                        {
+                                            <option selected value="@item.Id">@item.Title</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Title</option>
+                                        }
 
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12 right">
+                                <a href="javascript:;" id="ayarlari_kaydet" data-id="@Model.Id" class="btn green">Kaydet</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- END PAGE BASE CONTENT -->
     </div>
     <!-- END CONTENT BODY -->
 </div>
 <!-- END CONTENT -->
+
+@section scripts
+{
+    <script type="text/javascript" src="~/assets/custom/home.js"></script>
+}

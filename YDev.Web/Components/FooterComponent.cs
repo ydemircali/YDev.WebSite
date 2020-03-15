@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YDev.Common.Enum;
+using YDev.Common.Helper;
+using YDev.Common.Models;
 using YDev.Service;
 
 namespace YDev.Web.Components
@@ -26,7 +29,10 @@ namespace YDev.Web.Components
         {
             var categories = await _categoryService.GetItems();
             ViewData["Contact"] = await _contactService.GetContactByContactType(ContactTypes.Merkez);
-            ViewData["Socials"] = await _socialService.GetItems(); 
+            ViewData["Socials"] = await _socialService.GetItems();
+
+            MenuGroup menuGroup = _categoryService.GetMenuGroup(2);
+            ViewData["MenuObjects"] = JsonConvert.DeserializeObject<List<MenuObject>>(menuGroup.DesignMenu);
 
             return View(categories);
         }

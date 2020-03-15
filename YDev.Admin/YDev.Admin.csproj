@@ -43,6 +43,10 @@
     <None Include="bundleconfig.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Upload\images\thumbs\" />
+  </ItemGroup>
+
 
 
 </Project>

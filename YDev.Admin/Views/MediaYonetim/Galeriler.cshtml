@@ -1,22 +1,7 @@
-﻿@using YDev.Admin.Constant
-@model FilesViewModel
+﻿@using YDev.Common.Models
+@model List<Gallery>
 @{
-    ViewData["Title"] = "Show";
-}
-
-@section styles
-{
-    <environment names="@EnvironmentName.DEVELOPMENT">
-        <!-- blueimp Gallery styles -->
-        <link href="~/assets/global/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet" asp-append-version="true" />
-        @*<link href="~/lib/blueimp-gallery/css/blueimp-gallery-indicator.css" rel="stylesheet" asp-append-version="true" />*@
-
-        <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-        <link href="~/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" asp-append-version="true" />
-        <link href="~/assets/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" asp-append-version="true" />
-
-
-    </environment>
+    ViewData["Title"] = "Galeriler";
 }
 
 <!-- BEGIN CONTENT -->
@@ -29,7 +14,7 @@
             <div class="page-title">
                 <h1>
                     @ViewData["Title"]
-                    <small>media ekle, düzenle, tasarla</small>
+                    <small>galerileri düzenle</small>
                 </h1>
             </div>
             <!-- END PAGE TITLE -->
@@ -39,65 +24,68 @@
 
         <div class="row">
             <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
                 <div class="portlet light bordered">
+
                     <div class="portlet-body">
+
                         <div class="row">
 
-                            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
-                                <div class="slides"></div>
-                                <h3 class="title"></h3>
-                                <a class="prev">‹</a>
-                                <a class="next">›</a>
-                                <a class="close">×</a>
-                                <a class="play-pause"></a>
-                                <ol class="indicator"></ol>
+                            <div class="form-group col-md-6">
+                                <label>Başlık</label>
+                                <input class="form-control spinner" type="text" id="title" placeholder="Teslimatlar  gibi..." />
                             </div>
-                            <div id="links">
-
-                                @if (@Model.Files != null && @Model.Files.Length != 0)
-                                {
-                                    foreach (ViewDataUploadFilesResult file in @Model.Files)
-                                    {
-
-                                        if (file.type.Equals("video/mp4"))
-                                        {
-                                            <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
-                                                <a href="@file.url" title="@file.name" type="video/mp4">
-                                                    <img src="@file.thumbnailUrl" alt="@file.name">
-                                                </a>
-                                                <div class="col-xs-12 text-center">@file.name</div>
-                                                <div class="col-xs-12 text-center"><input type="checkbox" data-id="@file.name" class="toggle file-delete"></div>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="col-xs-3 fileinput-new thumbnail" style="width: 200px; height: 150px; margin:10px;">
-                                                <a href="@file.url" title="@file.name">
-                                                    <img src="@file.thumbnailUrl" alt="@file.name">
-                                                </a>
-                                                <div class="col-xs-12 text-center">@file.name</div>
-                                                <div class="col-xs-12 text-center"><input type="checkbox" data-id="@file.name" class="toggle file-delete"></div>
-                                            </div>
-                                        }
-
-                                    }
-                                }
-                                else
-                                {
-                                    <div class="col-md-3">
-                                        <p>Dosya Yok </p>
-                                    </div>
-
-                                }
-                                <!--Your files goes here-->
+                            <div class="form-group col-md-6">
+                                <label>Açıklama</label>
+                                <input type="text" class="form-control" id="content">
                             </div>
-
+                            <div class="form-group col-md-12 right">
+                                <a href="javascript:;" id="galeri_kaydet" data-galeri-id=0 class="btn green right">Kaydet</a>
+                                <a href="javascript:;" id="vazgec" class="btn default right hidden">Vazgeç</a>
+                            </div>
                         </div>
+
+                        <hr />
+                        <div class="clearfix"></div>
+
+                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                            <thead>
+                                <tr>
+                                    <th> Başlık </th>
+                                    <th> Açıklama </th>
+                                    <th> İşlem </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd gradeX">
+                                        <td> @item.Title </td>
+                                        <td> @item.Content </td>
+                                        <td>
+                                            <div>
+                                                <a href="javascript:;" data-galeri-id="@item.Id" data-title="@item.Title"
+                                                   data-content="@item.Content" class="btn btn-sm green editGaleri" type="button"
+                                                   aria-expanded="false">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="galeriDetay?galeriId=@item.Id" class="btn btn-sm green" 
+                                                   type="button" title="Gözat"
+                                                   aria-expanded="false">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
                     </div>
-
                 </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
-
         </div>
 
         <!-- END PAGE BASE CONTENT -->
@@ -108,17 +96,5 @@
 
 @section scripts
 {
-<script>
-    document.getElementById('links').onclick = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = { index: link, event: event },
-        links = this.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
-
-};
-</script>
-<script src="~/assets/global/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js" asp-append-version="true"></script>
-
+    <script type="text/javascript" src="~/assets/custom/galeriler.js"></script>
 }

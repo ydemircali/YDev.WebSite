@@ -8,7 +8,10 @@
         formData.append("files", files[i]);
     }
 
-    if (files.length > 0) {
+    formData.append("content", $("#content").val());
+    formData.append("url", $("#url").val());
+
+    if (files.length > 0 || $("#url").val().length > 10) {
 
         $("#btn_file_upload").text("Lütfen Bekleyin");
         $("#btn_file_upload").attr("disabled", true);
@@ -21,10 +24,18 @@
                 contentType: false,
                 type: "POST",
                 success: function (data) {
-                    toastr.success("Yükleme başarılı");
-                    setTimeout(function () {
-                        document.location.href = "/resimvideo";
-                    }, 500);
+                    if (data.isSuccess === true) {
+                        toastr.success(data.message);
+                        setTimeout(function () {
+                            document.location.href = "/resimvideo";
+                        }, 500);
+                    }
+                    else {
+                        toastr.success(data.message);
+                        $("#btn_file_upload").text("Kaydet");
+                        $("#btn_file_upload").attr("disabled", false);
+                    }
+                  
                     
                 }
             }

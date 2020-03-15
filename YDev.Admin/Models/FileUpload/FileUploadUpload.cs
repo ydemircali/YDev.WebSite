@@ -21,6 +21,9 @@ namespace YDev.Admin.Models.FileUpload
             public HttpContext HttpContext { get; set; }
 
             public List<IFormFile> Files { get; private set; } = new List<IFormFile>();
+
+            public string Content { get; set; }
+            public string Url { get; set; }
         }
 
         public class CommandResult
@@ -229,7 +232,7 @@ namespace YDev.Admin.Models.FileUpload
                 var result = new ViewDataUploadFilesResult()
                 {
                     name = fileName,
-                    size = fileSizeInBytes,
+                    Size = fileSizeInBytes,
                     type = getType,
                     url = _filesHelper.UrlBase + fileName,
                     deleteUrl = _filesHelper.DeleteUrl + fileName,

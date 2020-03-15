@@ -42,6 +42,9 @@ namespace YDev.Admin
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IContactService, ContactService>();
             services.AddTransient<ISocialService, SocialService>();
+            services.AddTransient<IMediaService, MediaService>();
+            services.AddTransient<IGalleryService, GalleryService>();
+            services.AddTransient<IHomeService, HomeService>();
 
             // Configure MediatR.
             services.AddMediatR(typeof(Startup));

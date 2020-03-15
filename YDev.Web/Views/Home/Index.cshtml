@@ -6,6 +6,7 @@
     List<Slider> sliders = ViewData["Sliders"] as List<Slider>;
     List<Content> cozumler = ViewData["Cozumler"] as List<Content>;
     List<Content> bloglar = ViewData["Bloglar"] as List<Content>;
+    List<MediaGallery> galleries = ViewData["Galeri"] as List<MediaGallery>;
 }
 
 
@@ -42,12 +43,12 @@
         </div>
         <!-- Revolution slider end -->
         <!-- Welcome Box start -->
-        <div class="welcome">
+        @*<div class="welcome">
             <div class="container">
                 <h3 class="center block-head"><span class="main-color">Welcome To EXCEPTION</span> - Business HTML Template</h3>
                 <p class="margin-bottom-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis. Vestibulum quam elit, dapibus hendrerit id lacus id lobortis. Vestibulum quam elit, dapibus ac augue ut.</p>
             </div>
-        </div>
+        </div>*@
         <!-- Welcome Box end -->
         <!-- Services boxes style 2 -->
         <div class="sectionWrapper">
@@ -76,66 +77,25 @@
             <div class="container">
                 <h3 class="block-head">Galeriler</h3>
                 <div class="portfolioGallery portfolio">
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                    @foreach (var item in galleries)
+                    {
+                        <div>
+                            <div class="portfolio-item">
+                                <div class="img-holder">
+                                    <div class="img-over">
+                                        <a href="galeri" class="fx link"><b class="fa fa-link"></b></a>
+                                        <a href="@item.Media.Url" class="fx zoom" data-gal="prettyPhoto[pp_gal]" 
+                                           title="@item.Media.Content"><b class="fa fa-search-plus"></b></a>
+                                    </div>
+                                    <img alt="" src="@item.Media.Url">
                                 </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
+                                <div class="name-holder">
+                                    <a href="#" class="project-name">@item.Media.Content</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>
+                    }
+
                 </div>
                 <div class="clearfix"></div>
                 <div class="view-all-projects"><a href="galeri">Tümünü Görüntüle</a></div>

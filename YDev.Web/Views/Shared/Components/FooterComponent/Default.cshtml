@@ -4,6 +4,7 @@
 @{
     Contact contact = ViewData["Contact"] as Contact;
     List<Social> socials = ViewData["Socials"] as List<Social>;
+    List<MenuObject> menuObjects = ViewData["MenuObjects"] as List<MenuObject>;
 }
 
 <footer id="footWrapper">
@@ -17,7 +18,39 @@
                         <ul class="footer-menu">
                             @foreach (var menu in Model.Take(Model.Count / 2))
                             {
-                                <li><a href="@menu.Link">@menu.Name</a></li>
+                                bool ekle = false;
+                                @foreach (var item in menuObjects)
+                                {
+                                    if (item.Id == menu.Id)
+                                    {
+                                        ekle = true;
+                                    }
+                                    if (item.Children != null)
+                                    {
+                                        foreach (var subItem in item.Children)
+                                        {
+                                            if (subItem.Id == menu.Id)
+                                            {
+                                                ekle = true;
+                                            }
+                                            if (subItem.Children != null)
+                                            {
+                                                foreach (var subItem2 in subItem.Children)
+                                                {
+                                                    if (subItem2.Id == menu.Id)
+                                                    {
+                                                        ekle = true;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if (ekle)
+                                {
+                                    <li><a href="@menu.Link">@menu.Name</a></li>
+                                }
+
                             }
                         </ul>
                     </div>
@@ -25,7 +58,38 @@
                         <ul class="footer-menu">
                             @foreach (var menu in Model.TakeLast(Model.Count / 2))
                             {
-                                <li><a href="@menu.Link">@menu.Name</a></li>
+                                bool ekle = false;
+                                @foreach (var item in menuObjects)
+                                {
+                                    if (item.Id == menu.Id)
+                                    {
+                                        ekle = true;
+                                    }
+                                    if (item.Children != null)
+                                    {
+                                        foreach (var subItem in item.Children)
+                                        {
+                                            if (subItem.Id == menu.Id)
+                                            {
+                                                ekle = true;
+                                            }
+                                            if (subItem.Children != null)
+                                            {
+                                                foreach (var subItem2 in subItem.Children)
+                                                {
+                                                    if (subItem2.Id == menu.Id)
+                                                    {
+                                                        ekle = true;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if (ekle)
+                                {
+                                    <li><a href="@menu.Link">@menu.Name</a></li>
+                                }
                             }
                         </ul>
                     </div>

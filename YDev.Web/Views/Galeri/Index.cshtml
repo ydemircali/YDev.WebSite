@@ -1,0 +1,93 @@
+﻿@using YDev.Common.Models
+@model List<Gallery>
+@{
+    ViewData["Title"] = "Galeriler";
+    List<MediaGallery> mediaGalleries = ViewData["MediaGaleri"] as List<MediaGallery>;
+    
+    if (mediaGalleries == null)
+    {
+        mediaGalleries = new List<MediaGallery>();
+    }
+}
+
+<!-- Content Start -->
+    <div id="contentWrapper">
+        <div class="page-title title-1">
+            <div class="container">
+                <div class="row" style="float:right">
+                    <div class="cell-12">
+                        <h1 class="fx" data-animate="fadeInLeft">Galeriler <span>Mutluluklar</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sectionWrapper">
+            <div class="container">
+                <div id="portfolioGallery-filter" class="portfolio-filterable">
+                    <div class="row">
+                        <div class="gry-bg">
+                            <span class="left filter-by">Filtrele:</span>
+                            <ul id="filters">
+                                @foreach (var item in Model)
+                                {
+                                    <li><a href="#" class="filter" data-filter="@item.Id">@item.Title</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="portfolio-items">
+                            @foreach (var galeri in Model)
+                            {
+                                @foreach (var item in mediaGalleries?.Where(w => w.GalleryId == galeri.Id).ToList())
+                                {
+                                    Media media = item.Media;
+                                    if (media != null)
+                                    {
+                                        <div class="cell-3" data-filter="@item.GalleryId">
+                                            <div class="portfolio-item">
+                                                <div class="img-holder">
+                                                    @if (media.Url.Contains("youtube"))
+                                                    {
+                                                        string dataYoutube = media.Url.Split("v=")[1];
+                                                        <div class="img-over">
+                                                            <a href="@media.Url"
+                                                               title="@media.Content"
+                                                               class="fx zoom"
+                                                               type="text/html"
+                                                               data-youtube="@dataYoutube"
+                                                               data-gal="prettyPhoto[@item.GalleryId]"
+                                                               poster="http://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
+                                                        </div>
+                                                        <img src="http://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@media.Content">
+
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="img-over">
+                                                            <a href="@media.Url" class="fx zoom" data-gal="prettyPhoto[@item.GalleryId]"
+                                                               title="@media.Content"><b class="fa fa-search-plus"></b></a>
+                                                        </div>
+                                                        <img alt="" src="@media.Url">
+                                                    }
+
+                                                </div>
+                                                <div class="name-holder">
+                                                    <a href="#" class="project-name">@media.Content</a>
+                                                    <span class="project-options">"@galeri.Title"</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Content End -->

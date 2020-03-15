@@ -14,12 +14,13 @@ namespace YDev.Admin.Controllers
     {
         private readonly IContentService _contentService;
         private readonly ICategoryService _categoryService;
-        private readonly FilesHelper _filesHelper;
-        public ContentController(FilesHelper filesHelper,IContentService contentService, ICategoryService categoryService)
+        private readonly IMediaService _mediaService;
+        public ContentController(IContentService contentService, 
+            ICategoryService categoryService, IMediaService mediaService)
         {
             _contentService = contentService;
             _categoryService = categoryService;
-            _filesHelper = filesHelper;
+            _mediaService = mediaService;
         }
 
         [Route("kategoriler")]
@@ -46,10 +47,7 @@ namespace YDev.Admin.Controllers
         {
             ViewData["Nav"] = "content/icerikler";
             ViewData["Categories"] = await _categoryService.GetItems();
-
-            JsonFiles ListOfFiles = _filesHelper.GetFileList();
-
-            ViewData["Files"] = ListOfFiles.files.ToList();
+            ViewData["Files"] = await _mediaService.GetItems();
 
             Content content = new Content();
             if (contentId != 0)

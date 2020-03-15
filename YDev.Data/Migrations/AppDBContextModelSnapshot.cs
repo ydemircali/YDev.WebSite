@@ -35,7 +35,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -80,7 +80,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -113,7 +113,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Html")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -148,7 +148,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -162,6 +162,71 @@ namespace YDev.Data.Migrations
                     b.ToTable("Galleries");
                 });
 
+            modelBuilder.Entity("YDev.Common.Models.HomeSetting", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("HomeGalleryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("RecordDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("RecordUser")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HomeGalleryId");
+
+                    b.ToTable("HomeSettings");
+                });
+
+            modelBuilder.Entity("YDev.Common.Models.Media", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsCoverImage")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RecordDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("RecordUser")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ThumbnailUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WidthHeight")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Medias");
+                });
+
             modelBuilder.Entity("YDev.Common.Models.MediaGallery", b =>
                 {
                     b.Property<long>("Id")
@@ -172,13 +237,10 @@ namespace YDev.Data.Migrations
                     b.Property<long>("GalleryId")
                         .HasColumnType("bigint");
 
-                    b.Property<bool>("IsCoverImage")
-                        .HasColumnType("bit");
+                    b.Property<long>("MediaId")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("MediaUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -187,6 +249,8 @@ namespace YDev.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GalleryId");
+
+                    b.HasIndex("MediaId");
 
                     b.ToTable("MediaGalleries");
                 });
@@ -204,7 +268,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -222,7 +286,7 @@ namespace YDev.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -258,7 +322,7 @@ namespace YDev.Data.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -285,7 +349,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Account")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -312,7 +376,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -336,7 +400,7 @@ namespace YDev.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -378,7 +442,7 @@ namespace YDev.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RecordDate")
+                    b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("RecordUser")
@@ -417,11 +481,26 @@ namespace YDev.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("YDev.Common.Models.HomeSetting", b =>
+                {
+                    b.HasOne("YDev.Common.Models.Gallery", "Gallery")
+                        .WithMany()
+                        .HasForeignKey("HomeGalleryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("YDev.Common.Models.MediaGallery", b =>
                 {
                     b.HasOne("YDev.Common.Models.Gallery", "Gallery")
                         .WithMany()
                         .HasForeignKey("GalleryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YDev.Common.Models.Media", "Media")
+                        .WithMany()
+                        .HasForeignKey("MediaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -16,11 +16,16 @@ namespace YDev.Web.Controllers
     {
         private readonly ISliderService _sliderService;
         private readonly IContentService _contentService;
+        private readonly IHomeService _homeService;
+        private readonly IGalleryService _galleryService;
 
-        public HomeController(ISliderService sliderService, IContentService contentService)
+        public HomeController(ISliderService sliderService, IContentService contentService,
+            IHomeService homeService, IGalleryService galleryService)
         {
             _sliderService = sliderService;
             _contentService = contentService;
+            _homeService = homeService;
+            _galleryService = galleryService;
         }
 
         public async Task<IActionResult> Index()
@@ -29,6 +34,12 @@ namespace YDev.Web.Controllers
 
             ViewData["Cozumler"] = await _contentService.GetContentsByCategory(Categories.Cozumlerimiz, 4);
             ViewData["Bloglar"] = await _contentService.GetContentsByCategory(Categories.Blog, 8);
+
+            HomeSetting homeSetting = await _homeService.GetItemById(1);
+            if (homeSetting != null && homeSetting.HomeGalleryId != 0)
+            {
+                ViewData["Galeri"] = await _galleryService.GetMediasGalleryByGalleryId(homeSetting.HomeGalleryId);
+            }
 
 
             return View();

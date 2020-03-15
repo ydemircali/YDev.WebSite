@@ -214,7 +214,7 @@ namespace YDev.Admin.Models
             var result = new ViewDataUploadFilesResult()
             {
                 name = file.Name,
-                size = SizeInt,
+                Size = SizeInt,
                 type = getType,
                 url = URL_BASE + file.Name,
                 deleteUrl = DELETE_URL + file.Name,

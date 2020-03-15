@@ -17,27 +17,4 @@ namespace YDev.Admin.Models
         }
     }
 
-    public class MyJsonFile
-    {
-        public Result result;
-        public MyJsonFile(Result result1)
-        {
-            var filesList = result1.files.ToList();
-
-            result = new Result
-            {
-                files = new ViewDataUploadFilesResult[filesList.Count]
-            };
-
-            for (int i = 0; i < filesList.Count; i++)
-            {
-                result.files[i] = filesList.ElementAt(i);
-            }
-
-        }
-    }
-    public class Result
-    {
-        public ViewDataUploadFilesResult[] files;
-    }
 }
