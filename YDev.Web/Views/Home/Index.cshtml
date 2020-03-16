@@ -29,7 +29,7 @@
                                 @Html.Raw(slide.Content)
                                 <br />
                                 <br />
-                                <a href="#" class="btn btn-small main-bg" style="border-radius:3px !important; width:120px;">
+                                <a href="#" class="btn btn-small main-bg" style="border-radius:3px !important;">
                                     <span style="text-transform:capitalize !important ; font-size:13px; color:#66000b !important;">
                                         Detay İncele     <i class="fa fa-arrow-right"></i>
                                     </span>
@@ -79,21 +79,44 @@
                 <div class="portfolioGallery portfolio">
                     @foreach (var item in galleries)
                     {
-                        <div>
-                            <div class="portfolio-item">
-                                <div class="img-holder">
-                                    <div class="img-over">
-                                        <a href="galeri" class="fx link"><b class="fa fa-link"></b></a>
-                                        <a href="@item.Media.Url" class="fx zoom" data-gal="prettyPhoto[pp_gal]" 
-                                           title="@item.Media.Content"><b class="fa fa-search-plus"></b></a>
+                        Media media = item.Media;
+                        if (media != null)
+                        {
+                            <div>
+                                <div class="portfolio-item">
+                                    <div class="img-holder">
+                                        @if (media.Url.Contains("youtube"))
+                                        {
+                                            string dataYoutube = media.Url.Split("v=")[1];
+                                            <div class="img-over">
+                                                <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
+                                                <a href="https://www.youtube.com/embed/@dataYoutube?iframe=true&width=100%&height=100%"
+                                                   title="@media.Content"
+                                                   class="fx zoom"
+                                                   data-gal="prettyPhoto[@item.GalleryId]"
+                                                   poster="https://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
+                                            </div>
+                                            <img src="https://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@media.Content">
+
+
+                                        }
+                                        else
+                                        {
+                                            <div class="img-over">
+                                                <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
+                                                <a href="@media.Url" class="fx zoom" data-gal="prettyPhoto[@item.GalleryId]"
+                                                   title="@media.Content"><b class="fa fa-search-plus"></b></a>
+                                            </div>
+                                            <img alt="" src="@media.Url">
+                                        }
                                     </div>
-                                    <img alt="" src="@item.Media.Url">
-                                </div>
-                                <div class="name-holder">
-                                    <a href="#" class="project-name">@item.Media.Content</a>
+                                    <div class="name-holder">
+                                        <a href="#" class="project-name">@item.Media.Content</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
+
                     }
 
                 </div>

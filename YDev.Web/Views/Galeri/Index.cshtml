@@ -49,21 +49,21 @@
                                                     {
                                                         string dataYoutube = media.Url.Split("v=")[1];
                                                         <div class="img-over">
-                                                            <a href="@media.Url"
+                                                            <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
+                                                            <a href="https://www.youtube.com/embed/@dataYoutube?iframe=true&width=100%&height=100%"
                                                                title="@media.Content"
                                                                class="fx zoom"
-                                                               type="text/html"
-                                                               data-youtube="@dataYoutube"
                                                                data-gal="prettyPhoto[@item.GalleryId]"
-                                                               poster="http://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
+                                                               poster="https://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
                                                         </div>
-                                                        <img src="http://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@media.Content">
+                                                        <img src="https://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@media.Content">
 
 
                                                     }
                                                     else
                                                     {
                                                         <div class="img-over">
+                                                            <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
                                                             <a href="@media.Url" class="fx zoom" data-gal="prettyPhoto[@item.GalleryId]"
                                                                title="@media.Content"><b class="fa fa-search-plus"></b></a>
                                                         </div>
