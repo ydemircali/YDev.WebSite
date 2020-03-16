@@ -10,5 +10,7 @@ namespace YDev.Common.Models
         [ForeignKey("Gallery")]
         public long HomeGalleryId { get; set; }
         public Gallery Gallery { get; set; }
+        public string Slogan { get; set; }
+
     }
 }

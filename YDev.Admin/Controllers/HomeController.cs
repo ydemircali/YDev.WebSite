@@ -42,35 +42,29 @@ namespace YDev.Admin.Controllers
 
         [HttpPost]
         [Route("ayarlariKaydet")]
-        public async Task<JsonResult> AyrlariKaydet(long Id, long galeriId)
+        public async Task<JsonResult> AyrlariKaydet([FromBody] HomeSetting homeSetting)
         {
             AjaxResult result = new AjaxResult();
 
-            if (galeriId != 0)
+            if (homeSetting.HomeGalleryId != 0)
             {
-                HomeSetting homeSetting = new HomeSetting
-                {
-                    HomeGalleryId = galeriId
-                };
-
-                if (Id == 0)
+                if (homeSetting.Id == 0)
                 {
                     await _homeService.Create(homeSetting);
                 }
                 else
                 {
-                    homeSetting.Id = Id;
                     await _homeService.Update(homeSetting);
                 }
 
                 result.IsSuccess = true;
-                result.Message = "Galeri bilgileri kaydedildi.";
+                result.Message = "Ayarlar kaydedildi.";
 
             }
             else
             {
                 result.IsSuccess = false;
-                result.Message = "Bilgiler kontrol ediniz.";
+                result.Message = "Galeri zorunludur.(Galeri yoksa oluşturmanız gerekiyor.)";
 
             }
             return Json(result);

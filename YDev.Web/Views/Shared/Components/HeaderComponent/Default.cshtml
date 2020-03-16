@@ -3,9 +3,9 @@
 @model List<MenuObject>
 @{
     List<Category> categories = ViewData["Categories"] as List<Category>;
-}
-@{
     ViewData["Title"] = "Default";
+    HomeSetting homeSetting = ViewData["HomeSetting"] as HomeSetting;
+    Contact contact = ViewData["Contact"] as Contact;
 }
 
 <div id="headWrapper" class="clearfix">
@@ -16,14 +16,14 @@
             <div class="row">
                 <div class="cell-5">
                     <ul>
-                        <li><span>Hayal nereye İhtiyaç Oraya...</span></li>
+                        <li><span>@homeSetting?.Slogan</span></li>
                     </ul>
                 </div>
                 <div class="cell-7 right-bar">
                     <ul class="right">
 
-                        <li><a href="#"><i class="fa fa-envelope"></i>bilgi@ihtiyacevim.com.tr</a></li>
-                        <li><span><i class="fa fa-phone"></i>Bizi Arayın: +90 0542 524 20 90 </span></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i>@contact.EMail</a></li>
+                        <li><span><i class="fa fa-phone"></i>Bizi Arayın: @contact.Phone </span></li>
                     </ul>
                 </div>
             </div>

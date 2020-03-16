@@ -3,12 +3,17 @@
     $(document).on("click", "#ayarlari_kaydet", function () {
 
         $("#ayarlari_kaydet").text("Kaydediliyor");
-        var ayarId = parseInt($(this).data("id"));
-        var galeriId = parseInt($("#galleryId").val());
+
+        var model = {
+            HomeGalleryId: parseInt($("#galleryId").val()),
+            Slogan: $("#slogan").val(),
+            Id: parseInt($(this).data("id"))
+        }; 
 
         $.ajax({
-            url: "/ayarlariKaydet?Id=" + ayarId + "&galeriId=" + galeriId,
+            url: "/ayarlariKaydet",
             type: "POST",
+            data: JSON.stringify(model),
             contentType: "application/json",
             success: function (data) {
                 if (data.isSuccess === true) {
