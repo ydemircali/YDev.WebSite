@@ -20,9 +20,9 @@
                     @foreach (var slide in sliders)
                     {
                         <li data-slotamount="7" data-transition="fade" data-masterspeed="@slide.Time" data-saveperformance="on">
-                            <img alt="" src="images/slider/dummy.png" data-lazyload="@slide.MediaUrl?.ToImageLink()">
+                            <img alt="" src="images/slider/dummy.png" data-lazyload="@slide.MediaUrl?">
                             <div class="caption lfr" data-y="90" data-x="right" data-speed="600" data-start="1000">
-                                <img alt="" src="@slide.TinyMediaUrl?.ToImageLink()">
+                                <img alt="" src="@slide.TinyMediaUrl?">
                             </div>
                             <div class="caption sfl large-desc witTxt tp-resizeme extraLargeFont rs-parallaxlevel-0"
                                  data-x="10" data-y="200" data-speed="600" data-start="2400" style="z-index: 9; max-width: auto; max-height: auto; white-space:nowrap;">
@@ -124,12 +124,12 @@
                                         <div class="img-holder">
                                             <div class="img-over">
                                                 <a href="@blog.Url-@blog.Id" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="@(string.IsNullOrEmpty(blog.CoverImage) ? "images/ihtiyac_640x426.jpg" : blog.CoverImage.ToImageLink())" class="fx zoom" data-gal="prettyPhoto[2]"
+                                                <a href="@(string.IsNullOrEmpty(blog.CoverImage) ? "images/ihtiyac_640x426.jpg" : blog.CoverImage)" class="fx zoom" data-gal="prettyPhoto[2]"
                                                    title="@blog.Title">
                                                     <b class="fa fa-search-plus"></b>
                                                 </a>
                                             </div>
-                                            <img alt="" src="@(string.IsNullOrEmpty(blog.CoverImage) ? "images/ihtiyac_640x426.jpg" : blog.CoverImage.ToImageLink())">
+                                            <img alt="" src="@(string.IsNullOrEmpty(blog.CoverImage) ? "images/ihtiyac_640x426.jpg" : blog.CoverImage)">
                                         </div>
                                         <div class="name-holder">
                                             <a href="#" class="project-name">@blog.Title</a>

@@ -26,9 +26,9 @@
                 @if (!string.IsNullOrEmpty(Model.CoverImage))
                 {
                     <div class="post-image details-img">
-                        <a href="@Model.CoverImage.ToImageLink()" class="zoom">
+                        <a href="@Model.CoverImage" class="zoom">
                             <div class="mask"></div>
-                            <img src="@Model.CoverImage.ToImageLink()" alt="@Model.Title">
+                            <img src="@Model.CoverImage" alt="@Model.Title">
                         </a>
                     </div>
                 }

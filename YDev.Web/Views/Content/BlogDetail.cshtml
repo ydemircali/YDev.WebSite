@@ -32,7 +32,7 @@
                                         <div class="main-bg">@Model.RecordDate.Day<br>@Model.RecordDate.ToString("MMMM", CultureInfo.GetCultureInfo("tr-TR"))<br>@Model.RecordDate.Year</div>
                                     </div>
                                 }
-                                <img src="@(string.IsNullOrEmpty(Model.CoverImage) ? "../images/ihtiyac_640x426.jpg" : Model.CoverImage.ToImageLink())" alt="@Model.Title">
+                                <img src="@(string.IsNullOrEmpty(Model.CoverImage) ? "../images/ihtiyac_640x426.jpg" : Model.CoverImage)" alt="@Model.Title">
                             </div>
                             <article class="post-content">
                                 <div class="post-info-container">
@@ -72,7 +72,7 @@
                                     {
                                         <li>
                                             <div class="post-img">
-                                                <img src="@(string.IsNullOrEmpty(item.CoverImage) ? "../images/ihtiyac_640x426.jpg" : item.CoverImage.ToImageLink())" alt="">
+                                                <img src="@(string.IsNullOrEmpty(item.CoverImage) ? "../images/ihtiyac_640x426.jpg" : item.CoverImage)" alt="">
                                             </div>
                                             <div class="widget-post-info">
                                                 <h4>
