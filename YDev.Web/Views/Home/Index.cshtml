@@ -19,23 +19,22 @@
                 <ul>
                     @foreach (var slide in sliders)
                     {
-                        <li data-slotamount="7" data-transition="fade" data-masterspeed="@slide.Time" data-saveperformance="on">
-                            <img alt="" src="images/slider/dummy.png" data-lazyload="@slide.MediaUrl?">
-                            <div class="caption lfr" data-y="90" data-x="right" data-speed="600" data-start="1000">
-                                <img alt="" src="@slide.TinyMediaUrl?">
-                            </div>
-                            <div class="caption sfl large-desc witTxt tp-resizeme extraLargeFont rs-parallaxlevel-0"
-                                 data-x="10" data-y="200" data-speed="600" data-start="2400" style="z-index: 9; max-width: auto; max-height: auto; white-space:nowrap;">
-                                @Html.Raw(slide.Content)
-                                <br />
-                                <br />
-                                <a href="#" class="btn btn-small main-bg" style="border-radius:3px !important;">
-                                    <span style="text-transform:capitalize !important ; font-size:13px; color:#66000b !important;">
-                                        Detay İncele     <i class="fa fa-arrow-right"></i>
-                                    </span>
-                                </a>
-                            </div>
-                        </li>
+                    <li data-slotamount="7" data-transition="fade" data-masterspeed="@slide.Time" data-saveperformance="on">
+                        <img alt="" src="images/slider/dummy.png" data-lazyload="@slide.MediaUrl?">
+                        <div class="caption lfr" data-y="90" data-x="right" data-speed="600" data-start="1000">
+                            <img alt="" src="@slide.TinyMediaUrl?">
+                        </div>
+
+                        <div class="caption sfl large-desc witTxt tp-resizeme extraLargeFont rs-parallaxlevel-0"
+                             data-x="7" data-y="300" data-speed="600" data-start="2400" style="z-index: 9; max-width: auto; max-height: auto; white-space: nowrap;">
+                            @Html.Raw(slide.Content)
+                        </div>
+                        <div class="caption sfb large-desc witTxt center tp-resizeme" data-x="20" data-y="400" data-speed="600" data-start="3000">
+                            <a href="@slide.Link" class="btn main-bg ">
+                                <span style="text-transform:capitalize !important; color:#66000b;background: #dcae73;">Detay İncele <i class="fa fa-arrow-right"></i></span>
+                            </a>
+                        </div>
+                    </li>
                     }
 
                 </ul>
