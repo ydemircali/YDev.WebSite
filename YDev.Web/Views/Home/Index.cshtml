@@ -20,10 +20,14 @@
                     @foreach (var slide in sliders)
                     {
                     <li data-slotamount="7" data-transition="fade" data-masterspeed="@slide.Time" data-saveperformance="on">
-                        <img alt="" src="images/slider/dummy.png" data-lazyload="@slide.MediaUrl?">
-                        <div class="caption lfr" data-y="90" data-x="right" data-speed="600" data-start="1000">
-                            <img alt="" src="@slide.TinyMediaUrl?">
-                        </div>
+                        <img alt="" src="images/slider/dummy.png" data-lazyload="@slide.MediaUrl">
+                        @if (!string.IsNullOrEmpty(slide.TinyMediaUrl))
+                        {
+                            <div class="caption lfr" data-y="90" data-x="right" data-speed="600" data-start="1000">
+                                <img alt="" src="@slide.TinyMediaUrl">
+                            </div>
+                        }
+
 
                         <div class="caption sfl large-desc witTxt tp-resizeme extraLargeFont rs-parallaxlevel-0"
                              data-x="7" data-y="300" data-speed="600" data-start="2400" style="z-index: 9; max-width: auto; max-height: auto; white-space: nowrap;">
