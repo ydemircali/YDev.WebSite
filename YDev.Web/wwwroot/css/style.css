@@ -425,6 +425,7 @@ th, td, caption {
 /* ---- 3.1 Top bar ------------------ */
 .top-bar {
 	font-size: 11px;
+	background: #f4f4f4;
 }
 .top-bar.main-bg{
     border-bottom:0
