@@ -19,24 +19,12 @@
                 <ul>
                     @foreach (var slide in sliders)
                     {
-                    <li data-slotamount="7" data-transition="fade" data-masterspeed="@slide.Time" data-saveperformance="on">
+                    <li data-slotamount="7" data-transition="random" data-masterspeed="@slide.Time" data-saveperformance="on">
                         <img alt="" src="images/slider/dummy.png" data-lazyload="@slide.MediaUrl">
-                        @if (!string.IsNullOrEmpty(slide.TinyMediaUrl))
-                        {
-                            <div class="caption lfr" data-y="90" data-x="right" data-speed="600" data-start="1000">
-                                <img alt="" src="@slide.TinyMediaUrl">
-                            </div>
-                        }
-
-
+                      
                         <div class="caption sfl large-desc witTxt tp-resizeme extraLargeFont rs-parallaxlevel-0"
                              data-x="7" data-y="300" data-speed="600" data-start="2400" style="z-index: 9; max-width: auto; max-height: auto; white-space: nowrap;">
                             @Html.Raw(slide.Content)
-                        </div>
-                        <div class="caption sfb large-desc witTxt center tp-resizeme" data-x="20" data-y="400" data-speed="600" data-start="3000">
-                            <a href="@slide.Link" class="btn main-bg ">
-                                <span style="text-transform:capitalize !important; color:#66000b;background: #dcae73;">Detay İncele <i class="fa fa-arrow-right"></i></span>
-                            </a>
                         </div>
                     </li>
                     }
@@ -82,43 +70,42 @@
                 <div class="portfolioGallery portfolio">
                     @foreach (var item in galleries)
                     {
-                        Media media = item.Media;
-                        if (media != null)
-                        {
-                            <div>
-                                <div class="portfolio-item">
-                                    <div class="img-holder">
-                                        @if (media.Url.Contains("youtube"))
-                                        {
-                                            string dataYoutube = media.Url.Split("v=")[1];
-                                            <div class="img-over">
-                                                <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="https://www.youtube.com/embed/@dataYoutube?iframe=true&width=100%&height=100%"
-                                                   title="@media.Content"
-                                                   class="fx zoom"
-                                                   data-gal="prettyPhoto[@item.GalleryId]"
-                                                   poster="https://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img src="https://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@media.Content">
+                        
+                        <div>
+                            <div class="portfolio-item">
+                                        <div class="img-holder">
+                                            @if (item.MediaUrl.Contains("youtube"))
+                                            {
+                                                string dataYoutube = item.MediaUrl.Split("v=")[1];
+                                                <div class="img-over">
+                                                    <a href="@item.MediaUrl" class="fx link"><b class="fa fa-link"></b></a>
+                                                    <a href="https://www.youtube.com/embed/@dataYoutube?iframe=true&width=100%&height=100%"
+                                                        title="@item.MediaContent"
+                                                        class="fx zoom"
+                                                        data-gal="prettyPhoto[@item.GalleryId]"
+                                                        poster="https://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
+                                                </div>
+                                                <img src="https://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@item.MediaContent">
 
 
-                                        }
-                                        else
-                                        {
-                                            <div class="img-over">
-                                                <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="@media.Url" class="fx zoom" data-gal="prettyPhoto[@item.GalleryId]"
-                                                   title="@media.Content"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="@media.Url">
-                                        }
+                                            }
+                                            else
+                                            {
+                                                <div class="img-over">
+                                                    <a href="@item.MediaUrl" class="fx link"><b class="fa fa-link"></b></a>
+                                                    <a href="@item.MediaUrl" class="fx zoom" data-gal="prettyPhoto[@item.GalleryId]"
+                                                        title="@item.MediaContent"><b class="fa fa-search-plus"></b></a>
+                                                </div>
+                                                <img alt="" src="@item.MediaUrl">
+                                            }
+
+                                        </div>
+                                        <div class="name-holder">
+                                            <a href="#" class="project-name">@item.MediaContent</a>
+                                            <span class="project-options">"@item.MediaContent"</span>
+                                        </div>
                                     </div>
-                                    <div class="name-holder">
-                                        <a href="#" class="project-name">@item.Media.Content</a>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                        </div>
 
                     }
 

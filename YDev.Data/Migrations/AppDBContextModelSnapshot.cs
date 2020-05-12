@@ -15,7 +15,7 @@ namespace YDev.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -240,8 +240,11 @@ namespace YDev.Data.Migrations
                     b.Property<long>("GalleryId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("MediaId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("MediaContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MediaUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
@@ -252,8 +255,6 @@ namespace YDev.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GalleryId");
-
-                    b.HasIndex("MediaId");
 
                     b.ToTable("MediaGalleries");
                 });
@@ -498,12 +499,6 @@ namespace YDev.Data.Migrations
                     b.HasOne("YDev.Common.Models.Gallery", "Gallery")
                         .WithMany()
                         .HasForeignKey("GalleryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("YDev.Common.Models.Media", "Media")
-                        .WithMany()
-                        .HasForeignKey("MediaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -35,23 +35,7 @@ namespace YDev.Admin.Controllers
         {
             ViewData["Nav"] = "medya/resimvideo";
 
-            List<Media> medias = await _mediaService.GetItems();
-
-            JsonFiles ListOfFiles = _filesHelper.GetFileList();
-            List<ViewDataUploadFilesResult> model = ListOfFiles.files.ToList();
-
-            medias.RemoveAll(r => model.Any(a => StaticDatas.HOST_NAME + a.url == r.Url));
-            foreach (var item in medias)
-            {
-                model.Add(new ViewDataUploadFilesResult 
-                {
-                    url = item.Url,
-                    name = item.Content,
-                    thumbnailUrl = item.Url
-                });
-            }
-
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -205,9 +189,6 @@ namespace YDev.Admin.Controllers
 
             ViewData["FilesGallery"] = await _galleryService.GetMediasGalleryByGalleryId(galeriId);
 
-            ViewData["Files"] = await _mediaService.GetItems();
-
-
             return View(gallery);
         }
 
@@ -217,7 +198,7 @@ namespace YDev.Admin.Controllers
         {
             AjaxResult result = new AjaxResult();
 
-            if (mediaGallery == null || mediaGallery.MediaId == 0)
+            if (mediaGallery == null || string.IsNullOrEmpty(mediaGallery.MediaUrl))
             {
                 result.IsSuccess = false;
                 result.Message = "Eksik alanları doldurun !";

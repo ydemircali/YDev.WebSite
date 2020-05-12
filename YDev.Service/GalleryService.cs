@@ -59,8 +59,7 @@ namespace YDev.Service
 
         public async Task<List<MediaGallery>> GetMediasGalleryByGalleryId(long galleryId)
         {
-            return await _repoMediaGallery.FindByCondition(f => f.GalleryId == galleryId)
-                .Include(i => i.Media).ToListAsync();
+            return await _repoMediaGallery.FindByCondition(f => f.GalleryId == galleryId).ToListAsync();
         }
 
         public async Task CreateMediaGallery(MediaGallery dto)
@@ -83,7 +82,7 @@ namespace YDev.Service
 
         public async Task<List<MediaGallery>> GetItemsMediaGallery()
         {
-            return await _repoMediaGallery.FindAll().Include(i => i.Media).ToListAsync();
+            return await _repoMediaGallery.FindAll().ToListAsync();
         }
 
     }

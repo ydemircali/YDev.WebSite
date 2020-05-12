@@ -28,6 +28,8 @@ namespace YDev.Admin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
             services.AddDbContext<AppDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection"),
@@ -68,7 +70,7 @@ namespace YDev.Admin
 
             services.AddMvc(options => options.Filters.Add(new AuthorizeFilter()));
 
-            services.AddDistributedMemoryCache();
+            
             services.AddSession();
         }
 
@@ -86,7 +88,8 @@ namespace YDev.Admin
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            
 
             app.UseRouting();
 
@@ -94,6 +97,10 @@ namespace YDev.Admin
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.UsePhp(new PhpRequestOptions(scriptAssemblyName: "YDev.FileManager"));
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

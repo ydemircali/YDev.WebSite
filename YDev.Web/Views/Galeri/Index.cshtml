@@ -39,45 +39,42 @@
                             {
                                 @foreach (var item in mediaGalleries?.Where(w => w.GalleryId == galeri.Id).ToList())
                                 {
-                                    Media media = item.Media;
-                                    if (media != null)
-                                    {
-                                        <div class="cell-3" data-filter="@item.GalleryId">
-                                            <div class="portfolio-item">
-                                                <div class="img-holder">
-                                                    @if (media.Url.Contains("youtube"))
-                                                    {
-                                                        string dataYoutube = media.Url.Split("v=")[1];
-                                                        <div class="img-over">
-                                                            <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
-                                                            <a href="https://www.youtube.com/embed/@dataYoutube?iframe=true&width=100%&height=100%"
-                                                               title="@media.Content"
-                                                               class="fx zoom"
-                                                               data-gal="prettyPhoto[@item.GalleryId]"
-                                                               poster="https://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
-                                                        </div>
-                                                        <img src="https://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@media.Content">
+                                   
+                                    <div class="cell-3" data-filter="@item.GalleryId">
+                                        <div class="portfolio-item">
+                                            <div class="img-holder">
+                                                @if (item.MediaUrl.Contains("youtube"))
+                                                {
+                                                    string dataYoutube = item.MediaUrl.Split("v=")[1];
+                                                    <div class="img-over">
+                                                        <a href="@item.MediaUrl" class="fx link"><b class="fa fa-link"></b></a>
+                                                        <a href="https://www.youtube.com/embed/@dataYoutube?iframe=true&width=100%&height=100%"
+                                                            title="@item.MediaContent"
+                                                            class="fx zoom"
+                                                            data-gal="prettyPhoto[@item.GalleryId]"
+                                                            poster="https://img.youtube.com/vi/@dataYoutube/0.jpg"><b class="fa fa-search-plus"></b></a>
+                                                    </div>
+                                                    <img src="https://img.youtube.com/vi/@dataYoutube/0.jpg" alt="@item.MediaContent">
 
 
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="img-over">
-                                                            <a href="@media.Url" class="fx link"><b class="fa fa-link"></b></a>
-                                                            <a href="@media.Url" class="fx zoom" data-gal="prettyPhoto[@item.GalleryId]"
-                                                               title="@media.Content"><b class="fa fa-search-plus"></b></a>
-                                                        </div>
-                                                        <img alt="" src="@media.Url">
-                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div class="img-over">
+                                                        <a href="@item.MediaUrl" class="fx link"><b class="fa fa-link"></b></a>
+                                                        <a href="@item.MediaUrl" class="fx zoom" data-gal="prettyPhoto[@item.GalleryId]"
+                                                            title="@item.MediaContent"><b class="fa fa-search-plus"></b></a>
+                                                    </div>
+                                                    <img alt="" src="@item.MediaUrl">
+                                                }
 
-                                                </div>
-                                                <div class="name-holder">
-                                                    <a href="#" class="project-name">@media.Content</a>
-                                                    <span class="project-options">"@galeri.Title"</span>
-                                                </div>
+                                            </div>
+                                            <div class="name-holder">
+                                                <a href="#" class="project-name">@item.MediaContent</a>
+                                                <span class="project-options">"@galeri.Title"</span>
                                             </div>
                                         </div>
-                                    }
+                                    </div>
 
                                 }
                             }

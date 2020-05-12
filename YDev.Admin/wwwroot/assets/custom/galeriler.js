@@ -72,7 +72,8 @@
 
         var galeriId = parseInt($(this).data("galeri-id"))
         var model = {
-            MediaId: parseInt($("#mediaId").val()),
+            MediaUrl: $("#mediaUrl").val(),
+            MediaContent: $("#mediaContent").val(),
             GalleryId: galeriId
         };
 

@@ -424,7 +424,6 @@ th, td, caption {
 ============================================================================= */
 /* ---- 3.1 Top bar ------------------ */
 .top-bar {
-	background: #dcae73;
 	font-size: 11px;
 }
 .top-bar.main-bg{
@@ -505,7 +504,6 @@ header.top-head .logo.center a{
 	position: relative;
 	float: left;
     margin: 0;
-	border-left: 1px #eee solid;
 	height: 83px;
     overflow:hidden\9
 }

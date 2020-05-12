@@ -30,43 +30,17 @@
                 <div class="portlet light bordered">
                     <div class="portlet-body">
                         <div class="row">
-
                             <div class="form-group col-md-6">
-                                <label>Resim Seçiniz (1920x520)</label>
-                                <select id="mediaUrl" class="form-control">
-                                    <option value="" selected disabled>Seçiniz</option>
-                                    @foreach (var item in files)
-                                    {
-                                        if (Model.MediaUrl == item.Url)
-                                        {
-                                            <option selected value="@item.Url">@item.Content (@item.Url)</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Url">@item.Content (@item.Url)</option>
-                                        }
-                                    }
-                                </select>
+                                <label>Resim Seç</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="mediaUrl" id="mediaUrl" value="@Model.MediaUrl">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline green" data-toggle="modal" href="#fileManagerModal">Gözat</a>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>Küçük Resim Seçiniz (375x350)</label>
-                                <select id="tinyMediaUrl" class="form-control">
-                                    <option value="" selected disabled>Seçiniz</option>
-                                    @foreach (var item in files)
-                                    {
-                                        if (Model.TinyMediaUrl == item.Url)
-                                        {
-                                            <option selected value="@item.Url">@item.Content (@item.Url)</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Url">@item.Content (@item.Url)</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Link</label>
+                                <label>Tıklayınca açılacak link</label>
                                 <input type="text" value="@Model.Link" class="form-control" id="link" placeholder="tıklayınca açılacak sayfa">
                             </div>
 
@@ -96,6 +70,22 @@
         <!-- END PAGE BASE CONTENT -->
     </div>
     <!-- END CONTENT BODY -->
+</div>
+<div class="modal fade" id="fileManagerModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Dosya Yönetimi</h4>
+            </div>
+            <div class="modal-body">
+                <iframe width="100%" height="500px" frameborder="0"
+                        src="dosyaYonetimi/dialog.php?type=0&field_id=mediaUrl">
+                </iframe>
+            </div>
+
+        </div>
+    </div>
 </div>
 <!-- END CONTENT -->
 
