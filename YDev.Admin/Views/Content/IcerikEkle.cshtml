@@ -56,20 +56,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Resim Seçiniz</label>
-                                <select id="coverImage" class="form-control">
-                                    <option value="" selected disabled>Seçiniz</option>
-                                    @foreach (var item in files)
-                                    {
-                                        if (Model.CoverImage == item.Url)
-                                        {
-                                            <option selected value="@item.Url">@item.Content (@item.Url)</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Url">@item.Content (@item.Url)</option>
-                                        }
-                                    }
-                                </select>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="coverImage" id="coverImage" value="">
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-outline green" data-toggle="modal" href="#fileManagerModal">Gözat</a>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Url</label>
@@ -99,6 +91,22 @@
         <!-- END PAGE BASE CONTENT -->
     </div>
     <!-- END CONTENT BODY -->
+</div>
+<div class="modal fade" id="fileManagerModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Dosya Yönetimi</h4>
+            </div>
+            <div class="modal-body">
+                <iframe width="100%" height="500px" frameborder="0"
+                        src="dosyaYonetimi/dialog.php?type=0&field_id=coverImage">
+                </iframe>
+            </div>
+
+        </div>
+    </div>
 </div>
 <!-- END CONTENT -->
 @section scripts
