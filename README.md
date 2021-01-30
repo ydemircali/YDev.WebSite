@@ -1,2 +1,2 @@
 # YDev.WebSite
-.Net Core ile Uçtan uca web site yönetimi.
+End-to-end web site management with .Net Core.
